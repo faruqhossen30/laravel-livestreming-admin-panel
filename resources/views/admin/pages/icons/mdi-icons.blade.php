@@ -1,7 +1,7 @@
 @extends('admin.layout.master')
 
 @push('plugin-styles')
-  <link href="{{ asset('assets/plugins/@mdi/css/materialdesignicons.min.css') }}" rel="stylesheet" />
+  <link href="{{ asset('admin/assets/plugins/@mdi/css/materialdesignicons.min.css') }}" rel="stylesheet" />
 @endpush
 
 @section('content')

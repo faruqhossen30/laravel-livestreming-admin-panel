@@ -73,12 +73,12 @@
 @endsection
 
 @push('plugin-scripts')
-  <script src="{{ asset('assets/plugins/jquery.flot/jquery.flot.js') }}"></script>
-  <script src="{{ asset('assets/plugins/jquery.flot/jquery.flot.resize.js') }}"></script>
-  <script src="{{ asset('assets/plugins/jquery.flot/jquery.flot.pie.js') }}"></script>
-  <script src="{{ asset('assets/plugins/jquery.flot/jquery.flot.categories.js') }}"></script>
+  <script src="{{ asset('admin/assets/plugins/jquery.flot/jquery.flot.js') }}"></script>
+  <script src="{{ asset('admin/assets/plugins/jquery.flot/jquery.flot.resize.js') }}"></script>
+  <script src="{{ asset('admin/assets/plugins/jquery.flot/jquery.flot.pie.js') }}"></script>
+  <script src="{{ asset('admin/assets/plugins/jquery.flot/jquery.flot.categories.js') }}"></script>
 @endpush
 
 @push('custom-scripts')
-  <script src="{{ asset('assets/js/jquery.flot.js') }}"></script>
+  <script src="{{ asset('admin/assets/js/jquery.flot.js') }}"></script>
 @endpush

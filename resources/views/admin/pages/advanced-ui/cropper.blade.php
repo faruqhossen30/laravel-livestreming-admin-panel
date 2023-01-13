@@ -1,7 +1,7 @@
 @extends('admin.layout.master')
 
 @push('plugin-styles')
-  <link href="{{ asset('assets/plugins/cropperjs/cropper.min.css') }}" rel="stylesheet" />
+  <link href="{{ asset('admin/assets/plugins/cropperjs/cropper.min.css') }}" rel="stylesheet" />
 @endpush
 
 @section('content')
@@ -58,9 +58,9 @@
 @endsection
 
 @push('plugin-scripts')
-  <script src="{{ asset('assets/plugins/cropperjs/cropper.min.js') }}"></script>
+  <script src="{{ asset('admin/assets/plugins/cropperjs/cropper.min.js') }}"></script>
 @endpush
 
 @push('custom-scripts')
-  <script src="{{ asset('assets/js/cropper.js') }}"></script>
+  <script src="{{ asset('admin/assets/js/cropper.js') }}"></script>
 @endpush

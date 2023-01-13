@@ -109,9 +109,9 @@
 @endsection
 
 @push('plugin-scripts')
-  <script src="{{ asset('assets/plugins/chartjs/chart.min.js') }}"></script>
+  <script src="{{ asset('admin/assets/plugins/chartjs/chart.min.js') }}"></script>
 @endpush
 
 @push('custom-scripts')
-  <script src="{{ asset('assets/js/chartjs.js') }}"></script>
+  <script src="{{ asset('admin/assets/js/chartjs.js') }}"></script>
 @endpush

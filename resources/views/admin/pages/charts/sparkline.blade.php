@@ -84,9 +84,9 @@
 @endsection
 
 @push('plugin-scripts')
-  <script src="{{ asset('assets/plugins/jquery-sparkline/jquery.sparkline.min.js') }}"></script>
+  <script src="{{ asset('admin/assets/plugins/jquery-sparkline/jquery.sparkline.min.js') }}"></script>
 @endpush
 
 @push('custom-scripts')
-  <script src="{{ asset('assets/js/sparkline.js') }}"></script>
+  <script src="{{ asset('admin/assets/js/sparkline.js') }}"></script>
 @endpush

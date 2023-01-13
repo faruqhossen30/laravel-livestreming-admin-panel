@@ -296,9 +296,9 @@
 @endsection
 
 @push('plugin-scripts')
-  <script src="{{ asset('assets/plugins/sortablejs/Sortable.min.js') }}"></script>
+  <script src="{{ asset('admin/assets/plugins/sortablejs/Sortable.min.js') }}"></script>
 @endpush
 
 @push('custom-scripts')
-  <script src="{{ asset('assets/js/sortablejs.js') }}"></script>
+  <script src="{{ asset('admin/assets/js/sortablejs.js') }}"></script>
 @endpush

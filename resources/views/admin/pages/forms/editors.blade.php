@@ -1,7 +1,7 @@
 @extends('admin.layout.master')
 
 @push('plugin-styles')
-  <link href="{{ asset('assets/plugins/simplemde/simplemde.min.css') }}" rel="stylesheet" />
+  <link href="{{ asset('admin/assets/plugins/simplemde/simplemde.min.css') }}" rel="stylesheet" />
 
 @endpush
 
@@ -254,14 +254,14 @@ class Alert {
 @endsection
 
 @push('plugin-scripts')
-  <script src="{{ asset('assets/plugins/tinymce/tinymce.min.js') }}"></script>
-  <script src="{{ asset('assets/plugins/simplemde/simplemde.min.js') }}"></script>
-  <script src="{{ asset('assets/plugins/ace-builds/ace.js') }}"></script>
-  <script src="{{ asset('assets/plugins/ace-builds/theme-chaos.js') }}"></script>
+  <script src="{{ asset('admin/assets/plugins/tinymce/tinymce.min.js') }}"></script>
+  <script src="{{ asset('admin/assets/plugins/simplemde/simplemde.min.js') }}"></script>
+  <script src="{{ asset('admin/assets/plugins/ace-builds/ace.js') }}"></script>
+  <script src="{{ asset('admin/assets/plugins/ace-builds/theme-chaos.js') }}"></script>
 @endpush
 
 @push('custom-scripts')
-  <script src="{{ asset('assets/js/tinymce.js') }}"></script>
-  <script src="{{ asset('assets/js/simplemde.js') }}"></script>
-  <script src="{{ asset('assets/js/ace.js') }}"></script>
+  <script src="{{ asset('admin/assets/js/tinymce.js') }}"></script>
+  <script src="{{ asset('admin/assets/js/simplemde.js') }}"></script>
+  <script src="{{ asset('admin/assets/js/ace.js') }}"></script>
 @endpush

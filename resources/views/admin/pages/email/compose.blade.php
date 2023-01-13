@@ -1,8 +1,8 @@
 @extends('admin.layout.master')
 
 @push('plugin-styles')
-  <link href="{{ asset('assets/plugins/select2/select2.min.css') }}" rel="stylesheet" />
-  <link href="{{ asset('assets/plugins/simplemde/simplemde.min.css') }}" rel="stylesheet" />
+  <link href="{{ asset('admin/assets/plugins/select2/select2.min.css') }}" rel="stylesheet" />
+  <link href="{{ asset('admin/assets/plugins/simplemde/simplemde.min.css') }}" rel="stylesheet" />
 @endpush
 
 @section('content')
@@ -158,10 +158,10 @@
 @endsection
 
 @push('plugin-scripts')
-  <script src="{{ asset('assets/plugins/select2/select2.min.js') }}"></script>
-  <script src="{{ asset('assets/plugins/simplemde/simplemde.min.js') }}"></script>
+  <script src="{{ asset('admin/assets/plugins/select2/select2.min.js') }}"></script>
+  <script src="{{ asset('admin/assets/plugins/simplemde/simplemde.min.js') }}"></script>
 @endpush
 
 @push('custom-scripts')
-  <script src="{{ asset('assets/js/email.js') }}"></script>
+  <script src="{{ asset('admin/assets/js/email.js') }}"></script>
 @endpush

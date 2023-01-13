@@ -81,9 +81,9 @@
 @endsection
 
 @push('plugin-scripts')
-  <script src="{{ asset('assets/plugins/peity/jquery.peity.min.js') }}"></script>
+  <script src="{{ asset('admin/assets/plugins/peity/jquery.peity.min.js') }}"></script>
 @endpush
 
 @push('custom-scripts')
-  <script src="{{ asset('assets/js/peity.js') }}"></script>
+  <script src="{{ asset('admin/assets/js/peity.js') }}"></script>
 @endpush

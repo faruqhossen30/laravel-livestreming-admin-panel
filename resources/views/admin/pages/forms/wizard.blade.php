@@ -1,7 +1,7 @@
 @extends('admin.layout.master')
 
 @push('plugin-styles')
-  <link href="{{ asset('assets/plugins/jquery-steps/jquery.steps.css') }}" rel="stylesheet" />
+  <link href="{{ asset('admin/assets/plugins/jquery-steps/jquery.steps.css') }}" rel="stylesheet" />
 @endpush
 
 @section('content')
@@ -109,9 +109,9 @@
 @endsection
 
 @push('plugin-scripts')
-  <script src="{{ asset('assets/plugins/jquery-steps/jquery.steps.min.js') }}"></script>
+  <script src="{{ asset('admin/assets/plugins/jquery-steps/jquery.steps.min.js') }}"></script>
 @endpush
 
 @push('custom-scripts')
-  <script src="{{ asset('assets/js/wizard.js') }}"></script>
+  <script src="{{ asset('admin/assets/js/wizard.js') }}"></script>
 @endpush

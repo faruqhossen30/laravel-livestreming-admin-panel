@@ -1,9 +1,9 @@
 @extends('admin.layout.master')
 
 @push('plugin-styles')
-  <link href="{{ asset('assets/plugins/owl-carousel/assets/owl.carousel.min.css') }}" rel="stylesheet" />
-  <link href="{{ asset('assets/plugins/owl-carousel/assets/owl.theme.default.min.css') }}" rel="stylesheet" />
-  <link href="{{ asset('assets/plugins/animate-css/animate.min.css') }}" rel="stylesheet" />
+  <link href="{{ asset('admin/assets/plugins/owl-carousel/assets/owl.carousel.min.css') }}" rel="stylesheet" />
+  <link href="{{ asset('admin/assets/plugins/owl-carousel/assets/owl.theme.default.min.css') }}" rel="stylesheet" />
+  <link href="{{ asset('admin/assets/plugins/animate-css/animate.min.css') }}" rel="stylesheet" />
 @endpush
 
 @section('content')
@@ -234,10 +234,10 @@
 @endsection
 
 @push('plugin-scripts')
-  <script src="{{ asset('assets/plugins/owl-carousel/owl.carousel.min.js') }}"></script>
-  <script src="{{ asset('assets/plugins/jquery-mousewheel/jquery.mousewheel.js') }}"></script>
+  <script src="{{ asset('admin/assets/plugins/owl-carousel/owl.carousel.min.js') }}"></script>
+  <script src="{{ asset('admin/assets/plugins/jquery-mousewheel/jquery.mousewheel.js') }}"></script>
 @endpush
 
 @push('custom-scripts')
-  <script src="{{ asset('assets/js/carousel.js') }}"></script>
+  <script src="{{ asset('admin/assets/js/carousel.js') }}"></script>
 @endpush

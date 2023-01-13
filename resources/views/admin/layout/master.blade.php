@@ -28,25 +28,25 @@ License: For each use you must have a valid license purchased only from above li
   <!-- CSRF Token -->
   <meta name="_token" content="{{ csrf_token() }}">
   
-  <link rel="shortcut icon" href="{{ asset('/favicon.ico') }}">
+  <link rel="shortcut icon" href="{{ asset('admin//favicon.ico') }}">
 
   <!-- plugin css -->
-  <link href="{{ asset('assets/fonts/feather-font/css/iconfont.css') }}" rel="stylesheet" />
-  <link href="{{ asset('assets/plugins/flag-icon-css/css/flag-icon.min.css') }}" rel="stylesheet" />
-  <link href="{{ asset('assets/plugins/perfect-scrollbar/perfect-scrollbar.css') }}" rel="stylesheet" />
+  <link href="{{ asset('admin/assets/fonts/feather-font/css/iconfont.css') }}" rel="stylesheet" />
+  <link href="{{ asset('admin/assets/plugins/flag-icon-css/css/flag-icon.min.css') }}" rel="stylesheet" />
+  <link href="{{ asset('admin/assets/plugins/perfect-scrollbar/perfect-scrollbar.css') }}" rel="stylesheet" />
   <!-- end plugin css -->
 
   @stack('plugin-styles')
 
   <!-- common css -->
-  <link href="{{ asset('css/app.css') }}" rel="stylesheet" />
+  <link href="{{ asset('admin/css/app.css') }}" rel="stylesheet" />
   <!-- end common css -->
 
   @stack('style')
 </head>
 <body data-base-url="{{url('/')}}">
 
-  <script src="{{ asset('assets/js/spinner.js') }}"></script>
+  <script src="{{ asset('admin/assets/js/spinner.js') }}"></script>
 
   <div class="main-wrapper" id="app">
     @include('admin.layout.sidebar')
@@ -60,9 +60,9 @@ License: For each use you must have a valid license purchased only from above li
   </div>
 
     <!-- base js -->
-    <script src="{{ asset('js/app.js') }}"></script>
-    <script src="{{ asset('assets/plugins/feather-icons/feather.min.js') }}"></script>
-    <script src="{{ asset('assets/plugins/perfect-scrollbar/perfect-scrollbar.min.js') }}"></script>
+    <script src="{{ asset('admin/js/app.js') }}"></script>
+    <script src="{{ asset('admin/assets/plugins/feather-icons/feather.min.js') }}"></script>
+    <script src="{{ asset('admin/assets/plugins/perfect-scrollbar/perfect-scrollbar.min.js') }}"></script>
     <!-- end base js -->
 
     <!-- plugin js -->
@@ -70,7 +70,7 @@ License: For each use you must have a valid license purchased only from above li
     <!-- end plugin js -->
 
     <!-- common js -->
-    <script src="{{ asset('assets/js/template.js') }}"></script>
+    <script src="{{ asset('admin/assets/js/template.js') }}"></script>
     <!-- end common js -->
 
     @stack('custom-scripts')
