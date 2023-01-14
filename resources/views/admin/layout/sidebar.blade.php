@@ -18,6 +18,12 @@
           <span class="link-title">Dashboard</span>
         </a>
       </li>
+      <li class="nav-item {{ active_class(['/']) }}">
+        <a href="{{route('admin.settings')}}" class="nav-link">
+          <i class="link-icon" data-feather="settings"></i>
+          <span class="link-title">Settings</span>
+        </a>
+      </li>
       <li class="nav-item nav-category">web apps</li>
       <li class="nav-item {{ active_class(['email/*']) }}">
         <a class="nav-link" data-bs-toggle="collapse" href="#email" role="button" aria-expanded="{{ is_active_route(['email/*']) }}" aria-controls="email">

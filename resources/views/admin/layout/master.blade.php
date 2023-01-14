@@ -44,7 +44,7 @@ License: For each use you must have a valid license purchased only from above li
 
   @stack('style')
 </head>
-<body data-base-url="{{url('/')}}">
+<body data-base-url="{{url('/')}}" class="loaded">
 
   <script src="{{ asset('admin/assets/js/spinner.js') }}"></script>
 
