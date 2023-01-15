@@ -39,4 +39,9 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function otp()
+    {
+        return $this->hasOne(VerificationCode::class, 'user_id');
+    }
 }

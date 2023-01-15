@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\API\Auth\AuthController;
+use App\Http\Controllers\API\Auth\OtpverifyController;
 use App\Http\Controllers\API\User\ProfileController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -28,6 +29,9 @@ Route::post('/register', [AuthController::class, 'register']);
 Route::middleware('auth:sanctum')->group(function () {
     // Profile
     Route::prefix('user')->group(function () {
+        // OTP
+        Route::post('/send-otp', [OtpverifyController::class, 'sendOTP']);
+
         Route::post('/avatar', [ProfileController::class, 'avatar']);
     });
 

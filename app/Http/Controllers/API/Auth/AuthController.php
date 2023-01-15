@@ -4,6 +4,8 @@ namespace App\Http\Controllers\API\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Models\User;
+use App\Models\VerificationCode;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -30,10 +32,22 @@ class AuthController extends Controller
             'status' => true,
         ]);
 
+        if ($user) {
+            VerificationCode::create([
+                'user_id' => $user->id,
+                'otp' => rand(100000, 999999),
+                'expire_at' => Carbon::now()->addMinutes(10)
+            ]);
+
+            $token = $user->createToken(uniqid())->plainTextToken;
+            $user['token'] = $token;
+        }
+
         return response()->json([
             'success' => true,
             'code' => 201,
             'message' => 'User Successfully Registered !',
+            'token' => $token,
             'data' => $user
         ]);
     }
@@ -61,12 +75,12 @@ class AuthController extends Controller
         } catch (Exception $exception) {
             return response()->json([
                 'message' => $exception->getMessage()
-            ],400);
+            ], 400);
         }
 
         return response()->json([
             'message' => 'Opps ! Mobile number or password wrong !'
-        ],401);
+        ], 401);
     }
 
     // Logout

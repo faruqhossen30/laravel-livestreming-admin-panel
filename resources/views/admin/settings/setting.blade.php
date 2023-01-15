@@ -22,9 +22,9 @@
         </div>
         <div class="col-7 col-md-9 ps-0">
             <div class="tab-content tab-content-vertical border p-3" id="v-tabContent">
-                <form action="{{ route('admin.setting.websitename') }}" method="post">
-                    @csrf
-                    <div class="tab-pane fade show active" id="v-website" role="tabpanel" aria-labelledby="v-website-tab">
+                <div class="tab-pane fade show active" id="v-website" role="tabpanel" aria-labelledby="v-website-tab">
+                    <form action="{{ route('admin.setting.websitename') }}" method="post">
+                        @csrf
                         <div class="row">
                             <div class="col grid-margin stretch-card">
                                 <div class="card">
@@ -38,10 +38,10 @@
                                             <span class="input-group-text">Website Name:</span>
                                             <input type="text" name="website_title" value="{{ option('website_title') }}"
                                                 class="form-control @error('website_title') is-invalid @enderror" />
-                                            </div>
-                                            @error('website_title')
-                                                <span class="text-danger">{{ $message }}</span> <br>
-                                            @enderror
+                                        </div>
+                                        @error('website_title')
+                                            <span class="text-danger">{{ $message }}</span> <br>
+                                        @enderror
 
                                         <button type="submit" class="btn btn-primary btn-icon-text">
                                             <i class="btn-icon-prepend" data-feather="save"></i>
@@ -53,8 +53,8 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
-                </form>
+                    </form>
+                </div>
 
                 <div class="tab-pane fade" id="v-profile" role="tabpanel" aria-labelledby="v-profile-tab">
                     <div class="row">
