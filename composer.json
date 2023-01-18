@@ -7,7 +7,7 @@
     "require": {
         "php": "^8.0.2",
         "appstract/laravel-options": "^5.3",
-        "guzzlehttp/guzzle": "^7.2",
+        "guzzlehttp/guzzle": "^7.5",
         "intervention/image": "^2.7",
         "laravel/framework": "^9.19",
         "laravel/sanctum": "^3.0",

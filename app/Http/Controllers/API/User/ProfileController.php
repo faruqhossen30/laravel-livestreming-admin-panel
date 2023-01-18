@@ -25,4 +25,22 @@ class ProfileController extends Controller
 
         return $request->user();
     }
+
+    public function changeNumber(Request $request)
+    {
+        $user = $request->user();
+
+        if ($user->otp_verified_at) {
+            return response()->json([
+                'message' => 'Number already veryfied'
+            ]);
+        }
+
+        $user->update(['mobile'=> $request->number]);
+
+
+        return response()->json([
+            'message' => 'Mobile number has been changeded !'
+        ]);
+    }
 }
