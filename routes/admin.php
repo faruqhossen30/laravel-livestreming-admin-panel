@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\LabelController;
 use App\Http\Controllers\Admin\SettingController;
 use Illuminate\Support\Facades\Route;
 /*
@@ -17,6 +18,7 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
 
     Route::get('/settings', [SettingController::class, 'settingPage'])->name('admin.settings');
     Route::post('/setting/websitename', [SettingController::class, 'websiteName'])->name('admin.setting.websitename');
+    Route::resource('label', LabelController::class);
 
     Route::get('/dashboard', function () {
         return view('admin.dashboard');
