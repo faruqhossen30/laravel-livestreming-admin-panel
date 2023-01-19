@@ -24,6 +24,19 @@
           <span class="link-title">Settings</span>
         </a>
       </li>
+
+      <li class="nav-item {{ active_class(['/']) }}">
+        <a href="{{route('label.index')}}" class="nav-link">
+          <i class="link-icon" data-feather="settings"></i>
+          <span class="link-title">User Label</span>
+        </a>
+      </li>
+      <li class="nav-item {{ active_class(['/']) }}">
+        <a href="{{route('membership.index')}}" class="nav-link">
+          <i class="link-icon" data-feather="settings"></i>
+          <span class="link-title">User Membership</span>
+        </a>
+      </li>
       <li class="nav-item nav-category">web apps</li>
       <li class="nav-item {{ active_class(['email/*']) }}">
         <a class="nav-link" data-bs-toggle="collapse" href="#email" role="button" aria-expanded="{{ is_active_route(['email/*']) }}" aria-controls="email">

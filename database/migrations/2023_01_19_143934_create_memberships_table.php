@@ -13,12 +13,12 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('labels', function (Blueprint $table) {
+        Schema::create('memberships', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('author_id');
-            $table->string('name')->nullable();
-            $table->string('label');
-            $table->integer('diamond');
+            $table->string('name');
+            $table->integer('price');
+            $table->string('icon')->nullable();
             $table->timestamps();
         });
     }
@@ -30,6 +30,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('labels');
+        Schema::dropIfExists('memberships');
     }
 };

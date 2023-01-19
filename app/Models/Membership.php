@@ -5,8 +5,8 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Label extends Model
+class Membership extends Model
 {
     use HasFactory;
-    protected $fillable = ['author_id', 'name', 'label','diamond'];
+    protected $fillable = ['author_id', 'name','price','icon'];
 }

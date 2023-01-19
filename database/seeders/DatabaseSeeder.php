@@ -24,6 +24,7 @@ class DatabaseSeeder extends Seeder
         $this->call([
             AdminSeeder::class,
             LabelSeeder::class,
+            MembershipSeeder::class,
         ]);
     }
 }
