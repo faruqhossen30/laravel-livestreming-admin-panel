@@ -17,10 +17,15 @@ use Illuminate\Support\Facades\Route;
 
 Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
 
-    Route::get('/settings', [SettingController::class, 'settingPage'])->name('admin.settings');
-    Route::post('/setting/websitename', [SettingController::class, 'websiteName'])->name('admin.setting.websitename');
     Route::resource('label', LabelController::class);
     Route::resource('membership', MembershipController::class);
+    
+    // Settings
+    Route::get('/settings', [SettingController::class, 'settingPage'])->name('admin.settings');
+    Route::post('/setting/websitename', [SettingController::class, 'websiteName'])->name('admin.setting.websitename');
+    Route::post('/setting/daimond-commission', [SettingController::class, 'daimondCommission'])->name('admin.setting.daimondcommission');
+    Route::post('/setting/daimond-price', [SettingController::class, 'daimondPrice'])->name('admin.setting.daimondprice');
+    Route::post('/setting/withdraw-rate', [SettingController::class, 'withdrawRate'])->name('admin.setting.withdrawrate');
 
     Route::get('/dashboard', function () {
         return view('admin.dashboard');

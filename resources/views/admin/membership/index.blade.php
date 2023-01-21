@@ -52,13 +52,13 @@
                                             ৳{{ $membership->price }}
                                         </td>
                                         <td>
-                                            <a href="{{route('label.edit', $membership->id)}}" type="button" class="btn btn-primary btn-icon btn-xs">
+                                            <a href="{{route('membership.edit', $membership->id)}}" type="button" class="btn btn-primary btn-icon btn-xs">
                                                 <i data-feather="check-square"></i>
                                             </a>
-                                            <form action="{{route('label.destroy', $membership->id)}}" method="post" style="display: inline">
+                                            <form action="{{route('membership.destroy', $membership->id)}}" method="post" style="display: inline">
                                                 @csrf
                                                 @method('DELETE')
-                                                <button type="submit" onclick="return confirm('Sure ! Delete label ?')" class="btn btn-danger btn-xs btn-icon">
+                                                <button type="submit" onclick="return confirm('Sure ! Delete membership ?')" class="btn btn-danger btn-xs btn-icon">
                                                     <i data-feather="trash"></i>
                                                 </button>
                                             </form>

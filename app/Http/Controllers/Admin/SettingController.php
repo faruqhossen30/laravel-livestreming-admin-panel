@@ -14,15 +14,39 @@ class SettingController extends Controller
 
     public function websiteName(Request $request)
     {
-        // return $request->all();
         $request->validate([
             'website_title'=>'required'
         ]);
-
         option(['website_title' => $request->website_title]);
-
         return redirect()->route('admin.settings');
+    }
 
+    public function daimondCommission(Request $request)
+    {
+        // return $request->all();
+        $request->validate([
+            'daimond_commission'=>'required'
+        ]);
+        option(['daimond_commission' => $request->daimond_commission]);
+        return redirect()->route('admin.settings');
+    }
 
+    public function daimondPrice(Request $request)
+    {
+        // return $request->all();
+        $request->validate([
+            'daimond_price'=>'required'
+        ]);
+        option(['daimond_price' => $request->daimond_price]);
+        return redirect()->route('admin.settings');
+    }
+    public function withdrawRate(Request $request)
+    {
+        // return $request->all();
+        $request->validate([
+            'withdraw_rate'=>'required'
+        ]);
+        option(['withdraw_rate' => $request->withdraw_rate]);
+        return redirect()->route('admin.settings');
     }
 }

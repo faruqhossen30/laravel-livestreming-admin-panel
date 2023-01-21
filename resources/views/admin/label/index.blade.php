@@ -48,7 +48,7 @@
                                             {{ $label->label }}
                                         </td>
                                         <td>
-                                            <span class="text-primary text-sm "><i data-feather="gift"></i></span>
+                                            <span class="text-primary text-xs" width="16px"><i data-feather="gift"></i></span>
                                             {{ $label->diamond }}
                                         </td>
                                         <td>

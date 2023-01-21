@@ -108,6 +108,7 @@ class MembershipController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Membership::firstWhere('id',$id)->delete();
+        return redirect()->route('membership.index');
     }
 }
