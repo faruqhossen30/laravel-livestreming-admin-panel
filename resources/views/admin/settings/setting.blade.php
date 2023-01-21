@@ -31,6 +31,9 @@
                 <a class="nav-link " id="v-withdrawrate-tab" data-bs-toggle="tab" href="#v-withdrawrate" role="tab"
                     aria-controls="v-withdrawrate" aria-selected="false"><span class="input-group"><i data-feather="dollar-sign"
                             class="me-2"></i>Daimond Price</a>
+                <a class="nav-link " id="v-paymentgateway-tab" data-bs-toggle="tab" href="#v-paymentgateway" role="tab"
+                    aria-controls="v-paymentgateway" aria-selected="false"><span class="input-group"><i data-feather="dollar-sign"
+                            class="me-2"></i>paymentgateway</a>
 
 
             </div>
@@ -56,6 +59,9 @@
                 </div>
                 <div class="tab-pane fade" id="v-withdrawrate" role="tabpanel" aria-labelledby="v-withdrawrate-tab">
                     @include('admin.settings.inc.withdrawrate')
+                </div>
+                <div class="tab-pane fade" id="v-paymentgateway" role="tabpanel" aria-labelledby="v-paymentgateway-tab">
+                    @include('admin.settings.inc.paymentgateway')
                 </div>
 
             </div>

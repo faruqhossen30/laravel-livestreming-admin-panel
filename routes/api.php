@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\API\Auth\AuthController;
 use App\Http\Controllers\API\Auth\OtpverifyController;
+use App\Http\Controllers\API\User\BuydaimondController;
 use App\Http\Controllers\API\User\ProfileController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -35,6 +36,8 @@ Route::middleware('auth:sanctum')->group(function () {
 
         Route::post('/avatar', [ProfileController::class, 'avatar']);
         Route::post('/change-number/{number}', [ProfileController::class, 'changeNumber']);
+        // 
+        Route::post('buy-daimond', [BuydaimondController::class, 'buyDaimond']);
     });
 
 });
