@@ -24,16 +24,13 @@
                     aria-controls="v-commission" aria-selected="false"><span class="input-group"><i data-feather="gift"
                             class="me-2"></i>Daimond Commission</a>
 
-                <a class="nav-link " id="v-daimondprice-tab" data-bs-toggle="tab" href="#v-daimondprice" role="tab"
-                    aria-controls="v-daimondprice" aria-selected="false"><span class="input-group"><i data-feather="dollar-sign"
-                            class="me-2"></i>Daimond Price</a>
+                <a class="nav-link " id="v-daimondrate-tab" data-bs-toggle="tab" href="#v-daimondrate" role="tab"
+                    aria-controls="v-daimondrate" aria-selected="false"><span class="input-group"><i data-feather="dollar-sign"
+                            class="me-2"></i>Daimond Rate</a>
 
                 <a class="nav-link " id="v-withdrawrate-tab" data-bs-toggle="tab" href="#v-withdrawrate" role="tab"
                     aria-controls="v-withdrawrate" aria-selected="false"><span class="input-group"><i data-feather="dollar-sign"
-                            class="me-2"></i>Daimond Price</a>
-                <a class="nav-link " id="v-paymentgateway-tab" data-bs-toggle="tab" href="#v-paymentgateway" role="tab"
-                    aria-controls="v-paymentgateway" aria-selected="false"><span class="input-group"><i data-feather="dollar-sign"
-                            class="me-2"></i>paymentgateway</a>
+                            class="me-2"></i>Daimond Widthdraw Rate</a>
 
 
             </div>
@@ -54,14 +51,11 @@
                 <div class="tab-pane fade" id="v-commission" role="tabpanel" aria-labelledby="v-commission-tab">
                     @include('admin.settings.inc.commission')
                 </div>
-                <div class="tab-pane fade" id="v-daimondprice" role="tabpanel" aria-labelledby="v-daimondprice-tab">
-                    @include('admin.settings.inc.daimondprice')
+                <div class="tab-pane fade" id="v-daimondrate" role="tabpanel" aria-labelledby="v-daimondrate-tab">
+                    @include('admin.settings.inc.daimondrate')
                 </div>
                 <div class="tab-pane fade" id="v-withdrawrate" role="tabpanel" aria-labelledby="v-withdrawrate-tab">
                     @include('admin.settings.inc.withdrawrate')
-                </div>
-                <div class="tab-pane fade" id="v-paymentgateway" role="tabpanel" aria-labelledby="v-paymentgateway-tab">
-                    @include('admin.settings.inc.paymentgateway')
                 </div>
 
             </div>

@@ -3,6 +3,7 @@
 use App\Http\Controllers\API\Auth\AuthController;
 use App\Http\Controllers\API\Auth\OtpverifyController;
 use App\Http\Controllers\API\ListapiController;
+use App\Http\Controllers\API\OptionapiController;
 use App\Http\Controllers\API\User\BuydaimondController;
 use App\Http\Controllers\API\User\ProfileController;
 use Illuminate\Http\Request;
@@ -44,3 +45,9 @@ Route::middleware('auth:sanctum')->group(function () {
 });
 
 Route::get('/payment-gateways', [ListapiController::class, 'paymentGateway']);
+Route::get('/labels', [ListapiController::class, 'userlabelList']);
+Route::get('/memberships', [ListapiController::class, 'membershipList']);
+
+Route::get('/option/agora', [OptionapiController::class, 'agora']);
+Route::get('/option/daimond-rate', [OptionapiController::class, 'daimondRate']);
+Route::get('/option/daimondwidthdraw-rate', [OptionapiController::class, 'daimondWidthRate']);

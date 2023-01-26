@@ -3,40 +3,42 @@
 namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
-use App\Models\Label;
-use App\Models\Membership;
-use App\Models\PaymentGateway;
+use App\Models\Agora;
 use Illuminate\Http\Request;
 
-class ListapiController extends Controller
+class OptionapiController extends Controller
 {
-    public function paymentGateway()
+    public function daimondRate()
     {
-        $list = PaymentGateway::get();
+        $price = option('daimond_rate');
         return response()->json([
             'success' => true,
             'code' => 200,
-            'data' => $list
+            'data' => $price,
+            'rate' => $price,
         ]);
     }
 
-    public function userlabelList()
+    public function daimondWidthRate()
     {
-        $list = Label::get();
+        $price = option('withdraw_rate');
         return response()->json([
             'success' => true,
             'code' => 200,
-            'data' => $list
+            'data' => $price,
+            'rate' => $price,
         ]);
     }
 
-    public function membershipList()
+    public function agora()
     {
-        $list = Membership::get();
+        $agora = Agora::first();
+
+
         return response()->json([
             'success' => true,
             'code' => 200,
-            'data' => $list
+            'data' => $agora
         ]);
     }
 }

@@ -31,6 +31,7 @@ return new class extends Migration
             $table->string('device_id')->nullable();
             $table->string('apps_id')->nullable();
             $table->rememberToken();
+            $table->timestamp('name_updated_at')->nullable();
             $table->timestamps();
         });
     }

@@ -31,13 +31,13 @@ class SettingController extends Controller
         return redirect()->route('admin.settings');
     }
 
-    public function daimondPrice(Request $request)
+    public function daimondRate(Request $request)
     {
         // return $request->all();
         $request->validate([
-            'daimond_price'=>'required'
+            'daimond_rate'=>'required'
         ]);
-        option(['daimond_price' => $request->daimond_price]);
+        option(['daimond_rate' => $request->daimond_rate]);
         return redirect()->route('admin.settings');
     }
     public function withdrawRate(Request $request)

@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\AgoraController;
 use App\Http\Controllers\Admin\LabelController;
 use App\Http\Controllers\Admin\MembershipController;
 use App\Http\Controllers\Admin\PaymentgatewayController;
@@ -21,12 +22,13 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
     Route::resource('label', LabelController::class);
     Route::resource('membership', MembershipController::class);
     Route::resource('paymentgateway', PaymentgatewayController::class);
-    
+    Route::resource('agora', AgoraController::class);
+
     // Settings
     Route::get('/settings', [SettingController::class, 'settingPage'])->name('admin.settings');
     Route::post('/setting/websitename', [SettingController::class, 'websiteName'])->name('admin.setting.websitename');
     Route::post('/setting/daimond-commission', [SettingController::class, 'daimondCommission'])->name('admin.setting.daimondcommission');
-    Route::post('/setting/daimond-price', [SettingController::class, 'daimondPrice'])->name('admin.setting.daimondprice');
+    Route::post('/setting/daimond-price', [SettingController::class, 'daimondRate'])->name('admin.setting.daimondrate');
     Route::post('/setting/withdraw-rate', [SettingController::class, 'withdrawRate'])->name('admin.setting.withdrawrate');
 
     Route::get('/dashboard', function () {
