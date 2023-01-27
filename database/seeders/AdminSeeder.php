@@ -19,7 +19,7 @@ class AdminSeeder extends Seeder
         User::create([
             'name'=>'Super Admin',
             'email'=>'admin@gmail.com',
-            'mobile'=>'123',
+            'mobile'=>'01727670665',
             'password'=>Hash::make('123')
         ]);
     }

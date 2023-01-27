@@ -23,7 +23,7 @@ class AuthController extends Controller
             'password' => ['required', 'string', 'min:2', 'confirmed'],
         ]);
         if ($validator->fails()) {
-            return response()->json($validator->errors());
+            return response()->json($validator->errors(),400);
         }
         $user = User::create([
             'name' => $data['name'],
@@ -79,8 +79,10 @@ class AuthController extends Controller
         }
 
         return response()->json([
+            'success' => false,
+            'code' => 403,
             'message' => 'Opps ! Mobile number or password wrong !'
-        ], 401);
+        ], 403);
     }
 
     // Logout
