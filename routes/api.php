@@ -34,7 +34,7 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::prefix('user')->group(function () {
         // OTP
         Route::post('/send-otp', [OtpverifyController::class, 'sendOTP']);
-        Route::get('/otp-verify/{opt}', [OtpverifyController::class, 'otpVerify']);
+        Route::post('/otp-verify/{otp}', [OtpverifyController::class, 'otpVerify']);
 
         Route::post('/avatar', [ProfileController::class, 'avatar']);
         Route::post('/change-number/{number}', [ProfileController::class, 'changeNumber']);

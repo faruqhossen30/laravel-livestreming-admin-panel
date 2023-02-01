@@ -23,7 +23,7 @@ class OtpverifyController extends Controller
 
         $smsAPIKey = env('SMS_API_KEY');
         $mobileNumber = $request->user()->mobile;
-        $opt = $request->user()->otp->opt;
+        $otp = $request->user()->otp->otp;
 
         $smsurl = "http://bulksmsbd.net/api/smsapi?api_key={$smsAPIKey}&type=text&number={$mobileNumber}&senderid=8809617611065&message=AutoLive-OTP: {$request->user()->otp->otp}";
 
@@ -31,26 +31,28 @@ class OtpverifyController extends Controller
         return $response->body();
     }
 
-    public function otpVerify(Request $request)
+    public function otpVerify(Request $request,$otp)
     {
         $user = $request->user();
 
         if ($user->otp_verified_at) {
             return response()->json([
-                'message' => 'already veryfied'
+                'message' => 'Already veryfied'
             ]);
         }
         // 357945
         // return $request->opt;
-        if ($user->otp->otp == $request->opt) {
-            
+        if ($user->otp->otp == $otp) {
+
             User::firstWhere('id', $user->id)->update(['otp_verified_at'=> Carbon::now()]);
             VerificationCode::firstWhere('user_id', $user->id)->update(['otp_verified_at'=> Carbon::now()]);
+
+            $update = $request->user();
 
             return response()->json([
                 'success' => true,
                 'code' => 200,
-                'message' => 'OTP verify successfully !'
+                'message' => 'Account verify successfully !',
             ]);
 
         };
