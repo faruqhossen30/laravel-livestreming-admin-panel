@@ -23,7 +23,10 @@ class ProfileController extends Controller
 
         $user->update(['avatar'=>$avatarImage]);
 
-        return $request->user();
+        return response()->json([
+            'message' => 'Profile picture has been changeded !',
+            'user' => $request->user()
+        ]);
     }
 
     public function changeNumber(Request $request)
@@ -40,7 +43,8 @@ class ProfileController extends Controller
 
 
         return response()->json([
-            'message' => 'Mobile number has been changeded !'
+            'message' => 'Mobile number has been changeded !',
+            'user' => $request->user()
         ]);
     }
 }
