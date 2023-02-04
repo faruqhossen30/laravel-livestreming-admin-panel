@@ -35,11 +35,12 @@ Route::middleware('auth:sanctum')->group(function () {
         // OTP
         Route::post('/send-otp', [OtpverifyController::class, 'sendOTP']);
         Route::post('/otp-verify/{otp}', [OtpverifyController::class, 'otpVerify']);
-
-        Route::post('/avatar', [ProfileController::class, 'avatar']);
         Route::post('/change-number/{number}', [ProfileController::class, 'changeNumber']);
-        //
         Route::post('buy-daimond', [BuydaimondController::class, 'buyDaimond']);
+        // Update
+        Route::post('/avatar', [ProfileController::class, 'avatar']);
+        Route::post('/change-name', [ProfileController::class, 'changeName']);
+        Route::post('/change-password', [ProfileController::class, 'changePassword']);
     });
 
 });
