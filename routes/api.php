@@ -3,6 +3,7 @@
 use App\Http\Controllers\API\Auth\AuthController;
 use App\Http\Controllers\API\Auth\OtpverifyController;
 use App\Http\Controllers\API\ListapiController;
+use App\Http\Controllers\API\LiveuserController;
 use App\Http\Controllers\API\OptionapiController;
 use App\Http\Controllers\API\User\BuydaimondController;
 use App\Http\Controllers\API\User\ProfileController;
@@ -44,6 +45,8 @@ Route::middleware('auth:sanctum')->group(function () {
     });
 
 });
+
+Route::get('/liveuser', [LiveuserController::class, 'index']);
 
 Route::get('/payment-gateways', [ListapiController::class, 'paymentGateway']);
 Route::get('/labels', [ListapiController::class, 'userlabelList']);
