@@ -5,6 +5,7 @@ use App\Http\Controllers\API\Auth\OtpverifyController;
 use App\Http\Controllers\API\ListapiController;
 use App\Http\Controllers\API\LiveuserController;
 use App\Http\Controllers\API\OptionapiController;
+use App\Http\Controllers\API\RtctokenController;
 use App\Http\Controllers\API\User\BuydaimondController;
 use App\Http\Controllers\API\User\ProfileController;
 use Illuminate\Http\Request;
@@ -47,6 +48,7 @@ Route::middleware('auth:sanctum')->group(function () {
 });
 
 Route::get('/liveuser', [LiveuserController::class, 'index']);
+Route::get('/rcttoken/host', [RtctokenController::class, 'generate']);
 
 Route::get('/payment-gateways', [ListapiController::class, 'paymentGateway']);
 Route::get('/labels', [ListapiController::class, 'userlabelList']);
