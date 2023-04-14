@@ -10,7 +10,7 @@ class LiveuserController extends Controller
 {
     public function index()
     {
-        $users= User::get();
+        $users= User::where('live', 1)->get();
 
         return response()->json([
             'success' => true,

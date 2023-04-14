@@ -93,4 +93,31 @@ class ProfileController extends Controller
             ]);
         }
     }
+
+
+    public function goLive(Request $request)
+    {
+        $user = $request->user();
+        $update = User::where('id', $user->id)->update(
+            ['live' => true]
+        );
+        return response()->json([
+            'success' => true,
+            'code' => 200,
+            'message' => 'Your going to live now !',
+        ]);
+    }
+    public function leaveLive(Request $request)
+    {
+        $user = $request->user();
+        $update = User::where('id', $user->id)->update(
+            ['live' => false]
+        );
+        return response()->json([
+            'success' => true,
+            'code' => 200,
+            'message' => 'End live success !',
+        ]);
+    }
+
 }
