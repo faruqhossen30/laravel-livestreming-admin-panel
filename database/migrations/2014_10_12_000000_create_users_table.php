@@ -24,6 +24,7 @@ return new class extends Migration
             $table->boolean('is_admin')->default(0);
             $table->boolean('is_user')->default(1);
             $table->boolean('live')->default(0);
+            $table->string('rtctoken')->nullable();
             $table->boolean('status')->default(1);
             // Profile
             $table->string('avatar')->nullable();

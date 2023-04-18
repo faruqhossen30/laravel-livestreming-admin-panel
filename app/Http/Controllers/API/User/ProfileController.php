@@ -95,11 +95,11 @@ class ProfileController extends Controller
     }
 
 
-    public function goLive(Request $request)
+    public function goLive(Request $request, $rtctoken)
     {
         $user = $request->user();
         $update = User::where('id', $user->id)->update(
-            ['live' => true]
+            ['live' => true,'rtctoken'=>$request->rtctoken]
         );
         return response()->json([
             'success' => true,

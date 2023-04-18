@@ -7,6 +7,7 @@ use App\Http\Controllers\API\LiveuserController;
 use App\Http\Controllers\API\OptionapiController;
 use App\Http\Controllers\API\RtctokenController;
 use App\Http\Controllers\API\User\BuydaimondController;
+use App\Http\Controllers\API\User\LiveController;
 use App\Http\Controllers\API\User\ProfileController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -43,8 +44,11 @@ Route::middleware('auth:sanctum')->group(function () {
         Route::post('/avatar', [ProfileController::class, 'avatar']);
         Route::post('/change-name', [ProfileController::class, 'changeName']);
         Route::post('/change-password', [ProfileController::class, 'changePassword']);
-        Route::post('/golive', [ProfileController::class, 'goLive']);
-        Route::post('/leaveLive', [ProfileController::class, 'leaveLive']);
+        Route::post('/golive/{rtctoken}', [ProfileController::class, 'goLive']);
+        Route::post('/leavelive', [ProfileController::class, 'leaveLive']);
+        // Live
+        Route::get('/liveuser', [LiveController::class, 'index']);
+
     });
 });
 
