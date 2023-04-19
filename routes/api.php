@@ -45,7 +45,7 @@ Route::middleware('auth:sanctum')->group(function () {
         Route::post('/change-name', [ProfileController::class, 'changeName']);
         Route::post('/change-password', [ProfileController::class, 'changePassword']);
         Route::post('/golive/{rtctoken}', [ProfileController::class, 'goLive']);
-        Route::post('/leavelive', [ProfileController::class, 'leaveLive']);
+        Route::get('/leavelive', [ProfileController::class, 'leaveLive']);
         // Live
         Route::get('/liveuser', [LiveController::class, 'index']);
 
