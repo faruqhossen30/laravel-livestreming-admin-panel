@@ -99,7 +99,7 @@ class ProfileController extends Controller
     {
         $user = $request->user();
         $update = User::where('id', $user->id)->update(
-            ['live' => true,'rtctoken'=>$request->rtctoken]
+            ['live' => true,'rtctoken'=>$rtctoken]
         );
         return response()->json([
             'success' => true,
@@ -111,7 +111,7 @@ class ProfileController extends Controller
     {
         $user = $request->user();
         $update = User::where('id', $user->id)->update(
-            ['live' => false]
+            ['live' => false,'rtctoken'=>null]
         );
         return response()->json([
             'success' => true,
