@@ -58,6 +58,7 @@ Route::get('/rcttoken/host', [RtctokenController::class, 'generate']);
 Route::get('/rtmtoken/host', [RtmctokenController::class, 'generate']);
 
 Route::get('/payment-gateways', [ListapiController::class, 'paymentGateway']);
+Route::get('/gifts', [ListapiController::class, 'giftList']);
 Route::get('/labels', [ListapiController::class, 'userlabelList']);
 Route::get('/memberships', [ListapiController::class, 'membershipList']);
 

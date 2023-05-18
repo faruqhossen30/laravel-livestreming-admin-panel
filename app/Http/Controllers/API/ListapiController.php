@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
+use App\Models\Gift;
 use App\Models\Label;
 use App\Models\Membership;
 use App\Models\PaymentGateway;
@@ -33,6 +34,15 @@ class ListapiController extends Controller
     public function membershipList()
     {
         $list = Membership::get();
+        return response()->json([
+            'success' => true,
+            'code' => 200,
+            'data' => $list
+        ]);
+    }
+    public function giftList()
+    {
+        $list = Gift::get();
         return response()->json([
             'success' => true,
             'code' => 200,
