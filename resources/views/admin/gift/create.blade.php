@@ -43,7 +43,7 @@
                             @enderror
                         </div>
                         <div class="mb-3">
-                            <label for="img_url" class="form-label">img_url</label>
+                            <label for="img_url" class="form-label">Image Link</label>
                             <input name="img_url" type="text" value="{{old('img_url')}}" class="form-control @error('img_url') is-invalid @enderror"
                                 id="img_url" autocomplete="off" placeholder="www.google.com">
                             @error('img_url')
