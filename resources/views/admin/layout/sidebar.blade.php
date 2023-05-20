@@ -26,6 +26,12 @@
       </li>
 
       <li class="nav-item {{ active_class(['/']) }}">
+        <a href="{{route('admin.users')}}" class="nav-link">
+          <i class="link-icon" data-feather="users"></i>
+          <span class="link-title">Users</span>
+        </a>
+      </li>
+      <li class="nav-item {{ active_class(['/']) }}">
         <a href="{{route('label.index')}}" class="nav-link">
           <i class="link-icon" data-feather="users"></i>
           <span class="link-title">User Label</span>
@@ -49,6 +55,19 @@
           <span class="link-title">Payment Gateway</span>
         </a>
       </li>
+      <li class="nav-item">
+        <a class="nav-link" href="{{ route('logout') }}"
+            onclick="event.preventDefault();
+                                 document.getElementById('logout-form').submit();">
+            <i class="link-icon" data-feather="power"></i>
+            <span class="link-title">Log Out</span>
+        </a>
+
+        <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+            @csrf
+        </form>
+    </li>
+
       {{-- <li class="nav-item nav-category">web apps</li>
       <li class="nav-item {{ active_class(['email/*']) }}">
         <a class="nav-link" data-bs-toggle="collapse" href="#email" role="button" aria-expanded="{{ is_active_route(['email/*']) }}" aria-controls="email">
