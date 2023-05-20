@@ -82,6 +82,7 @@ class UserController extends Controller
      */
     public function destroy($id)
     {
-        //
+        User::firstWhere('id',$id)->delete();
+        return redirect()->route('user.index');
     }
 }

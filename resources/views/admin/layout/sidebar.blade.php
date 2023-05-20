@@ -26,7 +26,7 @@
       </li>
 
       <li class="nav-item {{ active_class(['/']) }}">
-        <a href="{{route('admin.users')}}" class="nav-link">
+        <a href="{{route('user.index')}}" class="nav-link">
           <i class="link-icon" data-feather="users"></i>
           <span class="link-title">Users</span>
         </a>

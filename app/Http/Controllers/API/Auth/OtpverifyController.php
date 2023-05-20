@@ -59,6 +59,6 @@ class OtpverifyController extends Controller
 
         return response()->json([
             'message' => 'OTP not matched.'
-        ]);
+        ],422);
     }
 }

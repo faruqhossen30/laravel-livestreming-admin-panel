@@ -26,8 +26,9 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
     Route::resource('membership', MembershipController::class);
     Route::resource('paymentgateway', PaymentgatewayController::class);
     Route::resource('agora', AgoraController::class);
+    Route::resource('user', UserController::class);
 
-    Route::get('/users', [UserController::class, 'index'])->name('admin.users');
+    // Route::get('/users', [UserController::class, 'index'])->name('admin.users');
     // Settings
     Route::get('/settings', [SettingController::class, 'settingPage'])->name('admin.settings');
     Route::post('/setting/websitename', [SettingController::class, 'websiteName'])->name('admin.setting.websitename');

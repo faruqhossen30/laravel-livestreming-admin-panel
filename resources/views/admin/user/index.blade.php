@@ -75,18 +75,18 @@
                                             <button type="button" class="btn btn-success btn-sm">Gift</button>
                                             <button type="button" class="btn btn-success btn-sm">Block</button>
                                             <button type="button" class="btn btn-success btn-sm">Device Block</button>
-                                            <a href="{{route('gift.edit', $user->id)}}" type="button" class="btn btn-primary btn-icon btn-xs">
+                                            <a href="{{route('user.edit', $user->id)}}" type="button" class="btn btn-primary btn-icon btn-xs">
                                                 <i data-feather="eye"></i>
                                             </a>
 
-                                            <a href="{{route('gift.edit', $user->id)}}" type="button" class="btn btn-primary btn-icon btn-xs">
+                                            <a href="{{route('user.edit', $user->id)}}" type="button" class="btn btn-primary btn-icon btn-xs">
                                                 <i data-feather="check-square"></i>
                                             </a>
 
-                                            <form action="{{route('gift.destroy', $user->id)}}" method="post" style="display: inline">
+                                            <form action="{{route('user.destroy', $user->id)}}" method="post" style="display: inline">
                                                 @csrf
                                                 @method('DELETE')
-                                                <button type="submit" onclick="return confirm('Sure ! Delete gift ?')" class="btn btn-danger btn-xs btn-icon">
+                                                <button type="submit" onclick="return confirm('Sure ! Delete user ?')" class="btn btn-danger btn-xs btn-icon">
                                                     <i data-feather="trash"></i>
                                                 </button>
                                             </form>
