@@ -25,7 +25,7 @@ class OtpverifyController extends Controller
         $mobileNumber = $request->user()->mobile;
         $otp = $request->user()->otp->otp;
 
-        $smsurl = "http://bulksmsbd.net/api/smsapi?api_key={$smsAPIKey}&type=text&number={$mobileNumber}&senderid=8809617611065&message=AutoLive-OTP: {$request->user()->otp->otp}";
+        $smsurl = "http://bulksmsbd.net/api/smsapi?api_key={$smsAPIKey}&type=text&number={$mobileNumber}&senderid=8809617611065&message=AkashLive-OTP:{$request->user()->otp->otp}";
 
         $response = Http::get($smsurl);
         return $response->body();
