@@ -13,15 +13,13 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('gifts', function (Blueprint $table) {
+        Schema::create('transactions', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
+            $table->unsignedBigInteger('sender');
+            $table->unsignedBigInteger('receiver');
             $table->integer('diamond');
             $table->integer('commission');
             $table->integer('total');
-            $table->string('img_url');
-            $table->unsignedBigInteger('user');
-            $table->unsignedBigInteger('edit_by')->nullable();
             $table->timestamps();
         });
     }
@@ -33,6 +31,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('gifts');
+        Schema::dropIfExists('transactions');
     }
 };

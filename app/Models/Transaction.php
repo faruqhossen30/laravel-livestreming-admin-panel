@@ -5,9 +5,9 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Gift extends Model
+class Transaction extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['name', 'diamond', 'commission','total', 'img_url', 'user', 'edit_by'];
+    protected $fillable = ['sender', 'receiver', 'diamond', 'commission','total'];
 }

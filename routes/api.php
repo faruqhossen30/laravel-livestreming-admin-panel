@@ -2,11 +2,13 @@
 
 use App\Http\Controllers\API\Auth\AuthController;
 use App\Http\Controllers\API\Auth\OtpverifyController;
+use App\Http\Controllers\API\ForgetpasswordController;
 use App\Http\Controllers\API\ListapiController;
 use App\Http\Controllers\API\LiveuserController;
 use App\Http\Controllers\API\OptionapiController;
 use App\Http\Controllers\API\RtctokenController;
 use App\Http\Controllers\API\RtmctokenController;
+use App\Http\Controllers\API\TransactionController;
 use App\Http\Controllers\API\User\BuydaimondController;
 use App\Http\Controllers\API\User\LiveController;
 use App\Http\Controllers\API\User\ProfileController;
@@ -31,6 +33,10 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 Route::post('/login', [AuthController::class, 'login']);
 Route::post('/register', [AuthController::class, 'register']);
+// Forget Password
+Route::post('/forget-password/{mobile}', [ForgetpasswordController::class, 'forgetPassword']);
+Route::post('/forget-password/{mobile}/send-otp', [ForgetpasswordController::class, 'sendOTP']);
+
 
 
 Route::middleware('auth:sanctum')->group(function () {
@@ -49,6 +55,8 @@ Route::middleware('auth:sanctum')->group(function () {
         Route::get('/leavelive', [ProfileController::class, 'leaveLive']);
         // Live
         Route::get('/liveuser', [LiveController::class, 'index']);
+        Route::get('/transaction', [TransactionController::class, 'index']);
+        Route::post('/gift/send', [TransactionController::class, 'giftSend']);
 
     });
 });
