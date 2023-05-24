@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
+use App\Models\History;
 use App\Models\Transaction;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -17,7 +18,7 @@ class TransactionController extends Controller
     public function giftSend(Request $request)
     {
         $request->validate([
-            'receiver' => 'required',
+            'receiver_id' => 'required',
             'diamond' => 'required',
             'commission' => 'required',
             'total' => 'required',
@@ -25,8 +26,8 @@ class TransactionController extends Controller
 
         if ($request->total < $request->user()->diamond) {
             $transction = Transaction::create([
-                'sender' => $request->user()->id,
-                'receiver' => $request->receiver,
+                'sender_id' => $request->user()->id,
+                'receiver_id' => $request->receiver_id,
                 'diamond' => $request->diamond,
                 'commission' => $request->commission,
                 'total' => $request->total
@@ -34,7 +35,13 @@ class TransactionController extends Controller
 
             if ($transction) {
                 $request->user()->decrement('diamond', $request->total);
-                User::firstWhere('id', $request->receiver)->increment('diamond', $request->diamond);
+                User::firstWhere('id', $request->receiver_id)->increment('diamond', $request->diamond);
+                History::create(
+                    [
+                        'type' => 'gift_send',
+                        'details' => "{$request->user()->id} send {$request->diamond} gifts to {$request->receiver_id}. Commission {$request->commission}"
+                    ]
+                );
             }
 
             return response()->json([

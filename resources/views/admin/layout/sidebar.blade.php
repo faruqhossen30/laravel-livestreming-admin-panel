@@ -56,6 +56,19 @@
         </a>
       </li>
       <li class="nav-item">
+        <a href="{{route('transaction.index')}}" class="nav-link">
+          <i class="link-icon" data-feather="activity"></i>
+          <span class="link-title">Transactions</span>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a href="{{route('history.index')}}" class="nav-link">
+          <i class="link-icon" data-feather="bar-chart-2"></i>
+          <span class="link-title">History</span>
+        </a>
+      </li>
+
+      <li class="nav-item">
         <a class="nav-link" href="{{ route('logout') }}"
             onclick="event.preventDefault();
                                  document.getElementById('logout-form').submit();">
