@@ -48,6 +48,7 @@ class GiftController extends Controller
             'name' => $request->name,
             'diamond' => $request->diamond,
             'commission' => $request->commission,
+            'total' =>$request->diamond + $request->commission,
             'img_url' => $request->img_url,
             'user' => Auth::user()->id,
         ]);
@@ -96,6 +97,7 @@ class GiftController extends Controller
             'name' => $request->name,
             'diamond' => $request->diamond,
             'commission' => $request->commission,
+            'total' =>$request->diamond + $request->commission,
             'img_url' => $request->img_url,
         ]);
 
