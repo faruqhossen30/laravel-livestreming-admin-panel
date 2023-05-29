@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\TestController;
 use App\Http\Controllers\TokenController;
 use Illuminate\Support\Facades\Route;
 
@@ -20,6 +21,9 @@ Route::get('/', function () {
 });
 
 Route::get('/token', [TokenController::class, 'index']);
+Route::get('test', [TestController::class, 'showCollectionsAndDocuments']);
+Route::get('test2', [TestController::class, 'two']);
+Route::get('update', [TestController::class, 'updateUser']);
 
 
 Route::get('/dashboard', function () {

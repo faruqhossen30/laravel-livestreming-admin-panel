@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\AgoraController;
+use App\Http\Controllers\Admin\DepositController;
 use App\Http\Controllers\Admin\GiftController;
 use App\Http\Controllers\Admin\HistoryController;
 use App\Http\Controllers\Admin\LabelController;
@@ -8,6 +9,7 @@ use App\Http\Controllers\Admin\MembershipController;
 use App\Http\Controllers\Admin\PaymentgatewayController;
 use App\Http\Controllers\Admin\SettingController;
 use App\Http\Controllers\Admin\UserController;
+use App\Http\Controllers\Firebase\UserController as FirebaseUserController;
 use App\Http\Controllers\TransactionadminController;
 use Illuminate\Support\Facades\Route;
 /*
@@ -31,6 +33,9 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
     Route::resource('user', UserController::class);
     Route::resource('/transaction', TransactionadminController::class);
     Route::resource('/history', HistoryController::class);
+    Route::resource('deposit', DepositController::class);
+
+    Route::get('users', [FirebaseUserController::class, 'userList'])->name('userlist');
 
 
     // Settings

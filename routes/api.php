@@ -10,6 +10,7 @@ use App\Http\Controllers\API\RtctokenController;
 use App\Http\Controllers\API\RtmctokenController;
 use App\Http\Controllers\API\TransactionController;
 use App\Http\Controllers\API\User\BuydaimondController;
+use App\Http\Controllers\API\User\DepositController;
 use App\Http\Controllers\API\User\LiveController;
 use App\Http\Controllers\API\User\ProfileController;
 use Illuminate\Http\Request;
@@ -57,6 +58,10 @@ Route::middleware('auth:sanctum')->group(function () {
         Route::get('/liveuser', [LiveController::class, 'index']);
         Route::get('/transaction', [TransactionController::class, 'index']);
         Route::post('/gift/send', [TransactionController::class, 'giftSend']);
+
+        // Deposit
+        Route::post('/deposit', [DepositController::class, 'store']);
+        Route::get('/deposits', [DepositController::class, 'index']);
 
     });
 });

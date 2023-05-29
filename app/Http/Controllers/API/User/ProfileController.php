@@ -22,9 +22,15 @@ class ProfileController extends Controller
         $imagethumbnail = $request->file('avatar');
         $extension = $imagethumbnail->getClientOriginalExtension();
         $avatarImage = Str::uuid() . '.' . $extension;
-        Image::make($imagethumbnail)->save('uploads/avatar/' . $avatarImage);
+        Image::make($imagethumbnail)->save('uploads/avatar/' . $avatarImage, 60);
 
         $user->update(['avatar' => $avatarImage]);
+
+        $db = app('firebase.firestore')->database();
+        $firebaseUser = $db->collection('users')->document($user->id);
+        $firebaseUser->update([
+            ['path' => 'avatar', 'value' => $avatarImage]
+        ]);
 
         return response()->json([
             'message' => 'Profile picture has been changeded !',

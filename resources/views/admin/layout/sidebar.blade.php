@@ -62,6 +62,12 @@
         </a>
       </li>
       <li class="nav-item">
+        <a href="{{route('deposit.index')}}" class="nav-link">
+          <i class="link-icon" data-feather="activity"></i>
+          <span class="link-title">Deposit</span>
+        </a>
+      </li>
+      <li class="nav-item">
         <a href="{{route('history.index')}}" class="nav-link">
           <i class="link-icon" data-feather="bar-chart-2"></i>
           <span class="link-title">History</span>
