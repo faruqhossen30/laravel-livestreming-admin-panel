@@ -67,6 +67,13 @@ class ProfileController extends Controller
             ['name' => $request->name, 'name_updated_at'=>Carbon::now()]
         );
         $user = User::firstWhere('id', $user->id);
+
+        $db = app('firebase.firestore')->database();
+        $firebaseUser = $db->collection('users')->document($user->id);
+        $firebaseUser->update([
+            ['path' => 'name', 'value' => $request->name]
+        ]);
+
         return response()->json([
             'success' => true,
             'code' => 200,
