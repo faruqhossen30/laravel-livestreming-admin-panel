@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\API\AgoraController;
 use App\Http\Controllers\API\Auth\AuthController;
 use App\Http\Controllers\API\Auth\OtpverifyController;
 use App\Http\Controllers\API\ForgetpasswordController;
@@ -66,7 +67,9 @@ Route::middleware('auth:sanctum')->group(function () {
     });
 });
 
-Route::get('/liveuser', [LiveuserController::class, 'index']);
+Route::get('/agora', [AgoraController::class, 'index']);
+Route::get('/agora/appid', [AgoraController::class, 'appId']);
+
 Route::get('/rcttoken/host', [RtctokenController::class, 'generate']);
 Route::get('/rtmtoken/host', [RtmctokenController::class, 'generate']);
 
