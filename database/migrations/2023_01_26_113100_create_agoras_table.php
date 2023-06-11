@@ -15,9 +15,9 @@ return new class extends Migration
     {
         Schema::create('agoras', function (Blueprint $table) {
             $table->id();
-            $table->string('appid');
-            $table->string('token');
-            $table->string('chanel');
+            $table->string('project_name');
+            $table->string('app_id');
+            $table->string('app_certificate');
             $table->timestamps();
         });
     }

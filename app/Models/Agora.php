@@ -8,5 +8,5 @@ use Illuminate\Database\Eloquent\Model;
 class Agora extends Model
 {
     use HasFactory;
-    protected $fillable = ['appid', 'token','chanel'];
+    protected $fillable = ['project_name', 'app_id','app_certificate'];
 }

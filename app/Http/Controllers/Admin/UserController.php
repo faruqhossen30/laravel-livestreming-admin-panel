@@ -15,8 +15,14 @@ class UserController extends Controller
      */
     public function index()
     {
-        $users = User::where('is_user', 1)->paginate(20);
-        return view('admin.user.index', compact('users'));
+        $keyword = null;
+        if (isset($_GET['keyword'])) {
+            $keyword = trim($_GET['keyword']);
+        }
+
+        $users = User::where('is_user', 1)->get();
+        // return view('admin.user.index', compact('users'));
+        return view('admin.user.usertable', compact('users'));
     }
 
     /**

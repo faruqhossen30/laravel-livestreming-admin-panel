@@ -73,6 +73,12 @@
           <span class="link-title">History</span>
         </a>
       </li>
+      <li class="nav-item">
+        <a href="{{route('agora.index')}}" class="nav-link">
+          <i class="link-icon" data-feather="bar-chart-2"></i>
+          <span class="link-title">Agora</span>
+        </a>
+      </li>
 
       <li class="nav-item">
         <a class="nav-link" href="{{ route('logout') }}"

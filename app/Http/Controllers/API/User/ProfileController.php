@@ -22,7 +22,7 @@ class ProfileController extends Controller
         $imagethumbnail = $request->file('avatar');
         $extension = $imagethumbnail->getClientOriginalExtension();
         $avatarImage = Str::uuid() . '.' . $extension;
-        Image::make($imagethumbnail)->save('uploads/avatar/' . $avatarImage, 60);
+        $imagethumbnail->move(public_path('uploads/avatar/'), $avatarImage);
 
         $user->update(['avatar' => $avatarImage]);
 

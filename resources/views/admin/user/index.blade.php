@@ -47,6 +47,9 @@
                                         Mobile
                                     </th>
                                     <th>
+                                        ID
+                                    </th>
+                                    <th>
                                         Diamond
                                     </th>
                                     <th>
@@ -66,6 +69,9 @@
                                         <td>
                                            {{$user->mobile}}
                                         </td>
+                                        <td>
+                                            {{$user->id}}
+                                         </td>
                                         <td>
                                             <span class="text-primary text-xs" width="16px"><i data-feather="gift"></i></span>
                                             {{ $user->diamond }}
