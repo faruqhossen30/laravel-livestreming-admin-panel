@@ -18,15 +18,15 @@ class RtctokenController extends Controller
         // include("../src/RtcTokenBuilder.php");
         // include("../../Lib/RtcTokenBuilder.php");
 
-        $agora = Cache::rememberForever('agora', function () {
-            return Agora::first();
-        });
-        $appID = $agora->app_id;
-        $appCertificate = $agora->app_certificate;
 
-        // $appID = "0b8c1e8e74de4766827c83420a8ac6a2";
-        // $appCertificate = "b5593652f8094b0984e5475a193be1a6";
+        $appID = "0b8c1e8e74de4766827c83420a8ac6a2";
+        $appCertificate = "b5593652f8094b0984e5475a193be1a6";
 
+        // $agora = Cache::rememberForever('agora', function () {
+        //     return Agora::first();
+        // });
+        // $appID = $agora->app_id;
+        // $appCertificate = $agora->app_certificate;
 
         $channelName = $request->channel;
         $uid = $request->uid;
