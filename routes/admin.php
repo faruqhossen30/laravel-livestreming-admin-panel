@@ -9,6 +9,7 @@ use App\Http\Controllers\Admin\MembershipController;
 use App\Http\Controllers\Admin\PaymentgatewayController;
 use App\Http\Controllers\Admin\SettingController;
 use App\Http\Controllers\Admin\UserController;
+use App\Http\Controllers\Admin\UserupdateController;
 use App\Http\Controllers\Firebase\UserController as FirebaseUserController;
 use App\Http\Controllers\TransactionadminController;
 use Illuminate\Support\Facades\Route;
@@ -36,6 +37,8 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
     Route::resource('deposit', DepositController::class);
 
     Route::get('users', [FirebaseUserController::class, 'userList'])->name('userlist');
+    Route::get('user/stoplive/{id}', [UserupdateController::class, 'stopLive'])->name('user.stoplive');
+    Route::post('user/changepassword/{id}', [UserupdateController::class, 'changePassword'])->name('user.changepassword');
 
 
     // Settings

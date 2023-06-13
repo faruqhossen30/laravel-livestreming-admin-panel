@@ -91,16 +91,17 @@ class TestController extends Controller
 
         $collectionData = [];
 
-        foreach ($documents as $document) {
-            $documentData = [
-                'id' => $document->id(),
-                'data' => $document->data(),
-            ];
+        // foreach ($documents as $document) {
+        //     $documentData = [
+        //         'id' => $document->id(),
+        //         'data' => $document->data(),
+        //     ];
 
-            $collectionData[] = $documentData;
-        }
+        //     $collectionData[] = $document->data();
+        // }
 
-        return response()->json($collectionData);
+        // return response()->json($collectionData);
+        return view('test');
     }
 
     public function updateUser()

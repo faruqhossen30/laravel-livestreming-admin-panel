@@ -65,7 +65,8 @@ class UserController extends Controller
      */
     public function edit($id)
     {
-        //
+        $user = User::firstWhere('id', $id);
+        return view('admin.user.edit', compact('user'));
     }
 
     /**
@@ -88,7 +89,7 @@ class UserController extends Controller
      */
     public function destroy($id)
     {
-        User::firstWhere('id',$id)->delete();
+        User::firstWhere('id', $id)->delete();
         return redirect()->route('user.index');
     }
 }
