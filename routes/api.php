@@ -58,7 +58,6 @@ Route::middleware('auth:sanctum')->group(function () {
         // Live
         Route::get('/liveuser', [LiveController::class, 'index']);
         Route::get('/transaction', [TransactionController::class, 'index']);
-        Route::post('/gift/send', [TransactionController::class, 'giftSend']);
 
         // Deposit
         Route::post('/deposit', [DepositController::class, 'store']);

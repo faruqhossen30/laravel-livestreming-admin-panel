@@ -53,30 +53,30 @@ class TestController extends Controller
 
     public function two()
     {
-        $db = app('firebase.firestore')->database();
+        $firestore = Firebase::firestore();
 
-        // $docRef = $db->collection('students')->document('acbf3788a52848d98c0c');
-        // $snapshot = $docRef->snapshot();
+        // Get the specified collection
+        $collectionRef = $firestore->database()->collection('transactions');
 
-        // Query
-        // $userRef = $db->collection('users');
-        // $query = $userRef->where('status', '=', true);
-        // $documents = $query->documents();
+        // Get all documents in the collection
+        $documents = $collectionRef->documents();
 
-        // Get collects data
-        $students = $db->collection('students')->documents();
+        $transactions = [];
 
-        // Singe document
-        // $data = app('firebase.firestore')
-        //         ->database()
-        //         ->collection('students')
-        //         ->document('acbf3788a52848d98c0c')
-        //         ->snapshot();
+        foreach ($documents as $document) {
+            $transactions[] = $document->data();
+        }
+
+        $totalDiamond = 0;
 
 
+        foreach ($transactions as $user) {
+            $totalDiamond +=$user['commission'];
+        }
 
-        // dd($students);
-        return dd($students);
+        return $totalDiamond;
+
+
     }
 
     public function showCollectionsAndDocuments()

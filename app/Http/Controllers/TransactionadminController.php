@@ -14,7 +14,7 @@ class TransactionadminController extends Controller
      */
     public function index()
     {
-        $transactions = Transaction::with('sender', 'receiver')->paginate(25);
+        $transactions = Transaction::with('sender', 'receiver')->paginate(50);
         // return $transactions;
         return view('admin.transaction.index', compact('transactions'));
     }
