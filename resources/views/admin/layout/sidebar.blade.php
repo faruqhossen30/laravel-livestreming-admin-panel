@@ -19,6 +19,12 @@
         </a>
       </li>
       <li class="nav-item {{ active_class(['/']) }}">
+        <a href="{{route('dashboard')}}" class="nav-link">
+          <i class="link-icon" data-feather="box"></i>
+          <span class="link-title">Overview</span>
+        </a>
+      </li>
+      <li class="nav-item {{ active_class(['/']) }}">
         <a href="{{route('admin.settings')}}" class="nav-link">
           <i class="link-icon" data-feather="settings"></i>
           <span class="link-title">Settings</span>
@@ -31,6 +37,15 @@
           <span class="link-title">Users</span>
         </a>
       </li>
+
+      <li class="nav-item {{ active_class(['/']) }}">
+        <a href="{{route('userlist')}}" class="nav-link">
+          <i class="link-icon" data-feather="users"></i>
+          <span class="link-title">Users New</span>
+          <span class="badge bg-success">New</span>
+        </a>
+      </li>
+
       <li class="nav-item {{ active_class(['/']) }}">
         <a href="{{route('label.index')}}" class="nav-link">
           <i class="link-icon" data-feather="users"></i>

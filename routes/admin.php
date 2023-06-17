@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\AgoraController;
+use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\DepositController;
 use App\Http\Controllers\Admin\GiftController;
 use App\Http\Controllers\Admin\HistoryController;
@@ -36,6 +37,7 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
     Route::resource('/history', HistoryController::class);
     Route::resource('deposit', DepositController::class);
 
+    Route::get('overview', [DashboardController::class, 'overview'])->name('dashboard');
     Route::get('users', [FirebaseUserController::class, 'userList'])->name('userlist');
     Route::get('user/stoplive/{id}', [UserupdateController::class, 'stopLive'])->name('user.stoplive');
     Route::post('user/changepassword/{id}', [UserupdateController::class, 'changePassword'])->name('user.changepassword');

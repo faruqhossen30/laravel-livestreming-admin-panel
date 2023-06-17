@@ -11,27 +11,23 @@ class UserController extends Controller
     public function userList()
     {
         $firestore = Firebase::firestore();
-
         // Get the specified collection
         $collectionRef = $firestore->database()->collection('users');
-
         // Get all documents in the collection
         $documents = $collectionRef->documents();
-
-        $collectionData = [];
+        $users = [];
+        $count = 0;
 
         foreach ($documents as $document) {
-            $documentData = [
-                'id' => $document->id(),
-                'data' => $document->data(),
-            ];
-
-            $collectionData[] = $documentData;
+            $users[] = $document->data();
         }
 
-        $users = $collectionData;
+        foreach ($users as $user) {
+            $count +=$user['diamond'];
+        }
 
-        // return response()->json($collectionData);
-        return view('admin.user.userlist', compact('users'));
+        // return $count;
+
+        return view('admin.user.firebaseusers', compact('users'));
     }
 }

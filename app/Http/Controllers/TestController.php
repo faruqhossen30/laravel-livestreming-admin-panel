@@ -89,19 +89,20 @@ class TestController extends Controller
         // Get all documents in the collection
         $documents = $collectionRef->documents();
 
-        $collectionData = [];
+        $users = [];
 
-        // foreach ($documents as $document) {
-        //     $documentData = [
-        //         'id' => $document->id(),
-        //         'data' => $document->data(),
-        //     ];
+        foreach ($documents as $document) {
+            $documentData = [
+                'id' => $document->id(),
+                'data' => $document->data(),
+            ];
 
-        //     $collectionData[] = $document->data();
-        // }
+            $users[] = $document->data();
+        }
 
-        // return response()->json($collectionData);
-        return view('test');
+        // return response()->json($users);
+        // return $users;
+        return view('test', compact('users'));
     }
 
     public function updateUser()
