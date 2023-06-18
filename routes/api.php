@@ -34,7 +34,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 
 Route::post('/login', [AuthController::class, 'login']);
-Route::post('/register', [AuthController::class, 'register']);
+// Route::post('/register', [AuthController::class, 'register']);
 // Forget Password
 Route::post('/forget-password/{mobile}', [ForgetpasswordController::class, 'forgetPassword']);
 Route::post('/forget-password/{mobile}/send-otp', [ForgetpasswordController::class, 'sendOTP']);
