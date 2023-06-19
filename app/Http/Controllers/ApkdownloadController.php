@@ -13,7 +13,7 @@ class ApkdownloadController extends Controller
             'Content-Disposition' => 'attachment; filename=file.apk',
         ];
 
-        $filepath = public_path('uploads/apk/akashlive-v-1.0.0.apk');
+        $filepath = public_path('uploads/apk/akashlive-v-1.0.1.apk');
         return Response::download($filepath,null,$headers);
     }
 }
