@@ -450,10 +450,10 @@
 
                         <div class="ml-12">
                             <div class="mt-2 text-gray-600 dark:text-gray-400 text-sm">
-                                Latest update: 19 June 2023  || 12:30 PM
+                                Latest update: 20 June 2023  || 6:00 PM
                             </div>
                             <div class="mt-2 text-gray-600 dark:text-gray-400 text-sm">
-                                Version : 1.0.1
+                                Version : 1.1.1
                             </div>
                         </div>
                     </div>

@@ -19,16 +19,22 @@ class DashboardController extends Controller
         $documents = $collectionRef->documents();
         $users = [];
         $totalDiamond = 0;
+        $minusDiamond=0;
 
         foreach ($documents as $document) {
             $users[] = $document->data();
         }
 
         foreach ($users as $user) {
-            $totalDiamond +=$user['diamond'];
+            if( $user['diamond'] > 0){
+                $totalDiamond +=$user['diamond'];
+            }
         }
 
         // return $totalDiamond;
+        echo 'Diamone = '.$totalDiamond;
+        echo '<br/>';
+        echo 'Diamone = '.$totalDiamond;
 
         // $query = $collectionRef->where('live', '=', true);
         // $snapshot = $query->documents();
@@ -45,6 +51,6 @@ class DashboardController extends Controller
         //     echo "<br>";
         // }
 
-        return view('overview');
+        // return view('overview');
     }
 }
