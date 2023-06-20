@@ -14,7 +14,6 @@ class DashboardController extends Controller
         $firestore = Firebase::firestore();
         // Get the specified collection
         $collectionRef = $firestore->database()->collection('users');
-        $transactionRef = $firestore->database()->collection('transactions');
         // Get all documents in the collection
         $documents = $collectionRef->documents();
         $users = [];
@@ -29,12 +28,17 @@ class DashboardController extends Controller
             if( $user['diamond'] > 0){
                 $totalDiamond +=$user['diamond'];
             }
+            if( $user['diamond'] < 0){
+                $minusDiamond +=$user['diamond'];
+            }
         }
 
+        return view('overview', compact('totalDiamond', 'minusDiamond'));
+
         // return $totalDiamond;
-        echo 'Diamone = '.$totalDiamond;
-        echo '<br/>';
-        echo 'Diamone = '.$totalDiamond;
+        // echo 'Diamone = '.$totalDiamond;
+        // echo '<br/>';
+        // echo 'Minus Diamone = '.$minusDiamond;
 
         // $query = $collectionRef->where('live', '=', true);
         // $snapshot = $query->documents();

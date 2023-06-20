@@ -2,15 +2,18 @@
 
 namespace App\Http\Controllers;
 
+use DateTime;
+use Google\Cloud\Core\Timestamp;
 use Google\Cloud\Firestore\FirestoreClient;
 
 use Illuminate\Http\Request;
 use Kreait\Laravel\Firebase\Facades\Firebase;
+use Google\Cloud\Firestore\FieldValue;
 
 class TestController extends Controller
 {
 
-    // function __construct(string $projectId = 'cblive-b8448')
+    // function __construct(string $projectId = 'akashliveapp')
     // {
     //     // Create the Cloud Firestore client
     //     if (empty($projectId)) {
@@ -71,12 +74,10 @@ class TestController extends Controller
 
 
         foreach ($transactions as $user) {
-            $totalDiamond +=$user['commission'];
+            $totalDiamond += $user['commission'];
         }
 
         return $totalDiamond;
-
-
     }
 
     public function showCollectionsAndDocuments()
@@ -113,5 +114,57 @@ class TestController extends Controller
         $cityRef->update([
             ['path' => 'name', 'value' => "welcome"]
         ]);
+    }
+    public function firebase()
+    {
+        // $db = app('firebase.firestore')->database();
+        // $query = $db->collection('transactions')->where('commission', '=', 1);
+        // $transactions = $query->documents();
+        // return dd($transactions);
+
+        // $firestore = new FirestoreClient(['projectId' => 'akashliveapp']);
+        // // Define the timestamp range
+        // $timestamp = new Timestamp(new \DateTime('2023-06-20'));
+
+        // $db = app('firebase.firestore')->database();
+        // $query = $db->collection('transactions')->where('createdAt', '>=', $timestamp);
+        // $transactions = $query->documents();
+
+        // $list = [];
+
+        // foreach ($transactions as $document) {
+
+        //     $list[] = $document->data();
+        // }
+
+        // return $list;
+
+        // Get today's date
+        $firestore = new FirestoreClient(['projectId' => 'akashliveapp']);
+        $currentDate = date('Y-m-d');
+
+        // Convert the date to Firestore Timestamp objects
+        $startTimestamp = new Timestamp(new \DateTime($currentDate . ' 00:00:00'));
+        $endTimestamp = new Timestamp(new \DateTime($currentDate . ' 23:59:59'));
+
+        // Create a Firestore query
+        $query = $firestore->collection('transactions')
+            ->where('createdAt', '>=', $startTimestamp)
+            ->where('createdAt', '<=', $endTimestamp);
+
+        // Execute the query and get the documents
+        $documents = $query->documents();
+
+        // dd($documents);
+
+        $list = [];
+
+        foreach ($documents as $document) {
+
+            $list[] = $document->data();
+        }
+
+        return $list;
+
     }
 }
