@@ -29,7 +29,7 @@ class AuthController extends Controller
             'name' => $data['name'],
             'mobile' => $data['mobile'],
             'password' => Hash::make($data['password']),
-            'status' => true,
+            'status' => false,
         ]);
 
         if ($user) {
@@ -62,8 +62,10 @@ class AuthController extends Controller
 
         //
         try {
-            if (Auth::attempt($request->only('mobile', 'password'))) {
+            // if (Auth::attempt($request->only('mobile', 'password'))) {
+            if (Auth::attempt(['mobile' => $request->mobile, 'password' => $request->password, 'status' => 1])) {
                 $user = Auth::user();
+                $user->tokens()->delete();
                 $token = $user->createToken(uniqid())->plainTextToken;
                 $user['token'] = $token;
                 return response()->json([
@@ -81,7 +83,7 @@ class AuthController extends Controller
         return response()->json([
             'success' => false,
             'code' => 403,
-            'message' => 'Opps ! Mobile number or password wrong !'
+            'message' => 'Opps ! Mobile number or password wrong or Account is not active !'
         ], 403);
     }
 

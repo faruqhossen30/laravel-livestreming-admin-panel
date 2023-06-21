@@ -34,7 +34,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 
 Route::post('/login', [AuthController::class, 'login']);
-// Route::post('/register', [AuthController::class, 'register']);
+Route::post('/register', [AuthController::class, 'register']);
 // Forget Password
 Route::post('/forget-password/{mobile}', [ForgetpasswordController::class, 'forgetPassword']);
 Route::post('/forget-password/{mobile}/send-otp', [ForgetpasswordController::class, 'sendOTP']);
@@ -55,14 +55,13 @@ Route::middleware('auth:sanctum')->group(function () {
         Route::post('/change-password', [ProfileController::class, 'changePassword']);
         Route::post('/golive/{rtctoken}', [ProfileController::class, 'goLive']);
         Route::get('/leavelive', [ProfileController::class, 'leaveLive']);
-        // Live
-        Route::get('/liveuser', [LiveController::class, 'index']);
-        Route::get('/transaction', [TransactionController::class, 'index']);
+
+        Route::get('/rcttoken/host', [RtctokenController::class, 'generate']);
+        Route::get('/rtmtoken/host', [RtmctokenController::class, 'generate']);
 
         // Deposit
         Route::post('/deposit', [DepositController::class, 'store']);
         Route::get('/deposits', [DepositController::class, 'index']);
-
     });
 });
 
