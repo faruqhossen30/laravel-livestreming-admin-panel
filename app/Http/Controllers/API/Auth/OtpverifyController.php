@@ -44,7 +44,7 @@ class OtpverifyController extends Controller
         // return $request->opt;
         if ($user->otp->otp == $otp) {
 
-            User::firstWhere('id', $user->id)->update(['otp_verified_at'=> Carbon::now()]);
+            User::firstWhere('id', $user->id)->update(['otp_verified_at'=> Carbon::now(), 'status'=>true]);
             VerificationCode::firstWhere('user_id', $user->id)->update(['otp_verified_at'=> Carbon::now(), 'status'=>true]);
 
             $update = $request->user();
