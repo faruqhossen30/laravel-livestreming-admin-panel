@@ -20,7 +20,7 @@ class UserController extends Controller
             $keyword = trim($_GET['keyword']);
         }
 
-        $users = User::where('is_user', 1)->get();
+        $users = User::where('is_user', 1)->orderBy('id', 'desc')->get();
         // return view('admin.user.index', compact('users'));
         return view('admin.user.usertable', compact('users'));
     }

@@ -20,11 +20,11 @@
                         <table id="dataTableExample" class="table">
                             <thead>
                                 <tr>
-                                    <th>S.N</th>
+                                    <th>ID</th>
                                     <th>Name</th>
                                     <th>Mobile</th>
-                                    <th>ID</th>
                                     <th>Status</th>
+                                    <th>Date</th>
                                     <th>Action</th>
                                 </tr>
                             </thead>
@@ -34,10 +34,9 @@
                                 @endphp
                                 @foreach ($users as $user)
                                     <tr>
-                                        <td>{{$serial++}}</td>
+                                        <td>{{$user->id}}</td>
                                         <td> {{ Str::limit($user->name, 25, ' (...)')}}</td>
                                         <td>{{$user->mobile}}</td>
-                                        <td>{{$user->id}}</td>
                                         <td>
                                             @if ($user->status)
                                             <span class="badge bg-success">Active</span>
@@ -45,6 +44,7 @@
                                             <span class="badge bg-danger">Deactive</span>
                                             @endif
                                         </td>
+                                        <td><span class="text-muted">{{$user->created_at->format('d M Y, h:i:s A')}}</span></td>
                                         <td>
 
                                             {{-- <button type="button" class="btn btn-success btn-sm">Gift</button> --}}

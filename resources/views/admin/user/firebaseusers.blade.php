@@ -20,24 +20,19 @@
                         <table id="dataTableExample" class="table">
                             <thead>
                                 <tr>
-                                    <th>S.N</th>
+                                    <th>ID</th>
                                     <th>Name</th>
                                     <th>Mobile</th>
-                                    <th>ID</th>
                                     <th>Diamond</th>
                                     {{-- <th>Action</th> --}}
                                 </tr>
                             </thead>
                             <tbody>
-                                @php
-                                    $serial = 1;
-                                @endphp
                                 @foreach ($users as $user)
                                     <tr>
-                                        <td>{{ $serial++ }}</td>
+                                        <td>{{ $user['id'] }}</td>
                                         <td> {{ Str::limit($user['name'], 25, ' (...)')}}</td>
                                         <td>{{ $user['mobile'] }}</td>
-                                        <td>{{ $user['id'] }}</td>
                                         <td>{{ $user['diamond'] }}</td>
                                     </tr>
                                 @endforeach
