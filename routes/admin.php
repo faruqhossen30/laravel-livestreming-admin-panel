@@ -40,6 +40,8 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
     Route::get('overview', [DashboardController::class, 'overview'])->name('dashboard');
     Route::get('users', [FirebaseUserController::class, 'userList'])->name('userlist');
     Route::get('user/stoplive/{id}', [UserupdateController::class, 'stopLive'])->name('user.stoplive');
+    Route::get('user/deactive/{id}', [UserupdateController::class, 'deactiveUser'])->name('user.deactive');
+    Route::get('user/active/{id}', [UserupdateController::class, 'activeUser'])->name('user.active');
     Route::post('user/changepassword/{id}', [UserupdateController::class, 'changePassword'])->name('user.changepassword');
 
 

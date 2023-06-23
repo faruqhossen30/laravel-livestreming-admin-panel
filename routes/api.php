@@ -68,8 +68,8 @@ Route::middleware('auth:sanctum')->group(function () {
 Route::get('/agora', [AgoraController::class, 'index']);
 Route::get('/agora/appid', [AgoraController::class, 'appId']);
 
-Route::get('/rcttoken/host', [RtctokenController::class, 'generate']);
-Route::get('/rtmtoken/host', [RtmctokenController::class, 'generate']);
+// Route::get('/rcttoken/host', [RtctokenController::class, 'generate']);
+// Route::get('/rtmtoken/host', [RtmctokenController::class, 'generate']);
 
 Route::get('/payment-gateways', [ListapiController::class, 'paymentGateway']);
 Route::get('/gifts', [ListapiController::class, 'giftList']);

@@ -14,21 +14,22 @@ class UserupdateController extends Controller
 
         $db = app('firebase.firestore')->database();
 
-        $cityRef = $db->collection('users')->document($id);
-        $cityRef->update([
-            [
-                'path' => 'live',
-                'value' => false
-            ],
-            [
-                'path' => 'join',
-                'value' => false
-            ],
-            [
-                'path' => 'channel',
-                'value' => null
-            ]
-        ]);
+        $liveRef = $db->collection('lives')->document($id);
+        $liveRef->delete();
+        // $cityRef->update([
+        //     [
+        //         'path' => 'live',
+        //         'value' => false
+        //     ],
+        //     [
+        //         'path' => 'join',
+        //         'value' => false
+        //     ],
+        //     [
+        //         'path' => 'channel',
+        //         'value' => null
+        //     ]
+        // ]);
 
         return redirect()->back();
     }
@@ -36,10 +37,10 @@ class UserupdateController extends Controller
     {
 
         $request->validate([
-            'password'=>'required|min:4'
+            'password' => 'required|min:4'
         ]);
 
-        User::firstWhere('id',$id)->update([
+        User::firstWhere('id', $id)->update([
             'password' => Hash::make($request->password),
         ]);
 
@@ -47,5 +48,33 @@ class UserupdateController extends Controller
         return redirect()->back()->with('success', 'Tender has been uploaded successfully! ');
     }
 
+    public function deactiveUser(Request $request, $id)
+    {
 
+        // $request->validate([
+        //     'password' => 'required|min:4'
+        // ]);
+
+        $user = User::firstWhere('id', $id);
+
+        $user->update([
+            'status' => false,
+        ]);
+        $user->tokens()->delete();
+
+
+        return redirect()->back();
+    }
+    public function activeUser(Request $request, $id)
+    {
+
+        $user = User::firstWhere('id', $id);
+
+        $user->update([
+            'status' => true,
+        ]);
+        $user->tokens()->delete();
+
+        return redirect()->back();
+    }
 }

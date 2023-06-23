@@ -8,10 +8,10 @@
     </nav>
 
     @if (session('success'))
-    <div class="alert alert-success alert-dismissible fade show" role="alert">
-        <strong>Password Change successfull !</strong>
-        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="btn-close"></button>
-      </div>
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            <strong>Password Change successfull !</strong>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="btn-close"></button>
+        </div>
     @endif
 
     <div class="row">
@@ -72,6 +72,11 @@
             <div class="card">
                 <div class="card-body">
                     <h5>User Control</h5>
+                    @if ($user->status)
+                        <span class="badge bg-success">Active</span>
+                    @else
+                        <span class="badge bg-danger">Deactive</span>
+                    @endif
                     <hr>
                     <div class="my-2">
                         <a href="{{ route('user.stoplive', $user->id) }}" type="button"
@@ -88,6 +93,30 @@
                         <i class="btn-icon-prepend" data-feather="unlock"></i>
                         Change Password
                     </button>
+
+                    @if ($user->status)
+                        <div class="my-2">
+                            <a onclick="return confirm('Sure ! Stop user ?')"
+                                href="{{ route('user.deactive', $user->id) }}" type="button"
+                                class="btn btn-icon-text btn-outline-danger">
+                                <i class="btn-icon-prepend" data-feather="user-x"></i>
+                                Deactive User
+                            </a>
+                        </div>
+                    @else
+                        <div class="my-2">
+                            <a onclick="return confirm('Sure ! Active user ?')"
+                                href="{{ route('user.active', $user->id) }}" type="button"
+                                class="btn btn-icon-text btn-outline-success">
+                                <i class="btn-icon-prepend" data-feather="user-check"></i>
+                                Active User
+                            </a>
+                        </div>
+                    @endif
+
+
+
+
 
                     <!-- Modal -->
                     <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"

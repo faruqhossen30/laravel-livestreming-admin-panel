@@ -35,7 +35,7 @@
                                 @foreach ($users as $user)
                                     <tr>
                                         <td>{{ $serial++ }}</td>
-                                        <td>{{ $user['name'] }}</td>
+                                        <td> {{ Str::limit($user['name'], 25, ' (...)')}}</td>
                                         <td>{{ $user['mobile'] }}</td>
                                         <td>{{ $user['id'] }}</td>
                                         <td>{{ $user['diamond'] }}</td>

@@ -24,7 +24,7 @@
                                     <th>Name</th>
                                     <th>Mobile</th>
                                     <th>ID</th>
-                                    <th>Diamond</th>
+                                    <th>Status</th>
                                     <th>Action</th>
                                 </tr>
                             </thead>
@@ -35,15 +35,21 @@
                                 @foreach ($users as $user)
                                     <tr>
                                         <td>{{$serial++}}</td>
-                                        <td>{{$user->name}}</td>
+                                        <td> {{ Str::limit($user->name, 25, ' (...)')}}</td>
                                         <td>{{$user->mobile}}</td>
                                         <td>{{$user->id}}</td>
-                                        <td>{{$user->diamond}}</td>
+                                        <td>
+                                            @if ($user->status)
+                                            <span class="badge bg-success">Active</span>
+                                            @else
+                                            <span class="badge bg-danger">Deactive</span>
+                                            @endif
+                                        </td>
                                         <td>
 
-                                            <button type="button" class="btn btn-success btn-sm">Gift</button>
-                                            <button type="button" class="btn btn-success btn-sm">Block</button>
-                                            <button type="button" class="btn btn-success btn-sm">Device Block</button>
+                                            {{-- <button type="button" class="btn btn-success btn-sm">Gift</button> --}}
+                                            {{-- <button type="button" class="btn btn-success btn-sm">Block</button> --}}
+                                            {{-- <button type="button" class="btn btn-success btn-sm">Device Block</button> --}}
                                             <a href="{{route('user.edit', $user->id)}}" type="button" class="btn btn-primary btn-icon btn-xs">
                                                 <i data-feather="eye"></i>
                                             </a>
