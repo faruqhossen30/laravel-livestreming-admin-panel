@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\AgoraController;
+use App\Http\Controllers\Admin\CacheflushController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\DepositController;
 use App\Http\Controllers\Admin\GiftController;
@@ -13,6 +14,8 @@ use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\UserupdateController;
 use App\Http\Controllers\Firebase\UserController as FirebaseUserController;
 use App\Http\Controllers\TransactionadminController;
+use App\Models\User;
+use Carbon\Carbon;
 use Illuminate\Support\Facades\Route;
 /*
 |--------------------------------------------------------------------------
@@ -37,6 +40,8 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
     Route::resource('/history', HistoryController::class);
     Route::resource('deposit', DepositController::class);
 
+    Route::get('flush/giftapi',[CacheflushController::class, 'giftApiFlush'])->name('flush.giftapi');
+
     Route::get('overview', [DashboardController::class, 'overview'])->name('dashboard');
     Route::get('users', [FirebaseUserController::class, 'userList'])->name('userlist');
     Route::get('user/stoplive/{id}', [UserupdateController::class, 'stopLive'])->name('user.stoplive');
@@ -53,7 +58,11 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
     Route::post('/setting/withdraw-rate', [SettingController::class, 'withdrawRate'])->name('admin.setting.withdrawrate');
 
     Route::get('/dashboard', function () {
-        return view('admin.dashboard');
+        $activUser = User::where('is_user', 1)->where('status',1)->count();
+        $deactiveUser = User::where('is_user', 1)->where('status',0)->count();
+        $todayUser = User::where('created_at', Carbon::now())->count();
+        // return $todayUser;
+        return view('admin.dashboard', compact('activUser', 'deactiveUser', 'todayUser'));
     });
 
     Route::group(['prefix' => 'email'], function () {

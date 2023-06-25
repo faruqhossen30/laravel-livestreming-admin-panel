@@ -8,6 +8,7 @@ use App\Models\Label;
 use App\Models\Membership;
 use App\Models\PaymentGateway;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Cache;
 
 class ListapiController extends Controller
 {
@@ -42,7 +43,11 @@ class ListapiController extends Controller
     }
     public function giftList()
     {
-        $list = Gift::get();
+        // $list = Gift::get();
+        $list = Cache::rememberForever('gifts', function () {
+            return Gift::orderBy('diamond', 'asc')->get();
+        });
+
         return response()->json([
             'success' => true,
             'code' => 200,

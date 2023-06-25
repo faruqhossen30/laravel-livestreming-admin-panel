@@ -16,7 +16,13 @@
                             <i class="btn-icon-prepend" data-feather="plus-circle"></i>
                             Create gift
                         </a>
+
+                        <a href="{{route('flush.giftapi')}}" type="button" class="btn btn-sm btn-danger btn-icon-text">
+                            <i class="btn-icon-prepend" data-feather="delete"></i>
+                           Flush Gift
+                        </a>
                     </div>
+
                     <div class="table-responsive pt-3">
                         <table class="table table-bordered">
                             <thead>
