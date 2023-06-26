@@ -4,6 +4,7 @@ namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
 use App\Models\Gift;
+use App\Models\Helpline;
 use App\Models\Label;
 use App\Models\Membership;
 use App\Models\PaymentGateway;
@@ -53,5 +54,14 @@ class ListapiController extends Controller
             'code' => 200,
             'data' => $list
         ]);
+    }
+    public function helpline()
+    {
+        // $list = Gift::get();
+        $helpline = Cache::rememberForever('helpline', function () {
+            return Helpline::first();
+        });
+
+        return $helpline;
     }
 }

@@ -5,6 +5,7 @@ use App\Http\Controllers\Admin\CacheflushController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\DepositController;
 use App\Http\Controllers\Admin\GiftController;
+use App\Http\Controllers\Admin\HelplineController;
 use App\Http\Controllers\Admin\HistoryController;
 use App\Http\Controllers\Admin\LabelController;
 use App\Http\Controllers\Admin\MembershipController;
@@ -39,8 +40,10 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
     Route::resource('/transaction', TransactionadminController::class);
     Route::resource('/history', HistoryController::class);
     Route::resource('deposit', DepositController::class);
+    Route::resource('helpline', HelplineController::class);
 
     Route::get('flush/giftapi',[CacheflushController::class, 'giftApiFlush'])->name('flush.giftapi');
+    Route::get('flush/helpline',[CacheflushController::class, 'helplineFlush'])->name('flush.helpline');
 
     Route::get('overview', [DashboardController::class, 'overview'])->name('dashboard');
     Route::get('users', [FirebaseUserController::class, 'userList'])->name('userlist');

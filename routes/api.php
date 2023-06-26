@@ -75,6 +75,7 @@ Route::get('/payment-gateways', [ListapiController::class, 'paymentGateway']);
 Route::get('/gifts', [ListapiController::class, 'giftList']);
 Route::get('/labels', [ListapiController::class, 'userlabelList']);
 Route::get('/memberships', [ListapiController::class, 'membershipList']);
+Route::get('/helpline', [ListapiController::class, 'helpline']);
 
 Route::get('/option/agora', [OptionapiController::class, 'agora']);
 Route::get('/option/daimond-rate', [OptionapiController::class, 'daimondRate']);

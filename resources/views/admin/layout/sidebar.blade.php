@@ -94,6 +94,12 @@
           <span class="link-title">Agora</span>
         </a>
       </li>
+      <li class="nav-item">
+        <a href="{{route('helpline.index')}}" class="nav-link">
+          <i class="link-icon" data-feather="headphones"></i>
+          <span class="link-title">Helpline</span>
+        </a>
+      </li>
 
       <li class="nav-item">
         <a class="nav-link" href="{{ route('logout') }}"

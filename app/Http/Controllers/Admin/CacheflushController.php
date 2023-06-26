@@ -12,4 +12,8 @@ class CacheflushController extends Controller
         Cache::forget('gifts');
         return redirect()->back();
     }
+    public function helplineFlush() {
+        Cache::forget('helpline');
+        return redirect()->back();
+    }
 }
