@@ -56,6 +56,14 @@ class AgoraController extends Controller
             'app_certificate'=> $request->app_certificate
         ]);
 
+        $db = app('firebase.firestore')->database();
+        $firebaseUser = $db->collection('agora')->document('appid');
+
+        $firebaseUser->update([
+            ['path' => 'appid', 'value' => $request->app_id]
+        ]);
+
+
         return redirect()->route('agora.index');
     }
 

@@ -32,7 +32,11 @@ class HelplineController extends Controller
      */
     public function create()
     {
-        return view('admin.helpline.create');
+        $helpline = Cache::rememberForever('helpline', function () {
+            return Helpline::first();
+        });
+
+        return view('admin.helpline.create', compact('helpline'));
     }
 
     /**
