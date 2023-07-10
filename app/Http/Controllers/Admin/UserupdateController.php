@@ -13,7 +13,6 @@ class UserupdateController extends Controller
     {
 
         $db = app('firebase.firestore')->database();
-
         $liveRef = $db->collection('lives')->document($id);
         $liveRef->delete();
         // $cityRef->update([
@@ -62,6 +61,16 @@ class UserupdateController extends Controller
         ]);
         $user->tokens()->delete();
 
+        $db = app('firebase.firestore')->database();
+        $firebaseUser = $db->collection('users')->document($user->id);
+        $firebaseUser->update([
+            ['path' => 'status', 'value' => false]
+        ]);
+
+        $liveRef = $db->collection('lives')->document($id);
+        $liveRef->update([
+            ['path' => 'status', 'value' => false]
+        ]);
 
         return redirect()->back();
     }
@@ -74,6 +83,12 @@ class UserupdateController extends Controller
             'status' => true,
         ]);
         $user->tokens()->delete();
+        $db = app('firebase.firestore')->database();
+        $firebaseUser = $db->collection('users')->document($user->id);
+        $firebaseUser->update([
+            ['path' => 'status', 'value' => true]
+        ]);
+
 
         return redirect()->back();
     }
