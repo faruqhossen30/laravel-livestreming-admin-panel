@@ -35,8 +35,16 @@ class AuthController extends Controller
             'device_id.required' => 'Device address not foound. Update app or Contact with helpline.',
         ]);
 
+        $checkblock = BlockUser::firstWhere('device_id', $request->device_id);
+        // return $checkblock;
+        if ($checkblock) {
+            return response()->json([
+                'message' => 'Your mobile has been block.',
+            ], 403);
+        }
+
         $user = User::create([
-            'name' =>$request->name,
+            'name' => $request->name,
             'mobile' => $request->mobile,
             'password' => Hash::make($request->password),
             'device_id' => $request->device_id,
@@ -82,7 +90,7 @@ class AuthController extends Controller
             if ($checkblock) {
                 return response()->json([
                     'message' => 'Your mobile has been block.',
-                ],403);
+                ], 403);
             }
             if (Auth::attempt(['mobile' => $request->mobile, 'password' => $request->password, 'status' => 1])) {
                 $user = Auth::user();
