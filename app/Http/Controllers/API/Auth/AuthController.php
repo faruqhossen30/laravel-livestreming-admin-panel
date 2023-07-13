@@ -82,7 +82,7 @@ class AuthController extends Controller
             if ($checkblock) {
                 return response()->json([
                     'message' => 'Your mobile has been block.',
-                ]);
+                ],403);
             }
             if (Auth::attempt(['mobile' => $request->mobile, 'password' => $request->password, 'status' => 1])) {
                 $user = Auth::user();
