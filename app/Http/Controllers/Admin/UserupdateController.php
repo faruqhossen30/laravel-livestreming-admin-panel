@@ -3,8 +3,10 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\BlockUser;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 
 class UserupdateController extends Controller
@@ -68,9 +70,12 @@ class UserupdateController extends Controller
         ]);
 
         $liveRef = $db->collection('lives')->document($id);
-        $liveRef->update([
-            ['path' => 'status', 'value' => false]
-        ]);
+        if($liveRef->snapshot()->exists()){
+            $liveRef->update([
+                ['path' => 'status', 'value' => false]
+            ]);
+        }
+        // dd($liveRef->);
 
         return redirect()->back();
     }
@@ -88,8 +93,48 @@ class UserupdateController extends Controller
         $firebaseUser->update([
             ['path' => 'status', 'value' => true]
         ]);
+        return redirect()->back();
+    }
 
+    public function deviceBlock(Request $request, $id)
+    {
 
+        $user = User::firstWhere('id', $id);
+        // return $user;
+
+        BlockUser::create([
+            'user_id'=>$request->id,
+            'device_id'=>$user->device_id ?? 'none',
+            'author_id'=>Auth::user()->id,
+        ]);
+        // $user->update([
+        //     'status' => true,
+        // ]);
+        // $user->tokens()->delete();
+        // $db = app('firebase.firestore')->database();
+        // $firebaseUser = $db->collection('users')->document($user->id);
+        // $firebaseUser->update([
+        //     ['path' => 'status', 'value' => true]
+        // ]);
+        return redirect()->back();
+    }
+
+    public function deviceUnBlock(Request $request, $id)
+    {
+
+        $user = User::firstWhere('id', $id);
+        // return $user;
+
+        BlockUser::firstWhere('user_id', $id)->delete();
+        // $user->update([
+        //     'status' => true,
+        // ]);
+        // $user->tokens()->delete();
+        // $db = app('firebase.firestore')->database();
+        // $firebaseUser = $db->collection('users')->document($user->id);
+        // $firebaseUser->update([
+        //     ['path' => 'status', 'value' => true]
+        // ]);
         return redirect()->back();
     }
 }

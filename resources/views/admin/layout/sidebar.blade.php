@@ -31,20 +31,42 @@
         </a>
       </li>
 
-      <li class="nav-item {{ active_class(['/']) }}">
+      {{-- <li class="nav-item {{ active_class(['/']) }}">
         <a href="{{route('user.index')}}" class="nav-link">
           <i class="link-icon" data-feather="users"></i>
           <span class="link-title">Users</span>
         </a>
+      </li> --}}
+
+      <li class="nav-item {{ active_class(['email/*']) }}">
+        <a class="nav-link" data-bs-toggle="collapse" href="#email" role="button" aria-expanded="{{ is_active_route(['email/*']) }}" aria-controls="email">
+          <i class="link-icon" data-feather="users"></i>
+          <span class="link-title">Users</span>
+          <i class="link-arrow" data-feather="chevron-down"></i>
+        </a>
+        <div class="collapse {{ show_class(['user/*']) }}" id="email">
+          <ul class="nav sub-menu">
+            <li class="nav-item">
+              <a href="{{route('user.index')}}" class="nav-link {{ active_class(['email/inbox']) }}">All User</a>
+            </li>
+            <li class="nav-item">
+              <a href="{{route('userlist')}}" class="nav-link {{ active_class(['email/inbox']) }}">User With Diamond</a>
+            </li>
+            <li class="nav-item">
+              <a href="{{route('blockuser.index')}}" class="nav-link {{ active_class(['email/inbox']) }}">Block Users</a>
+            </li>
+          </ul>
+        </div>
       </li>
 
-      <li class="nav-item {{ active_class(['/']) }}">
+
+      {{-- <li class="nav-item {{ active_class(['/']) }}">
         <a href="{{route('userlist')}}" class="nav-link">
           <i class="link-icon" data-feather="users"></i>
           <span class="link-title">Users New</span>
           <span class="badge bg-success">New</span>
         </a>
-      </li>
+      </li> --}}
 
       <li class="nav-item {{ active_class(['/']) }}">
         <a href="{{route('label.index')}}" class="nav-link">
@@ -113,6 +135,8 @@
             @csrf
         </form>
     </li>
+
+
 
       {{-- <li class="nav-item nav-category">web apps</li>
       <li class="nav-item {{ active_class(['email/*']) }}">

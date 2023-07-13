@@ -114,6 +114,33 @@
                         </div>
                     @endif
 
+                    <div class="my-2">
+
+                        @if ($blockuser==null)
+                            <form action="{{ route('user.deviceblock', $user->id) }}" method="post">
+                                @csrf
+                                <button onclick="return confirm('Sure ! Active user ?')" type="submit"
+                                    class="btn btn-icon-text btn-outline-danger">
+                                    <i class="btn-icon-prepend" data-feather="smartphone"></i>
+                                    Device Block
+                                </button>
+                            </form>
+
+                        @else
+                            <form action="{{ route('user.deviceunblock', $user->id) }}" method="post">
+                                @csrf
+                                <button onclick="return confirm('Sure ! Active user ?')" type="submit"
+                                    class="btn btn-icon-text btn-outline-success">
+                                    <i class="btn-icon-prepend" data-feather="smartphone"></i>
+                                    Device Unblock
+                                </button>
+                            </form>
+                        @endif
+
+
+
+
+                    </div>
 
 
 

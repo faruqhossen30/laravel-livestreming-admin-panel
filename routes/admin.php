@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\AgoraController;
+use App\Http\Controllers\Admin\BlockuserController;
 use App\Http\Controllers\Admin\CacheflushController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\DepositController;
@@ -37,6 +38,7 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
     Route::resource('paymentgateway', PaymentgatewayController::class);
     Route::resource('agora', AgoraController::class);
     Route::resource('user', UserController::class);
+    Route::resource('blockuser', BlockuserController::class);
     Route::resource('/transaction', TransactionadminController::class);
     Route::resource('/history', HistoryController::class);
     Route::resource('deposit', DepositController::class);
@@ -49,6 +51,8 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
     Route::get('users', [FirebaseUserController::class, 'userList'])->name('userlist');
     Route::get('user/stoplive/{id}', [UserupdateController::class, 'stopLive'])->name('user.stoplive');
     Route::get('user/deactive/{id}', [UserupdateController::class, 'deactiveUser'])->name('user.deactive');
+    Route::post('user/diviceblock/{id}', [UserupdateController::class, 'deviceBlock'])->name('user.deviceblock');
+    Route::post('user/diviceunblock/{id}', [UserupdateController::class, 'deviceUnBlock'])->name('user.deviceunblock');
     Route::get('user/active/{id}', [UserupdateController::class, 'activeUser'])->name('user.active');
     Route::post('user/changepassword/{id}', [UserupdateController::class, 'changePassword'])->name('user.changepassword');
 

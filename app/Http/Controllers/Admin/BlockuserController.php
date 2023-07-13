@@ -4,10 +4,9 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\BlockUser;
-use App\Models\User;
 use Illuminate\Http\Request;
 
-class UserController extends Controller
+class BlockuserController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,14 +15,9 @@ class UserController extends Controller
      */
     public function index()
     {
-        $keyword = null;
-        if (isset($_GET['keyword'])) {
-            $keyword = trim($_GET['keyword']);
-        }
-
-        $users = User::where('is_user', 1)->orderBy('id', 'desc')->get();
-        // return view('admin.user.index', compact('users'));
-        return view('admin.user.usertable', compact('users'));
+        $users = BlockUser::get();
+        // return $users;
+        return view('admin.blockuser.usertable', compact('users'));
     }
 
     /**
@@ -66,10 +60,7 @@ class UserController extends Controller
      */
     public function edit($id)
     {
-        $user = User::firstWhere('id', $id);
-        $blockuser = BlockUser::firstWhere('user_id', $id);
-        // return gettype($blockuser);
-        return view('admin.user.edit', compact('user','blockuser'));
+        //
     }
 
     /**
@@ -92,7 +83,6 @@ class UserController extends Controller
      */
     public function destroy($id)
     {
-        User::firstWhere('id', $id)->delete();
-        return redirect()->route('user.index');
+        //
     }
 }
