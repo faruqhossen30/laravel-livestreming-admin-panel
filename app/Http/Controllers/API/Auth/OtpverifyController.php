@@ -31,7 +31,7 @@ class OtpverifyController extends Controller
         return $response->body();
     }
 
-    public function otpVerify(Request $request,$otp)
+    public function otpVerify(Request $request, $otp)
     {
         $user = $request->user();
 
@@ -44,21 +44,26 @@ class OtpverifyController extends Controller
         // return $request->opt;
         if ($user->otp->otp == $otp) {
 
-            User::firstWhere('id', $user->id)->update(['otp_verified_at'=> Carbon::now(), 'status'=>true]);
-            VerificationCode::firstWhere('user_id', $user->id)->update(['otp_verified_at'=> Carbon::now(), 'status'=>true]);
+            User::firstWhere('id', $user->id)->update(['otp_verified_at' => Carbon::now(), 'status' => true]);
+            VerificationCode::firstWhere('user_id', $user->id)->update(['otp_verified_at' => Carbon::now(), 'status' => true]);
 
             $update = $request->user();
+
+            $db = app('firebase.firestore')->database();
+            $firebaseUser = $db->collection('users')->document($user->id);
+            $firebaseUser->update([
+                ['path' => 'status', 'value' => true]
+            ]);
 
             return response()->json([
                 'success' => true,
                 'code' => 200,
                 'message' => 'Account verify successfully !',
             ]);
-
         };
 
         return response()->json([
             'message' => 'OTP not matched.'
-        ],422);
+        ], 422);
     }
 }
