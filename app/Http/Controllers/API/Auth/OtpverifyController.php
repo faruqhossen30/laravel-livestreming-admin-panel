@@ -8,6 +8,7 @@ use App\Models\VerificationCode;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Facades\Session;
 
 class OtpverifyController extends Controller
 {
@@ -29,6 +30,70 @@ class OtpverifyController extends Controller
 
         $response = Http::get($smsurl);
         return $response->body();
+    }
+
+    public function sendNewOtp(Request $request)
+    {
+
+        $request->validate([
+            'mobile' => 'required',
+            'otp' => 'required',
+        ]);
+
+
+        $smsAPIKey = env('SMS_API_KEY');
+        $mobileNumber = $request->mobile;
+        $otp = $request->otp;
+
+        $smsurl = "http://bulksmsbd.net/api/smsapi?api_key={$smsAPIKey}&type=text&number={$mobileNumber}&senderid=8809617611065&message=AkashLive-OTP:{$otp}";
+
+        $response = Http::get($smsurl);
+        $jsonResponse = $response->json();
+
+        if ($response->successful()) {
+            if ($jsonResponse['response_code'] == 202) {
+                return response()->json([
+                    'response_code' => 202,
+                    'message' => 'OTP Send success ! Check your inbox message.',
+                ]);
+            } else if ($jsonResponse['response_code'] == 1002) {
+                return response()->json([
+                    'response_code' => 1002,
+                    'message' => 'sender id not correct/sender id is disabled Code 1002',
+                ]);
+            } else if ($jsonResponse['response_code'] == 1005) {
+                return response()->json([
+                    'response_code' => 1005,
+                    'message' => 'OTP Internal Error. Code 1006',
+                ]);
+            } else if ($jsonResponse['response_code'] == 1006) {
+                return response()->json([
+                    'response_code' => 1006,
+                    'message' => 'OTP Validity Not Available Code 1006',
+                ]);
+            } else if ($jsonResponse['response_code'] == 1007) {
+                return response()->json([
+                    'response_code' => 1007,
+                    'message' => 'OTP Balance Insufficient Code 1006',
+                ]);
+            }
+        }else{
+            return response()->json([
+                'message' => 'Something went wrong. Please try again',
+            ],422);
+        }
+    }
+
+    public function verifyOtp(Request $request)
+    {
+        $request->validate([
+            'mobile' => 'required',
+            // 'otp'=>'required',
+        ]);
+
+        $otp = session($request->mobile);
+
+        return $otp;
     }
 
     public function otpVerify(Request $request, $otp)

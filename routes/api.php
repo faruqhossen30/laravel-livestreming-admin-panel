@@ -33,9 +33,13 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 
+Route::post('/checkuser', [AuthController::class, 'checkUser']);
 Route::post('/login', [AuthController::class, 'login']);
 Route::post('/register', [AuthController::class, 'register']);
+Route::post('/registernew', [AuthController::class, 'registerNew']);
+Route::post('/send-otp', [OtpverifyController::class, 'sendNewOtp']);
 // Forget Password
+Route::post('/verify-otp', [OtpverifyController::class, 'verifyOtp']);
 Route::post('/forget-password/{mobile}', [ForgetpasswordController::class, 'forgetPassword']);
 Route::post('/forget-password/{mobile}/send-otp', [ForgetpasswordController::class, 'sendOTP']);
 
