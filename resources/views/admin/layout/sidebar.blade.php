@@ -47,6 +47,9 @@
         <div class="collapse {{ show_class(['user/*']) }}" id="email">
           <ul class="nav sub-menu">
             <li class="nav-item">
+              <a href="{{route('user.create')}}" class="nav-link {{ active_class(['email/inbox']) }}">Create User</a>
+            </li>
+            <li class="nav-item">
               <a href="{{route('user.index')}}" class="nav-link {{ active_class(['email/inbox']) }}">All User</a>
             </li>
             <li class="nav-item">

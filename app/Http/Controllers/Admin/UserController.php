@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\BlockUser;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
@@ -33,7 +34,7 @@ class UserController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.user.create');
     }
 
     /**
@@ -44,7 +45,48 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request['mobile'] = $request->countrycode . $request->number;
+        $request->validate([
+            'name' => 'required',
+            'countrycode' => 'required',
+            'mobile' => 'required|unique:users',
+            'number' => 'required',
+            'password' => 'required',
+        ]);
+
+        $data = [
+            'name' => $request->name,
+            'mobile' => $request->mobile,
+            'password' => Hash::make($request->password),
+        ];
+
+
+        $user = User::create($data);
+        $firebaseData = [
+            'id' => $user->id,
+            'uid' => $user->id,
+            'name' => $request->name,
+            'email' => null,
+            'mobile' => $request->mobile,
+            'otpVerifiedAt' => null,
+            'status' => true,
+            'avatar' => null,
+            'diamond' => 0,
+            'label' => 0,
+            'transaction' => 0,
+            'balance' => 0,
+            'deviceId' => null,
+            'appsId' => null,
+            'nameUpdatedAt' => null,
+            'createdAt' => null,
+            'updatedAt' => null
+        ];
+
+        $db = app('firebase.firestore')->database();
+        $db->collection('users')->document($user->id)->set($firebaseData);
+
+        return redirect()->route('user.index');
+        // return $user;
     }
 
     /**
@@ -69,7 +111,7 @@ class UserController extends Controller
         $user = User::firstWhere('id', $id);
         $blockuser = BlockUser::firstWhere('user_id', $id);
         // return gettype($blockuser);
-        return view('admin.user.edit', compact('user','blockuser'));
+        return view('admin.user.edit', compact('user', 'blockuser'));
     }
 
     /**

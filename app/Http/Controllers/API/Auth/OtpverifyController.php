@@ -64,7 +64,7 @@ class OtpverifyController extends Controller
             } else if ($jsonResponse['response_code'] == 1005) {
                 return response()->json([
                     'response_code' => 1005,
-                    'message' => 'OTP Internal Error. Code 1006',
+                    'message' => 'OTP Internal Error. Code 1005',
                 ]);
             } else if ($jsonResponse['response_code'] == 1006) {
                 return response()->json([
@@ -74,7 +74,7 @@ class OtpverifyController extends Controller
             } else if ($jsonResponse['response_code'] == 1007) {
                 return response()->json([
                     'response_code' => 1007,
-                    'message' => 'OTP Balance Insufficient Code 1006',
+                    'message' => 'OTP Balance Insufficient Code 1007',
                 ]);
             }
         }else{

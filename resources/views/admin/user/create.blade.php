@@ -12,45 +12,58 @@
             <div class="card">
                 <div class="card-body">
                     <div>
-                        <a href="{{route('gift.index')}}" type="button" class="btn btn-sm btn-primary btn-icon-text">
+                        <a href="{{ route('user.index') }}" type="button" class="btn btn-sm btn-primary btn-icon-text">
                             <i class="btn-icon-prepend" data-feather="list"></i>
-                            Gift List
+                            User List
                         </a>
                     </div>
                     <hr>
 
-                    <form action="{{ route('gift.store') }}" method="POST" class="forms-sample">
+                    <form action="{{ route('user.store') }}" method="POST" class="forms-sample">
                         @csrf
                         <div class="mb-3">
-                            <label for="exampleInputname1" class="form-label">Gift Name</label>
-                            <input type="text" name="name" class="form-control" id="exampleInputname1"
-                                autocomplete="off" placeholder="Heart">
-                        </div>
-                        <div class="mb-3">
-                            <label for="diamond" class="form-label">Diamond</label>
-                            <input name="diamond" type="number" value="{{old('diamond')}}" class="form-control @error('diamond') is-invalid @enderror"
-                                id="diamond" autocomplete="off" placeholder="10000">
-                            @error('diamond')
+                            <label for="forName" class="form-label">Name</label>
+                            <input type="text" name="name" value="{{ old('name') }}"
+                                class="form-control @error('name') is-invalid @enderror" id="forName" autocomplete="off"
+                                placeholder="Name">
+                            @error('name')
                                 <span class="text-danger">{{ $message }}</span> <br>
                             @enderror
                         </div>
+                        {{-- <div class="mb-3">
+                            <x-countryselect />
+                        </div> --}}
                         <div class="mb-3">
-                            <label for="commission" class="form-label">Commission</label>
-                            <input name="commission" type="number" value="{{old('commission')}}" class="form-control @error('commission') is-invalid @enderror"
-                                id="commission" autocomplete="off" placeholder="10000">
-                            @error('commission')
+                            <label for="forMobile" class="form-label">Mobile</label>
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <x-countryselect />
+                                </div>
+                                <input type="text" name="number" value="{{ old('number') }}"
+                                    class="form-control @error('number') is-invalid @enderror" id="fornumber"
+                                    autocomplete="off" placeholder="192000000000">
+                                @error('number')
+                                    <span class="text-danger">{{ $message }}</span> <br>
+                                @enderror
+                            </div>
+                            @error('mobile')
                                 <span class="text-danger">{{ $message }}</span> <br>
                             @enderror
                         </div>
+
+
+
                         <div class="mb-3">
-                            <label for="img_url" class="form-label">Image Link</label>
-                            <input name="img_url" type="text" value="{{old('img_url')}}" class="form-control @error('img_url') is-invalid @enderror"
-                                id="img_url" autocomplete="off" placeholder="www.google.com">
-                            @error('img_url')
+                            <label for="password" class="form-label">Password</label>
+                            <input name="password" type="text" value="{{ old('password') }}"
+                                class="form-control @error('password') is-invalid @enderror" id="password"
+                                autocomplete="off" placeholder="*****">
+                            @error('password')
                                 <span class="text-danger">{{ $message }}</span> <br>
                             @enderror
                         </div>
-                        <button type="submit" class="btn btn-primary me-2">Submit</button>
+
+                        <button type="submit" id="submitBUtton" class="btn btn-primary me-2">Submit</button>
                         <button class="btn btn-secondary">Cancel</button>
                     </form>
 
@@ -63,7 +76,9 @@
 @endpush
 
 @push('plugin-scripts')
+
 @endpush
 
 @push('custom-scripts')
+
 @endpush
