@@ -9,5 +9,11 @@ class Gift extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['name', 'diamond', 'commission','total', 'img_url', 'user', 'edit_by'];
+    protected $fillable = ['name', 'diamond', 'commission', 'total', 'img_url', 'user', 'edit_by'];
+
+    protected $casts = [
+        'diamond' => 'string',
+        'commission' => 'string',
+        'total' => 'string',
+    ];
 }
