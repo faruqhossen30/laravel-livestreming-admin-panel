@@ -3,7 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\Transaction;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Google\Cloud\Firestore\FirestoreClient;
+use Google\Cloud\Core\Timestamp;
 
 class TransactionadminController extends Controller
 {
@@ -12,11 +15,38 @@ class TransactionadminController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    // protected $db;
+    // function __construct(string $projectId = 'akashliveapp')
+    // {
+    //     $this->db = new FirestoreClient([
+    //         'projectId' => $projectId,
+    //     ]);
+    // }
     public function index()
     {
-        $transactions = Transaction::with('sender', 'receiver')->paginate(50);
-        // return $transactions;
-        return view('admin.transaction.index', compact('transactions'));
+        $db = new FirestoreClient([
+            'projectId' => 'akashliveapp',
+        ]);
+
+        $today = Carbon::today();
+        $startOfToday = new Timestamp($today);
+        $endOfToday = new Timestamp($today->copy()->addDay());
+
+        $transactionsRef = $db->collection('transactions');
+        $query = $transactionsRef->where('createdAt', '>=', $startOfToday)
+            ->where('createdAt', '<', $endOfToday)->orderBy('createdAt', 'DESC');
+        $snapshot = $query->documents();
+
+        $transactions = [];
+        $totalComission = 0;
+        foreach ($snapshot as $document) {
+            $transactions[] = $document->data();
+            $totalComission +=$document->data()['commission'];
+        }
+
+        // return $totalComission;
+        // return response()->json($trans);
+        return view('admin.transaction.index', compact('transactions', 'totalComission'));
     }
 
     /**
@@ -82,7 +112,7 @@ class TransactionadminController extends Controller
      */
     public function destroy($id)
     {
-        Transaction::firstWhere('id',$id)->delete();
+        Transaction::firstWhere('id', $id)->delete();
         return redirect()->route('transaction.index');
     }
 }

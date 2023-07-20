@@ -34,19 +34,18 @@
                             <x-countryselect />
                         </div> --}}
                         <div class="mb-3">
-                            <label for="forMobile" class="form-label">Mobile</label>
-                            <div class="input-group">
-                                <div class="input-group-prepend">
-                                    <x-countryselect />
-                                </div>
-                                <input type="text" name="number" value="{{ old('number') }}"
-                                    class="form-control @error('number') is-invalid @enderror" id="fornumber"
-                                    autocomplete="off" placeholder="192000000000">
-                                @error('number')
-                                    <span class="text-danger">{{ $message }}</span> <br>
-                                @enderror
-                            </div>
+                            <label for="" class="form-label">Country code</label>
+                            <x-countryselect />
                             @error('mobile')
+                            <span class="text-danger">{{ $message }}</span> <br>
+                            @enderror
+                        </div>
+                        <div class="mb-3">
+                            <label for="forMobile" class="form-label">Mobile number <span class="text-secondary">(Don't use 0)</span></label>
+                            <input type="text" name="number" value="{{ old('number') }}"
+                                class="form-control @error('number') is-invalid @enderror" id="fornumber" autocomplete="off"
+                                placeholder="192000000000">
+                            @error('number')
                                 <span class="text-danger">{{ $message }}</span> <br>
                             @enderror
                         </div>
@@ -76,9 +75,7 @@
 @endpush
 
 @push('plugin-scripts')
-
 @endpush
 
 @push('custom-scripts')
-
 @endpush

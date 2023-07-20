@@ -22,9 +22,9 @@ class UserController extends Controller
             $users[] = $document->data();
         }
 
-        foreach ($users as $user) {
-            $count +=$user['diamond'];
-        }
+        // foreach ($users as $user) {
+        //     $count +=$user['diamond'];
+        // }
 
         // return $count;
 

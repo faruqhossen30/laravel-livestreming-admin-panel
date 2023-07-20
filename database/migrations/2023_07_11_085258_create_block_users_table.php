@@ -17,6 +17,7 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('user_id');
             $table->string('device_id');
+            $table->string('description',500)->nullable();
             $table->unsignedBigInteger('author_id');
             $table->timestamps();
         });

@@ -15,7 +15,7 @@ class BlockuserController extends Controller
      */
     public function index()
     {
-        $users = BlockUser::get();
+        $users = BlockUser::with('user')->get();
         // return $users;
         return view('admin.blockuser.usertable', compact('users'));
     }
@@ -72,7 +72,14 @@ class BlockuserController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $request->validate([
+            'description'=>'required'
+        ]);
+
+        BlockUser::firstWhere('id', $id)->update([
+            'description'=> $request->description
+        ]);
+        return redirect()->route('blockuser.index');
     }
 
     /**

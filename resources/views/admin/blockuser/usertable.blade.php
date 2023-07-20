@@ -21,7 +21,7 @@
                             <thead>
                                 <tr>
                                     <th>ID</th>
-                                    {{-- <th>Name</th> --}}
+                                    <th>Name</th>
                                     <th>Date</th>
                                     <th>Action</th>
                                 </tr>
@@ -30,8 +30,17 @@
                                 @foreach ($users as $user)
                                     <tr>
                                         <td>{{$user->user_id}}</td>
+                                        <td>{{$user->user->name}}</td>
                                         {{-- <td> {{ Str::limit($user->name, 25, ' (...)')}}</td> --}}
                                         <td><span class="text-muted">{{$user->created_at->format('d M Y, h:i:s A')}}</span></td>
+                                        <td>
+                                            {{-- <a href="{{route('user.edit', $user->id)}}" type="button" class="btn btn-primary btn-icon btn-xs">
+                                                <i data-feather="eye"></i>
+                                            </a> --}}
+                                            <x-blockuseredit name='button' id="{{$user->id}}" value="{{$user->description}}"/>
+                                            <x-blockusereditview name='button' id="{{$user->id}}" value="{{$user->description}}" />
+
+                                        </td>
                                         <td>
                                             <form action="{{ route('user.deviceunblock', $user->user_id) }}" method="post">
                                                 @csrf
@@ -54,10 +63,8 @@
 @endsection
 
 @push('plugin-scripts')
-    <script src="{{ asset('admin/assets/plugins/datatables-net/jquery.dataTables.js') }}"></script>
-    <script src="{{ asset('admin/assets/plugins/datatables-net-bs5/dataTables.bootstrap5.js') }}"></script>
+
 @endpush
 
 @push('custom-scripts')
-    <script src="{{ asset('admin/assets/js/data-table.js') }}"></script>
 @endpush

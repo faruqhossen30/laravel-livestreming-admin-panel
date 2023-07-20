@@ -104,7 +104,7 @@ class UserupdateController extends Controller
 
         BlockUser::create([
             'user_id'=>$request->id,
-            'device_id'=>$user->device_id ?? 'none',
+            'device_id'=>$user->device_id,
             'author_id'=>Auth::user()->id,
         ]);
         // $user->update([

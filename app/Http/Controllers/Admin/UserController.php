@@ -64,7 +64,7 @@ class UserController extends Controller
         $user = User::create($data);
         $firebaseData = [
             'id' => $user->id,
-            'uid' => $user->id,
+            'uid' =>strval($user->id),
             'name' => $request->name,
             'email' => null,
             'mobile' => $request->mobile,

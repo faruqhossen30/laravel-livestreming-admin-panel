@@ -6,7 +6,9 @@ use App\Http\Controllers\Controller;
 use App\Models\Deposit;
 use App\Models\Transaction;
 use App\Models\User;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class DepositController extends Controller
 {
@@ -26,9 +28,10 @@ class DepositController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request)
     {
-        //
+        // return $userid;
+        // return view('admin.deposit.create');
     }
 
     /**
@@ -39,7 +42,27 @@ class DepositController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'diamond'=>'required',
+            'user_id'=>'required'
+        ]);
+        $data = [
+            'user_id'=> $request->user_id,
+            'author_id'=> Auth::user()->id,
+            'admin_deposit'=> true,
+            'payment_method'=> $request->payment_method,
+            'diamond'=> $request->diamond,
+            'from_account'=> $request->from_account,
+            'to_account'=> $request->to_account,
+            'transaction_id'=> $request->transaction_id,
+            'description'=> $request->description,
+            'status'=> true,
+            'confirm_at'=> Carbon::now(),
+        ];
+
+        $deposit = Deposit::create($data);
+
+        return redirect()->route('user.index');
     }
 
     /**

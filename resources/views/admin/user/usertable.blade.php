@@ -11,6 +11,16 @@
             <li class="breadcrumb-item active" aria-current="page">Data Table</li>
         </ol>
     </nav>
+    @if ($errors->any())
+        <div class="alert alert-danger">
+            <p><strong>Opps Something went wrong</strong></p>
+            <ul>
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+    @endif
 
     <div class="row">
         <div class="col-md-12 grid-margin stretch-card">
@@ -34,34 +44,34 @@
                                 @endphp
                                 @foreach ($users as $user)
                                     <tr>
-                                        <td>{{$user->id}}</td>
-                                        <td> {{ Str::limit($user->name, 25, ' (...)')}}</td>
-                                        <td>{{$user->mobile}}</td>
+                                        <td>{{ $user->id }}</td>
+                                        <td> {{ Str::limit($user->name, 25, ' (...)') }}</td>
+                                        <td>{{ $user->mobile }}</td>
                                         <td>
                                             @if ($user->status)
-                                            <span class="badge bg-success">Active</span>
+                                                <span class="badge bg-success">Active</span>
                                             @else
-                                            <span class="badge bg-danger">Deactive</span>
+                                                <span class="badge bg-danger">Deactive</span>
                                             @endif
                                         </td>
-                                        <td><span class="text-muted">{{$user->created_at->format('d M Y, h:i:s A')}}</span></td>
+                                        <td><span
+                                                class="text-muted">{{ $user->created_at->format('d M Y, h:i:s A') }}</span>
+                                        </td>
                                         <td>
 
                                             {{-- <button type="button" class="btn btn-success btn-sm">Gift</button> --}}
                                             {{-- <button type="button" class="btn btn-success btn-sm">Block</button> --}}
                                             {{-- <button type="button" class="btn btn-success btn-sm">Device Block</button> --}}
-                                            <a href="{{route('user.edit', $user->id)}}" type="button" class="btn btn-primary btn-icon btn-xs">
-                                                <i data-feather="eye"></i>
-                                            </a>
 
-                                            <a href="{{route('user.edit', $user->id)}}" type="button" class="btn btn-primary btn-icon btn-xs">
-                                                <i data-feather="check-square"></i>
-                                            </a>
+                                            <x-sendgiftmodal id="{{ $user->id }}" value={{ $user }} />
 
-                                            <form action="{{route('user.destroy', $user->id)}}" method="post" style="display: inline">
+
+                                            <form action="{{ route('user.destroy', $user->id) }}" method="post"
+                                                style="display: inline">
                                                 @csrf
                                                 @method('DELETE')
-                                                <button type="submit" onclick="return confirm('Sure ! Delete user ?')" class="btn btn-danger btn-xs btn-icon">
+                                                <button type="submit" onclick="return confirm('Sure ! Delete user ?')"
+                                                    class="btn btn-danger btn-xs btn-icon">
                                                     <i data-feather="trash"></i>
                                                 </button>
                                             </form>
