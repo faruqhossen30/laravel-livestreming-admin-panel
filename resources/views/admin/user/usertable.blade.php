@@ -64,6 +64,10 @@
                                             {{-- <button type="button" class="btn btn-success btn-sm">Device Block</button> --}}
 
                                             <x-sendgiftmodal id="{{ $user->id }}" value={{ $user }} />
+                                            <a href="{{ route('user.edit', $user->id) }}" type="button"
+                                                class="btn btn-primary btn-icon btn-xs">
+                                                <i data-feather="eye"></i>
+                                            </a>
 
 
                                             <form action="{{ route('user.destroy', $user->id) }}" method="post"

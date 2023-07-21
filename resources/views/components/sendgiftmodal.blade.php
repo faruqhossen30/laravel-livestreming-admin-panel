@@ -1,4 +1,4 @@
-<button type="button" class="btn btn-primary btn-icon btn-xs" data-bs-toggle="modal"
+<button type="button" class="btn btn-success btn-icon btn-xs" data-bs-toggle="modal"
     data-bs-target="#giftModal{{ $attributes['id'] }}">
     <i data-feather="gift"></i>
 </button>
@@ -9,7 +9,7 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="giftModal{{ $attributes['id'] }}Label">Block User details</h5>
+                <h5 class="modal-title" id="giftModal{{ $attributes['id'] }}Label">Deposit diamond</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="btn-close"></button>
             </div>
 
