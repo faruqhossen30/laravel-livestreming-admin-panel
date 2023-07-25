@@ -102,11 +102,11 @@ class AuthController extends Controller
             $token = $user->createToken(uniqid())->plainTextToken;
             $user['token'] = $token;
 
-            // $db = app('firebase.firestore')->database();
-            // $firebaseUser = $db->collection('users')->document($user->id);
-            // $firebaseUser->update([
-            //     ['path' => 'status', 'value' => true]
-            // ]);
+            $db = app('firebase.firestore')->database();
+            $firebaseUser = $db->collection('users')->document($user->id);
+            $firebaseUser->update([
+                ['path' => 'status', 'value' => true]
+            ]);
         }
 
         return response()->json([

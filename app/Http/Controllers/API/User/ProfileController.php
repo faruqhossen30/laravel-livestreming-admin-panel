@@ -39,32 +39,26 @@ class ProfileController extends Controller
     }
 
 
-    public function changeNumber(Request $request)
-    {
-        $user = $request->user();
-
-        if ($user->otp_verified_at) {
-            return response()->json([
-                'message' => 'Number already veryfied'
-            ]);
-        }
-
-        $user->update(['mobile' => $request->number]);
-
-
-        return response()->json([
-            'message' => 'Mobile number has been changeded !',
-            'user' => $request->user()
-        ]);
-    }
-
     public function changeName(Request $request)
     {
         $user = $request->user();
         $request->validate(['name' => 'required']);
 
+        if ($user->name_updated_at) {
+            $dt = Carbon::parse($user->name_updated_at);
+            $now = Carbon::now();
+            $diff = $dt->diffInDays($now);
+            if ($diff < 30) {
+                $after = 30 - intval($diff);
+                return response()->json([
+                    'success' => false,
+                    'code' => 422,
+                    'message' => "Please change your name after {$after} days",
+                ], 422);
+            }
+        }
         User::firstWhere('id', $user->id)->update(
-            ['name' => $request->name, 'name_updated_at'=>Carbon::now()]
+            ['name' => $request->name, 'name_updated_at' => Carbon::now()]
         );
         $user = User::firstWhere('id', $user->id);
 
@@ -73,7 +67,6 @@ class ProfileController extends Controller
         $firebaseUser->update([
             ['path' => 'name', 'value' => $request->name]
         ]);
-
         return response()->json([
             'success' => true,
             'code' => 200,
@@ -85,52 +78,15 @@ class ProfileController extends Controller
     public function changePassword(Request $request)
     {
         $user = $request->user();
-        $request->validate(['password' => 'required', 'new_password' => 'required']);
+        $request->validate(['password' => 'required|min:4']);
 
-        // $user = User::firstWhere('id',$user->id);
-
-        $check = Hash::check($request->password, $user->password);
-        if ($check) {
-            User::firstWhere('id', $user->id)->update(['password' => $request->password]);
+        User::firstWhere('id', $user->id)->update(['password' => Hash::make($request->password)]);
             return response()->json([
                 'success' => true,
                 'code' => 200,
                 'message' => 'Password update successfully !',
                 'user' => $user
             ]);
-        } else {
-            return response()->json([
-                'success' => false,
-                'code' => 200,
-                'message' => 'Old password not match !'
-            ]);
-        }
-    }
-
-
-    public function goLive(Request $request, $rtctoken)
-    {
-        $user = $request->user();
-        $update = User::where('id', $user->id)->update(
-            ['live' => true,'rtctoken'=>$rtctoken]
-        );
-        return response()->json([
-            'success' => true,
-            'code' => 200,
-            'message' => 'Your going to live now !',
-        ]);
-    }
-    public function leaveLive(Request $request)
-    {
-        $user = $request->user();
-        $update = User::where('id', $user->id)->update(
-            ['live' => false,'rtctoken'=>null]
-        );
-        return response()->json([
-            'success' => true,
-            'code' => 200,
-            'message' => 'End live success !',
-        ]);
     }
 
 }
