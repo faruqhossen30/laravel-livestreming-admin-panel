@@ -7,6 +7,8 @@ use App\Models\BlockUser;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use DataTables;
+use Illuminate\Support\HtmlString;
 
 class UserController extends Controller
 {
@@ -17,14 +19,37 @@ class UserController extends Controller
      */
     public function index()
     {
-        $keyword = null;
-        if (isset($_GET['keyword'])) {
-            $keyword = trim($_GET['keyword']);
-        }
+        // $keyword = null;
+        // if (isset($_GET['keyword'])) {
+        //     $keyword = trim($_GET['keyword']);
+        // }
 
-        $users = User::where('is_user', 1)->orderBy('id', 'desc')->get();
-        // return view('admin.user.index', compact('users'));
-        return view('admin.user.usertable', compact('users'));
+        // $users = User::where('is_user', 1)->orderBy('id', 'desc')->get();
+        // // return view('admin.user.index', compact('users'));
+        // return view('admin.user.usertable', compact('users'));
+        if (request()->ajax()) {
+            $data = User::orderBy('id', 'desc')->get();
+            return Datatables::of($data)
+                ->addColumn('action', function ($row) {
+                    $button = '<a name="edit" href="' . route('user.edit', $row->id) . '" class="edit btn btn-success btn-xs mx-1"> <i class="bi bi-pencil-square"></i>View</a>';
+                    $button .= '<button type="button" id="' . $row->id . '" class="edit btn btn-danger btn-xs deleteButton"> <i class="bi bi-pencil-square"></i>Delete</button>';;
+                    return $button;
+                })
+                ->addColumn('status', function ($request) {
+                    if ($request->status) {
+                        return new HtmlString('<span class="badge bg-success">Active</span>');
+                    } else {
+                        return  new HtmlString('<span class="badge bg-danger">Deactive</span>');
+                    }
+                })
+                ->editColumn('created_at', function ($request) {
+                    return $request->created_at->format('d M Y, h:i:s A'); // human readable format
+                })
+                ->rawColumns(['action'])
+                ->make(true);
+        }
+        // return $users;
+        return view('admin.user.index');
     }
 
     /**
@@ -64,7 +89,7 @@ class UserController extends Controller
         $user = User::create($data);
         $firebaseData = [
             'id' => $user->id,
-            'uid' =>strval($user->id),
+            'uid' => strval($user->id),
             'name' => $request->name,
             'email' => null,
             'mobile' => $request->mobile,
@@ -136,5 +161,22 @@ class UserController extends Controller
     {
         User::firstWhere('id', $id)->delete();
         return redirect()->route('user.index');
+    }
+    public function userDelete($id)
+    {
+        if (request()->ajax()) {
+            $delete = User::firstWhere('id', $id)->delete();
+            if ($delete) {
+                return response()->json([
+                    'message' => 'User delete success !'
+                ]);
+            } else {
+                return response()->json([
+                    'message' => 'Something went wrong'
+                ]);
+            }
+        }
+        // User::firstWhere('id', $id)->delete();
+        // return redirect()->route('user.index');
     }
 }

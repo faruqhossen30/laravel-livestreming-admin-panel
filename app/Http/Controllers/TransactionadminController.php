@@ -15,13 +15,6 @@ class TransactionadminController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    // protected $db;
-    // function __construct(string $projectId = 'akashliveapp')
-    // {
-    //     $this->db = new FirestoreClient([
-    //         'projectId' => $projectId,
-    //     ]);
-    // }
     public function index()
     {
         $db = new FirestoreClient([

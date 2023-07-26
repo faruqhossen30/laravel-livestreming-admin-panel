@@ -11,7 +11,7 @@
         <div class="col-md-12 grid-margin stretch-card">
             <div class="card">
                 <div class="card-body">
-                    <div class="d-flex justify-content-between">
+                    {{-- <div class="d-flex justify-content-between">
                         <form action="" method="get" class="d-flex">
                             <input type="text" class="form-control" name="id" placeholder="ID Search">
                             <input type="text" class="form-control mx-1" name="username" placeholder="Mobile">
@@ -25,7 +25,7 @@
                                 </button>
                             </div>
                         </form>
-                    </div>
+                    </div> --}}
 
                     {{-- <div>
                         <a href="{{route('gift.create')}}" type="button" class="btn btn-sm btn-primary btn-icon-text">
@@ -33,78 +33,22 @@
                             Create gift
                         </a>
                     </div> --}}
-                    <div class="table-responsive pt-3">
-                        <table class="table table-bordered">
-                            <thead>
+
+                    <div class="table-responsive">
+                        <table id="example" class="table">
+                            <thead class="mt-4">
                                 <tr>
-                                    <th>
-                                        S.N
-                                    </th>
-                                    <th>
-                                        Name
-                                    </th>
-                                    <th>
-                                        Mobile
-                                    </th>
-                                    <th>
-                                        ID
-                                    </th>
-                                    <th>
-                                        Diamond
-                                    </th>
-                                    <th>
-                                        Action
-                                    </th>
+                                    <th>ID</th>
+                                    <th>Name</th>
+                                    <th>Mobile</th>
+                                    <th>Status</th>
+                                    <th>Date</th>
+                                    <th>Action</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach ($users as $user)
-                                    <tr>
-                                        <td>
-                                            {{$users->firstItem() + $loop->index}}
-                                        </td>
-                                        <td>
-                                            {{ $user->name }}
-                                        </td>
-                                        <td>
-                                           {{$user->mobile}}
-                                        </td>
-                                        <td>
-                                            {{$user->id}}
-                                         </td>
-                                        <td>
-                                            <span class="text-primary text-xs" width="16px"><i data-feather="gift"></i></span>
-                                            {{ $user->diamond }}
-                                        </td>
-                                        <td>
-
-                                            <button type="button" class="btn btn-success btn-sm">Gift</button>
-                                            <button type="button" class="btn btn-success btn-sm">Block</button>
-                                            <button type="button" class="btn btn-success btn-sm">Device Block</button>
-                                            <a href="{{route('user.edit', $user->id)}}" type="button" class="btn btn-primary btn-icon btn-xs">
-                                                <i data-feather="eye"></i>
-                                            </a>
-
-                                            <a href="{{route('user.edit', $user->id)}}" type="button" class="btn btn-primary btn-icon btn-xs">
-                                                <i data-feather="check-square"></i>
-                                            </a>
-
-                                            <form action="{{route('user.destroy', $user->id)}}" method="post" style="display: inline">
-                                                @csrf
-                                                @method('DELETE')
-                                                <button type="submit" onclick="return confirm('Sure ! Delete user ?')" class="btn btn-danger btn-xs btn-icon">
-                                                    <i data-feather="trash"></i>
-                                                </button>
-                                            </form>
-                                        </td>
-                                    </tr>
-                                @endforeach
-
                             </tbody>
                         </table>
-                    </div>
-                    <div class="py-2">
-                        {{$users->links()}}
                     </div>
                 </div>
             </div>
@@ -112,10 +56,84 @@
     </div>
 @endsection
 @push('plugin-styles')
+    <link href="{{ asset('admin/assets/plugins/datatables-net-bs5/dataTables.bootstrap5.css') }}" rel="stylesheet" />
+    <meta name="csrf-token" content="{{ csrf_token() }}">
 @endpush
 
 @push('plugin-scripts')
+    <script src="{{ asset('admin/assets/plugins/datatables-net/jquery.dataTables.js') }}"></script>
+    <script src="{{ asset('admin/assets/plugins/datatables-net-bs5/dataTables.bootstrap5.js') }}"></script>
 @endpush
 
 @push('custom-scripts')
+    <script src="{{ asset('admin/assets/js/data-table.js') }}"></script>
+    <script>
+        $(document).ready(function() {
+            $('#example').DataTable({
+                processing: true,
+                serverSide: true,
+                pageLength: 10,
+                ordering: true,
+                searchBuilder: {
+                    columns: [0,1,2]
+                },
+                ajax: {
+                    url: "{{ URL::to('/admin/user') }}"
+                },
+                columns: [{
+                        data: 'id',
+                        name: 'id',
+                    }, {
+                        data: 'name',
+                        name: 'name',
+                    }, {
+                        data: 'mobile',
+                        name: 'mobile',
+                    },
+                    {
+                        data: 'status',
+                        name: 'status',
+                    },
+                    {
+                        data: 'created_at',
+                        name: 'date',
+                    },
+                    {
+                        data: 'action',
+                        name: 'action',
+                    }
+                ]
+            });
+
+            $('#example').on('click', '.deleteButton', function() {
+                var id = $(this).attr('id');
+                var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
+
+                var deleteConfirm = confirm("Are you sure?");
+                var url = '{{ route('adminuser.delete', ':id') }}';
+                url = url.replace(':id', id);
+
+                console.log(id);
+                console.log(url);
+
+                if (deleteConfirm == true) {
+                    // AJAX request
+                    $.ajax({
+                        // url: "{{ route('user.destroy', '+id+') }}",
+                        url: url,
+                        type: 'POST',
+                        data: {
+                            _token: CSRF_TOKEN
+                        },
+                        success: function(response) {
+                            location.reload();
+                        }
+
+
+                    });
+                }
+
+            });
+        });
+    </script>
 @endpush

@@ -73,6 +73,27 @@
       </div>
     </div>
   </div>
+
+
+  <div class="col-12 col-xl-12 stretch-card">
+    <div class="row flex-grow-1">
+        <div class="col-lg-3 col-md-6">
+            <div class="card text-center">
+                <div class="body bg-info">
+                    <div class="d-flex align-items-center justify-content-between">
+                        <div class="d-flex align-items-center">
+                          <img class="img-xs rounded-circle" src="{{ url('https://via.placeholder.com/100x100') }}" alt="">
+                          <div class="ms-2">
+                            <p>Mike Popescu</p>
+                            <p class="tx-11 text-muted">1 min ago</p>
+                          </div>
+                        </div>
+                      </div>
+                </div>
+            </div>
+        </div>
+    </div>
+  </div>
 </div> <!-- row -->
 
 @endsection

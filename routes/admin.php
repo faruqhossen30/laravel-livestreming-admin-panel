@@ -44,6 +44,8 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
     Route::resource('deposit', DepositController::class);
     Route::resource('helpline', HelplineController::class);
 
+    Route::post('user/delete/{id}', [UserController::class, 'userDelete'])->name('adminuser.delete');
+
     Route::get('flush/giftapi',[CacheflushController::class, 'giftApiFlush'])->name('flush.giftapi');
     Route::get('flush/helpline',[CacheflushController::class, 'helplineFlush'])->name('flush.helpline');
 
