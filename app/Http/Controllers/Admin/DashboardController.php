@@ -3,9 +3,11 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use Carbon\Carbon;
 use Google\Cloud\Firestore\FieldValue;
 use Illuminate\Http\Request;
 use Kreait\Laravel\Firebase\Facades\Firebase;
+use Google\Cloud\Core\Timestamp;
 
 class DashboardController extends Controller
 {
@@ -32,8 +34,28 @@ class DashboardController extends Controller
                 $minusDiamond +=$user['diamond'];
             }
         }
+        // Transcrion
 
-        return view('overview', compact('totalDiamond', 'minusDiamond'));
+        $today = Carbon::today();
+        $startOfToday = new Timestamp($today);
+        $endOfToday = new Timestamp($today->copy()->addDay());
+
+        $transactionsRef = $firestore->database()->collection('transactions');
+        $query = $transactionsRef->where('createdAt', '>=', $startOfToday)
+            ->where('createdAt', '<', $endOfToday)->orderBy('createdAt', 'DESC');
+        $snapshot = $query->documents();
+
+        $transactions = [];
+        $totalComission = 0;
+        foreach ($snapshot as $document) {
+            $transactions[] = $document->data();
+            $totalComission +=$document->data()['commission'];
+        }
+
+        // return $totalComission;
+
+
+        return view('overview', compact('totalDiamond', 'minusDiamond','totalComission'));
 
         // return $totalDiamond;
         // echo 'Diamone = '.$totalDiamond;

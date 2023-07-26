@@ -34,6 +34,11 @@
                             <tbody>
                                 <tr>
                                     {{-- <th>1</th> --}}
+                                    <td>Time</td>
+                                    <td>: {{ $agora->created_at->format('d M Y, h:i:s A') }}</td>
+                                </tr>
+                                <tr>
+                                    {{-- <th>1</th> --}}
                                     <td>App Name</td>
                                     <td>: {{$agora->project_name}}</td>
                                 </tr>

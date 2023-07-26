@@ -20,8 +20,8 @@
       </li>
       <li class="nav-item {{ active_class(['/']) }}">
         <a href="{{route('dashboard')}}" class="nav-link">
-          <i class="link-icon" data-feather="box"></i>
-          <span class="link-title">Overview</span>
+          <i class="link-icon" data-feather="gift"></i>
+          <span class="link-title">Diamond Overview</span>
         </a>
       </li>
       <li class="nav-item {{ active_class(['/']) }}">

@@ -16,6 +16,7 @@ use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\UserupdateController;
 use App\Http\Controllers\Firebase\UserController as FirebaseUserController;
 use App\Http\Controllers\TransactionadminController;
+use App\Models\BlockUser;
 use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Route;
@@ -69,9 +70,10 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
     Route::get('/dashboard', function () {
         $activUser = User::where('is_user', 1)->where('status',1)->count();
         $deactiveUser = User::where('is_user', 1)->where('status',0)->count();
-        $todayUser = User::where('created_at', Carbon::now())->count();
+        $blockUsers = BlockUser::get()->count();
+        $todayUser = User::whereDate('created_at', Carbon::today())->count();
         // return $todayUser;
-        return view('admin.dashboard', compact('activUser', 'deactiveUser', 'todayUser'));
+        return view('admin.dashboard', compact('activUser', 'deactiveUser','blockUsers', 'todayUser'));
     });
 
     Route::group(['prefix' => 'email'], function () {
