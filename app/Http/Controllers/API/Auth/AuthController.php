@@ -12,6 +12,9 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\ValidationException;
+use Google\Cloud\Firestore\FirestoreClient;
+use Google\Cloud\Core\Timestamp;
+use Google\Cloud\Firestore\FieldValue;
 
 class AuthController extends Controller
 {
@@ -73,7 +76,6 @@ class AuthController extends Controller
 
     public function registerNew(Request $request)
     {
-
         $request->validate([
             'name' => ['required', 'string', 'max:255'],
             'mobile' => ['required', 'string', 'max:15', 'unique:users'],
@@ -101,11 +103,23 @@ class AuthController extends Controller
         if ($user) {
             $token = $user->createToken(uniqid())->plainTextToken;
             $user['token'] = $token;
-
-            $db = app('firebase.firestore')->database();
-            $firebaseUser = $db->collection('users')->document($user->id);
-            $firebaseUser->update([
-                ['path' => 'status', 'value' => true]
+            $db = new FirestoreClient([
+                'projectId' => 'akashliveapp',
+            ]);
+            $db->collection('users')->document($user->id)->set([
+                'id' => $user->id,
+                'uid' => strval($user->id),
+                'name' => $request->name,
+                'mobile' => $request->mobile,
+                'status' => true,
+                'avatar' => null,
+                'diamond' => 0,
+                'label' => 0,
+                'transaction' => 0,
+                'balance' => 0,
+                'device_id' => $request->device_id,
+                'appsId' => null,
+                'createdAt' => FieldValue::serverTimestamp(),
             ]);
         }
 
