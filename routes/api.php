@@ -10,6 +10,7 @@ use App\Http\Controllers\API\RtctokenController;
 use App\Http\Controllers\API\RtmctokenController;
 use App\Http\Controllers\API\User\BuydaimondController;
 use App\Http\Controllers\API\User\DepositController;
+use App\Http\Controllers\API\User\FollowerController;
 use App\Http\Controllers\API\User\ProfileController;
 use App\Http\Controllers\API\User\UserapiController;
 use Illuminate\Http\Request;
@@ -70,6 +71,11 @@ Route::middleware('auth:sanctum')->group(function () {
         // API List
         Route::get('/api/notices', [UserapiController::class, 'allNotice']);
         Route::get('/api/notice/{id}', [UserapiController::class, 'singleNotice']);
+        // Follower
+        Route::get('/followers', [FollowerController::class, 'followwingList']);
+        Route::post('/follower/follow', [FollowerController::class, 'follow']);
+        Route::post('/follower/unfollow', [FollowerController::class, 'unFollow']);
+
 
     });
 });

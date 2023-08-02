@@ -47,4 +47,8 @@ class User extends Authenticatable
     {
         return $this->hasOne(VerificationCode::class, 'user_id');
     }
+    public function followers()
+    {
+        return $this->hasMany(Follower::class, 'user_id');
+    }
 }
