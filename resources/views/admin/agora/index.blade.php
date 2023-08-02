@@ -35,7 +35,7 @@
                                 <tr>
                                     {{-- <th>1</th> --}}
                                     <td>Time</td>
-                                    <td>: {{$agora->created_at->format('d M Y, h:i:s A') }}</td>
+                                    <td>: {{$agora->updated_at->format('d M Y, h:i:s A') }}</td>
                                 </tr>
                                 <tr>
                                     {{-- <th>1</th> --}}

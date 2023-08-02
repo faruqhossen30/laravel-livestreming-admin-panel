@@ -46,7 +46,7 @@ class UserupdateController extends Controller
         ]);
 
         // return $request->all();
-        return redirect()->back()->with('success', 'Tender has been uploaded successfully! ');
+        return redirect()->back()->with('message', 'Tender has been uploaded successfully! ');
     }
 
     public function deactiveUser(Request $request, $id)

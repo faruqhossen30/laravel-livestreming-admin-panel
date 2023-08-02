@@ -10,6 +10,7 @@ use App\Http\Controllers\Admin\HelplineController;
 use App\Http\Controllers\Admin\HistoryController;
 use App\Http\Controllers\Admin\LabelController;
 use App\Http\Controllers\Admin\MembershipController;
+use App\Http\Controllers\Admin\NoticeController;
 use App\Http\Controllers\Admin\PaymentgatewayController;
 use App\Http\Controllers\Admin\SettingController;
 use App\Http\Controllers\Admin\UserController;
@@ -44,6 +45,7 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
     Route::resource('/history', HistoryController::class);
     Route::resource('deposit', DepositController::class);
     Route::resource('helpline', HelplineController::class);
+    Route::resource('notice', NoticeController::class);
 
     Route::post('user/delete/{id}', [UserController::class, 'userDelete'])->name('adminuser.delete');
 

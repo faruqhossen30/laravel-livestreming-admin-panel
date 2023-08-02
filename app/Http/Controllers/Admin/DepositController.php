@@ -60,9 +60,9 @@ class DepositController extends Controller
             'confirm_at'=> Carbon::now(),
         ];
 
+        // return $request->all();
         $deposit = Deposit::create($data);
-
-        return redirect()->route('user.index');
+        return redirect()->back()->with('message', 'Diamond deposit success !');
     }
 
     /**

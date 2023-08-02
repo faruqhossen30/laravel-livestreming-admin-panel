@@ -126,6 +126,12 @@
         </a>
       </li>
       <li class="nav-item">
+        <a href="{{route('notice.index')}}" class="nav-link">
+          <i class="link-icon" data-feather="bell"></i>
+          <span class="link-title">Notice</span>
+        </a>
+      </li>
+      <li class="nav-item">
         <a class="nav-link" href="{{ route('logout') }}"
             onclick="event.preventDefault();
                                  document.getElementById('logout-form').submit();">

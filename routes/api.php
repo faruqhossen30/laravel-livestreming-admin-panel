@@ -11,6 +11,7 @@ use App\Http\Controllers\API\RtmctokenController;
 use App\Http\Controllers\API\User\BuydaimondController;
 use App\Http\Controllers\API\User\DepositController;
 use App\Http\Controllers\API\User\ProfileController;
+use App\Http\Controllers\API\User\UserapiController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -66,6 +67,10 @@ Route::middleware('auth:sanctum')->group(function () {
         // Deposit
         Route::post('/deposit', [DepositController::class, 'store']);
         Route::get('/deposits', [DepositController::class, 'index']);
+        // API List
+        Route::get('/api/notices', [UserapiController::class, 'allNotice']);
+        Route::get('/api/notice/{id}', [UserapiController::class, 'singleNotice']);
+
     });
 });
 

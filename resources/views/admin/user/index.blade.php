@@ -11,28 +11,6 @@
         <div class="col-md-12 grid-margin stretch-card">
             <div class="card">
                 <div class="card-body">
-                    {{-- <div class="d-flex justify-content-between">
-                        <form action="" method="get" class="d-flex">
-                            <input type="text" class="form-control" name="id" placeholder="ID Search">
-                            <input type="text" class="form-control mx-1" name="username" placeholder="Mobile">
-                            <select name="" id="" class="form-select">
-                                <option value="1">Active</option>
-                                <option value="0">Block</option>
-                            </select>
-                            <div>
-                                <button type="button" class="btn btn-primary btn-icon-text mx-1">
-                                    Search
-                                </button>
-                            </div>
-                        </form>
-                    </div> --}}
-
-                    {{-- <div>
-                        <a href="{{route('gift.create')}}" type="button" class="btn btn-sm btn-primary btn-icon-text">
-                            <i class="btn-icon-prepend" data-feather="plus-circle"></i>
-                            Create gift
-                        </a>
-                    </div> --}}
 
                     <div class="table-responsive">
                         <table id="example" class="table">
