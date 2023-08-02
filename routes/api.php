@@ -8,6 +8,7 @@ use App\Http\Controllers\API\ListapiController;
 use App\Http\Controllers\API\OptionapiController;
 use App\Http\Controllers\API\RtctokenController;
 use App\Http\Controllers\API\RtmctokenController;
+use App\Http\Controllers\API\User\BlockController;
 use App\Http\Controllers\API\User\BuydaimondController;
 use App\Http\Controllers\API\User\DepositController;
 use App\Http\Controllers\API\User\FollowerController;
@@ -75,7 +76,10 @@ Route::middleware('auth:sanctum')->group(function () {
         Route::get('/followers', [FollowerController::class, 'followwingList']);
         Route::post('/follower/follow', [FollowerController::class, 'follow']);
         Route::post('/follower/unfollow', [FollowerController::class, 'unFollow']);
-
+        // Block
+        Route::get('/blocks', [BlockController::class, 'blockList']);
+        Route::post('/block/block', [BlockController::class, 'block']);
+        Route::post('/block/unblock', [BlockController::class, 'unBlock']);
 
     });
 });
