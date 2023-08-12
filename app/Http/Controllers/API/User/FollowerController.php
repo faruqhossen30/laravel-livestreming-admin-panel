@@ -29,7 +29,7 @@ class FollowerController extends Controller
                 'follower_id' => $request->follower_id
             ]);
             return response()->json([
-                'message' => 'Following successfull !',
+                'message' => 'Following request send success.',
                 'data' => $folling
             ]);
         }

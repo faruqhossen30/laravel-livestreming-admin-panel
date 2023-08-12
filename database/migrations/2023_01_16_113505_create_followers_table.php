@@ -17,6 +17,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
             $table->unsignedBigInteger('follower_id');
+            $table->boolean('status')->default(false);
             $table->timestamps();
         });
     }

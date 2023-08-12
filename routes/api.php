@@ -70,7 +70,7 @@ Route::middleware('auth:sanctum')->group(function () {
         Route::post('/deposit', [DepositController::class, 'store']);
         Route::get('/deposits', [DepositController::class, 'index']);
         // API List
-        Route::get('/api/notices', [UserapiController::class, 'allNotice']);
+        Route::get('/notices', [UserapiController::class, 'allNotice']);
         Route::get('/api/notice/{id}', [UserapiController::class, 'singleNotice']);
         // Follower
         Route::get('/followers', [FollowerController::class, 'followwingList']);
