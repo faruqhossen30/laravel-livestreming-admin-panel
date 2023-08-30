@@ -52,10 +52,6 @@ class UserupdateController extends Controller
     public function deactiveUser(Request $request, $id)
     {
 
-        // $request->validate([
-        //     'password' => 'required|min:4'
-        // ]);
-
         $user = User::firstWhere('id', $id);
 
         $user->update([

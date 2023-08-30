@@ -39,7 +39,7 @@
                             </div>
                             <div class="w-100">
                                 <div class="d-flex justify-content-between">
-                                    <h6 class="fw-normal text-body mb-1">Leonardo Payne </h6>
+                                    <h6 class="fw-normal text-body mb-1">{{$user->name}} </h6>
                                     <p class="text-muted tx-12">
                                         @if ($user->status)
                                             <span class="badge bg-success">Active</span>

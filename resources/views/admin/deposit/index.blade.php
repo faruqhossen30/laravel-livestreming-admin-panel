@@ -37,7 +37,7 @@
                                         Name
                                     </th>
                                     <th>
-                                        Amount
+                                        Diamond
                                     </th>
                                     <th>
                                         Method
@@ -70,7 +70,7 @@
                                             {{ $item->user->name }}
                                         </td>
                                         <td>
-                                            {{ $item->amount }}TK
+                                            {{ $item->diamond }}
                                         </td>
                                         <td>
                                             {{ $item->method }}
