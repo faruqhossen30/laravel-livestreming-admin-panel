@@ -9,6 +9,9 @@ use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Google\Cloud\Firestore\FirestoreClient;
+use Google\Cloud\Core\Timestamp;
+use Google\Cloud\Firestore\FieldValue;
 
 class DepositController extends Controller
 {
@@ -60,8 +63,29 @@ class DepositController extends Controller
             'confirm_at'=> Carbon::now(),
         ];
 
+
+
+
         // return $request->all();
         $deposit = Deposit::create($data);
+        $data['created_at']=Carbon::now();
+        $db = new FirestoreClient([
+            'projectId' => 'akashliveapp',
+        ]);
+        $db->collection('deposits')->add($data);
+        $db->collection('transactions')->add([
+            'commission'=> 0,
+            'createdAt'=> FieldValue::serverTimestamp(),
+            'diamond'=> $request->diamond,
+            'receiver'=> $request->user_id,
+            'sender'=> 'Admin - '.Auth::user()->name,
+        ]);
+
+        $firebaseUser = $db->collection('users')->document( $request->user_id);
+        $firebaseUser->update([
+            ['path' => 'diamond', 'value' => FieldValue::increment(intval($request->diamond))]
+        ]);
+
         return redirect()->back()->with('message', 'Diamond deposit success !');
     }
 

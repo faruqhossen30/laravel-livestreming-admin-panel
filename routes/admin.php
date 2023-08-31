@@ -60,6 +60,7 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
     Route::post('user/diviceunblock/{id}', [UserupdateController::class, 'deviceUnBlock'])->name('user.deviceunblock');
     Route::get('user/active/{id}', [UserupdateController::class, 'activeUser'])->name('user.active');
     Route::post('user/changepassword/{id}', [UserupdateController::class, 'changePassword'])->name('user.changepassword');
+    Route::post('user/change/name/{id}', [UserupdateController::class, 'changeName'])->name('user.changeName');
 
 
     // Settings

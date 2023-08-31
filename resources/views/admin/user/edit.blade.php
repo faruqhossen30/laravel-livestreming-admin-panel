@@ -57,6 +57,7 @@
 
                     <div class="my-2 d-grid gap-2">
                         <x-sendgiftmodal :user="$user" id="{{ $user->id }}" />
+                        <x-namechangemodal :user="$user" id="{{ $user->id }}" />
 
                         <a href="{{ route('user.stoplive', $user->id) }}" type="button"
                             class="btn btn-icon-text btn-outline-danger">

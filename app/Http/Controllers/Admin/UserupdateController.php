@@ -49,6 +49,30 @@ class UserupdateController extends Controller
         return redirect()->back()->with('message', 'Tender has been uploaded successfully! ');
     }
 
+
+    public function changeName(Request $request, $id)
+    {
+
+        $request->validate([
+            'name'=>'required'
+        ]);
+
+        // return $request->all();
+        $user = User::firstWhere('id', $id);
+
+        $user->update([
+            'name' => $request->name,
+        ]);
+
+        $db = app('firebase.firestore')->database();
+        $firebaseUser = $db->collection('users')->document($user->id);
+        $firebaseUser->update([
+            ['path' => 'name', 'value' => $request->name]
+        ]);
+
+        return redirect()->back();
+    }
+
     public function deactiveUser(Request $request, $id)
     {
 
