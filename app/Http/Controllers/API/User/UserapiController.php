@@ -21,6 +21,7 @@ class UserapiController extends Controller
             'data' => $notices
         ]);
     }
+
     public function singleNotice($id)
     {
         // $list = Cache::rememberForever('gifts', function () {
@@ -31,6 +32,16 @@ class UserapiController extends Controller
             'success' => true,
             'code' => 200,
             'data' => $notice
+        ]);
+    }
+
+    public function notifications(Request $request)
+    {
+        $notifications = $request->user()->notifications;
+        return response()->json([
+            'success' => true,
+            'code' => 200,
+            'data' => $notifications
         ]);
     }
 }

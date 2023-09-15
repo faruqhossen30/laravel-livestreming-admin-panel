@@ -71,10 +71,14 @@ Route::middleware('auth:sanctum')->group(function () {
         Route::get('/deposits', [DepositController::class, 'index']);
         // API List
         Route::get('/notices', [UserapiController::class, 'allNotice']);
+        Route::get('/notifications', [UserapiController::class, 'notifications']);
         Route::get('/api/notice/{id}', [UserapiController::class, 'singleNotice']);
         // Follower
-        Route::get('/followers', [FollowerController::class, 'followwingList']);
+        Route::get('/followers', [FollowerController::class, 'followers']);
+        Route::get('/followings', [FollowerController::class, 'followings']);
+        Route::post('/follower/checkfollower', [FollowerController::class, 'checkfollower']);
         Route::post('/follower/follow', [FollowerController::class, 'follow']);
+        Route::post('/follower/follow/accept', [FollowerController::class, 'followAccept']);
         Route::post('/follower/unfollow', [FollowerController::class, 'unFollow']);
         // Block
         Route::get('/blocks', [BlockController::class, 'blockList']);

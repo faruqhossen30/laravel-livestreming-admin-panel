@@ -40,16 +40,13 @@
                                         Diamond
                                     </th>
                                     <th>
-                                        Method
+                                        To
                                     </th>
                                     <th>
                                         From
                                     </th>
                                     <th>
-                                        To
-                                    </th>
-                                    <th>
-                                        Transctions
+                                        Time
                                     </th>
                                     <th>
                                         Actions
@@ -73,16 +70,17 @@
                                             {{ $item->diamond }}
                                         </td>
                                         <td>
-                                            {{ $item->method }}
-                                        </td>
-                                        <td>
-                                            {{ $item->from_account }}
+                                            {{-- {{ $item->user->name }} --}}
                                         </td>
                                         <td>
                                             {{ $item->to_account }}
                                         </td>
-                                        <td>
-                                            {{ $item->transaction_id }}
+                                        <td class="text-muted">
+                                            <span class="d-flex align-items-center">
+                                            {{ $item->created_at->format('d M Y') }}</span>
+                                        <span class="d-flex align-items-center px-1"> <i class="btn-icon-prepend"
+                                                data-feather="clock" style="width:12px"></i>
+                                            {{ $item->created_at->format('g:i A e') }}</span>
                                         </td>
                                         <td>
                                             @if ($item->status == false)
@@ -106,6 +104,9 @@
 
                             </tbody>
                         </table>
+                    </div>
+                    <div class="py-2">
+                        {{$deposits->links()}}
                     </div>
                 </div>
             </div>
