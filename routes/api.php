@@ -3,6 +3,7 @@
 use App\Http\Controllers\API\AgoraController;
 use App\Http\Controllers\API\Auth\AuthController;
 use App\Http\Controllers\API\Auth\OtpverifyController;
+use App\Http\Controllers\API\FcmtokenController;
 use App\Http\Controllers\API\ForgetpasswordController;
 use App\Http\Controllers\API\ListapiController;
 use App\Http\Controllers\API\OptionapiController;
@@ -66,6 +67,9 @@ Route::middleware('auth:sanctum')->group(function () {
         // Generate Token
         Route::get('/rcttoken/host', [RtctokenController::class, 'generate']);
         Route::get('/rtmtoken/host', [RtmctokenController::class, 'generate']);
+
+        // FCM Token
+        Route::post('/fcmtoken/store', [FcmtokenController::class, 'storeFcm']);
         // Deposit
         Route::post('/deposit', [DepositController::class, 'store']);
         Route::get('/deposits', [DepositController::class, 'index']);

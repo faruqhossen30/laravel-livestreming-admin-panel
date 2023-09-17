@@ -80,7 +80,7 @@
                                             {{ $item->created_at->format('d M Y') }}</span>
                                         <span class="d-flex align-items-center px-1"> <i class="btn-icon-prepend"
                                                 data-feather="clock" style="width:12px"></i>
-                                            {{ $item->created_at->format('g:i A e') }}</span>
+                                            {{ $item->created_at->format('g:i A') }}</span>
                                         </td>
                                         <td>
                                             @if ($item->status == false)

@@ -41,8 +41,8 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
     Route::resource('agora', AgoraController::class);
     Route::resource('user', UserController::class);
     Route::resource('blockuser', BlockuserController::class);
-    Route::resource('/transaction', TransactionadminController::class);
-    Route::resource('/history', HistoryController::class);
+    Route::resource('transaction', TransactionadminController::class);
+    Route::resource('history', HistoryController::class);
     Route::resource('deposit', DepositController::class);
     Route::resource('helpline', HelplineController::class);
     Route::resource('notice', NoticeController::class);

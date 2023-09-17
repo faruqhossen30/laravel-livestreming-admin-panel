@@ -18,7 +18,7 @@ class User extends Authenticatable
      * @var array<int, string>
      */
     protected $fillable = [
-        'name', 'email', 'mobile', 'email_verified_at', 'otp_verified_at', 'password', 'is_admin', 'is_user', 'status', 'rtctoken','avatar', 'diamond', 'balance', 'device_id', 'apps_id','name_updated_at'
+        'name', 'email', 'mobile', 'email_verified_at', 'otp_verified_at', 'password', 'is_admin', 'is_user', 'status', 'rtctoken','avatar', 'diamond', 'balance', 'device_id', 'apps_id','name_updated_at','fcm_token','fcm_time'
     ];
 
     /**
@@ -40,7 +40,8 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
         'otp_verified_at' => 'datetime',
         'name_updated_at' => 'datetime',
-        'name_updated_at' => 'datetime'
+        'name_updated_at' => 'datetime',
+        'fcm_time' => 'datetime'
     ];
 
     public function otp()
