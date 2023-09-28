@@ -30,7 +30,7 @@
 
                 <a class="nav-link " id="v-withdrawrate-tab" data-bs-toggle="tab" href="#v-withdrawrate" role="tab"
                     aria-controls="v-withdrawrate" aria-selected="false"><span class="input-group"><i data-feather="dollar-sign"
-                            class="me-2"></i>Daimond Widthdraw Rate</a>
+                            class="me-2"></i>Withdraw On/Off</a>
 
 
             </div>

@@ -83,18 +83,33 @@
           <span class="link-title">Gift</span>
         </a>
       </li>
+      <li class="nav-item {{ active_class(['settings/*']) }}">
+        <a class="nav-link" data-bs-toggle="collapse" href="#settings" role="button" aria-expanded="{{ is_active_route(['settings/*']) }}" aria-controls="settings">
+          <i class="link-icon" data-feather="users"></i>
+          <span class="link-title">Settings</span>
+          <i class="link-arrow" data-feather="chevron-down"></i>
+        </a>
+        <div class="collapse {{ show_class(['user/*']) }}" id="settings">
+          <ul class="nav sub-menu">
+            <li class="nav-item">
+              <a href="{{route('paymentgateway.index')}}" class="nav-link {{ active_class(['settings/inbox']) }}">Payment Gateway</a>
+            </li>
+            <li class="nav-item">
+              <a href="{{route('helpline.index')}}" class="nav-link {{ active_class(['settings/inbox']) }}">Helpline</a>
+            </li>
+            <li class="nav-item">
+              <a href="{{route('withdrawsetting.index')}}" class="nav-link {{ active_class(['settings/inbox']) }}">Widthdraw Setting</a>
+            </li>
+          </ul>
+        </div>
+      </li>
       <li class="nav-item {{ active_class(['/']) }}">
         <a href="{{route('membership.index')}}" class="nav-link">
           <i class="link-icon" data-feather="settings"></i>
           <span class="link-title">User Membership</span>
         </a>
       </li>
-      <li class="nav-item">
-        <a href="{{route('paymentgateway.index')}}" class="nav-link">
-          <i class="link-icon" data-feather="dollar-sign"></i>
-          <span class="link-title">Payment Gateway</span>
-        </a>
-      </li>
+
       <li class="nav-item">
         <a href="{{route('transaction.index')}}" class="nav-link">
           <i class="link-icon" data-feather="activity"></i>
@@ -105,6 +120,12 @@
         <a href="{{route('deposit.index')}}" class="nav-link">
           <i class="link-icon" data-feather="activity"></i>
           <span class="link-title">Deposit</span>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a href="{{route('withdraw.index')}}" class="nav-link">
+          <i class="link-icon" data-feather="activity"></i>
+          <span class="link-title">Withdraw</span>
         </a>
       </li>
       <li class="nav-item">
@@ -119,18 +140,15 @@
           <span class="link-title">Agora</span>
         </a>
       </li>
-      <li class="nav-item">
-        <a href="{{route('helpline.index')}}" class="nav-link">
-          <i class="link-icon" data-feather="headphones"></i>
-          <span class="link-title">Helpline</span>
-        </a>
-      </li>
+
       <li class="nav-item">
         <a href="{{route('notice.index')}}" class="nav-link">
           <i class="link-icon" data-feather="bell"></i>
           <span class="link-title">Notice</span>
         </a>
       </li>
+
+
       <li class="nav-item">
         <a class="nav-link" href="{{ route('logout') }}"
             onclick="event.preventDefault();

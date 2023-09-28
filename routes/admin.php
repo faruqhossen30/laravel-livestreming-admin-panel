@@ -15,10 +15,13 @@ use App\Http\Controllers\Admin\PaymentgatewayController;
 use App\Http\Controllers\Admin\SettingController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\UserupdateController;
+use App\Http\Controllers\Admin\WithdrawController;
+use App\Http\Controllers\Admin\WithdrawsettingController;
 use App\Http\Controllers\Firebase\UserController as FirebaseUserController;
 use App\Http\Controllers\TransactionadminController;
 use App\Models\BlockUser;
 use App\Models\User;
+use App\Models\WithdrawSetting;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Route;
 /*
@@ -46,6 +49,7 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
     Route::resource('deposit', DepositController::class);
     Route::resource('helpline', HelplineController::class);
     Route::resource('notice', NoticeController::class);
+    Route::resource('withdraw', WithdrawController::class);
 
     Route::post('user/delete/{id}', [UserController::class, 'userDelete'])->name('adminuser.delete');
 
@@ -69,6 +73,7 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
     Route::post('/setting/daimond-commission', [SettingController::class, 'daimondCommission'])->name('admin.setting.daimondcommission');
     Route::post('/setting/daimond-price', [SettingController::class, 'daimondRate'])->name('admin.setting.daimondrate');
     Route::post('/setting/withdraw-rate', [SettingController::class, 'withdrawRate'])->name('admin.setting.withdrawrate');
+    Route::resource('withdrawsetting', WithdrawsettingController::class);
 
     Route::get('/dashboard', function () {
         $activUser = User::where('is_user', 1)->where('status',1)->count();

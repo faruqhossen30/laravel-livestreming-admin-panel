@@ -9,7 +9,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use DataTables;
 use Illuminate\Support\HtmlString;
-
+use Google\Cloud\Firestore\FirestoreClient;
 class UserController extends Controller
 {
     /**
@@ -133,10 +133,20 @@ class UserController extends Controller
      */
     public function edit($id)
     {
+        $db = new FirestoreClient([
+            'projectId' => 'akashliveapp',
+        ]);
+
         $user = User::firstWhere('id', $id);
         $blockuser = BlockUser::firstWhere('user_id', $id);
-        // return gettype($blockuser);
-        return view('admin.user.edit', compact('user', 'blockuser'));
+
+        $firebaseuser = $db->collection('users')->document($id)->snapshot();
+
+        // dd($fbuser);
+
+        // return print_r($fbuser->data());
+
+        return view('admin.user.edit', compact('user', 'blockuser','firebaseuser'));
     }
 
     /**

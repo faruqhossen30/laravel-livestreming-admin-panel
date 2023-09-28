@@ -3,13 +3,15 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\WithdrawSetting;
 use Illuminate\Http\Request;
 
 class SettingController extends Controller
 {
     public function settingPage()
     {
-        return view('admin.settings.setting');
+        $withdrawsetting = WithdrawSetting::first();
+        return view('admin.settings.setting', compact('withdrawsetting'));
     }
 
     public function websiteName(Request $request)

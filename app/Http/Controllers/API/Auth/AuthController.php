@@ -155,7 +155,7 @@ class AuthController extends Controller
             }
             if (Auth::attempt(['mobile' => $request->mobile, 'password' => $request->password, 'status' => 1])) {
                 $user = Auth::user();
-                // $user->tokens()->delete();
+                $user->tokens()->delete();
                 $token = $user->createToken(uniqid())->plainTextToken;
                 $user['token'] = $token;
 

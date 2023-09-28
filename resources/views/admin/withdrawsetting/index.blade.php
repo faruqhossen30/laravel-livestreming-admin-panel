@@ -3,7 +3,7 @@
     <nav class="page-breadcrumb">
         <ol class="breadcrumb">
             <li class="breadcrumb-item"><a href="{{ route('dashboard') }}">Dashboard</a></li>
-            <li class="breadcrumb-item active" aria-current="page">Agora</li>
+            <li class="breadcrumb-item active" aria-current="page">Withdraw Setting</li>
         </ol>
     </nav>
 
@@ -12,11 +12,11 @@
             <div class="card">
                 <div class="card-body">
                     <div>
-                        <a href="{{route('agora.create')}}" type="button" class="btn btn-sm btn-primary btn-icon-text">
+                        <a href="{{route('withdrawsetting.edit', $withdrawsetting->id)}}" type="button" class="btn btn-sm btn-primary btn-icon-text">
                             <i class="btn-icon-prepend" data-feather="aperture"></i>
-                           Change Agora
+                           Change Withdraw Setting
                         </a>
-                        <a href="{{route('agora.edit', $agora->id)}}" type="button" class="btn btn-sm btn-danger btn-icon-text">
+                        <a href="{{route('withdrawsetting.edit', $withdrawsetting->id)}}" type="button" class="btn btn-sm btn-danger btn-icon-text">
                             <i class="btn-icon-prepend" data-feather="delete"></i>
                            Clear Data
                         </a>
@@ -34,23 +34,23 @@
                             <tbody>
                                 <tr>
                                     {{-- <th>1</th> --}}
-                                    <td>Time</td>
-                                    <td>: {{$agora->updated_at->format('d M Y, h:i:s A') }}</td>
+                                    <td>Status</td>
+                                    <td>: {{$withdrawsetting->status }}</td>
                                 </tr>
                                 <tr>
                                     {{-- <th>1</th> --}}
-                                    <td>App Name</td>
-                                    <td>: {{$agora->project_name}}</td>
+                                    <td>Diamond Rate</td>
+                                    <td>: {{$withdrawsetting->diamond_rate}}%</td>
                                 </tr>
                                 <tr>
                                     {{-- <th>1</th> --}}
-                                    <td>Ap ID</td>
-                                    <td>: {{$agora->app_id}}</td>
+                                    <td>Normal Withdraw Commission</td>
+                                    <td>: {{$withdrawsetting->normar_widthraw_commission}}%</td>
                                 </tr>
                                 <tr>
                                     {{-- <th>1</th> --}}
-                                    <td>Ap Certificate</td>
-                                    <td>: {{$agora->app_certificate}}</td>
+                                    <td>Urgent Withdraw Commission</td>
+                                    <td>: {{$withdrawsetting->urgent_widthraw_commission}}%</td>
                                 </tr>
                             </tbody>
                         </table>

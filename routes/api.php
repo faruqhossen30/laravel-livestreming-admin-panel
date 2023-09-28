@@ -15,6 +15,8 @@ use App\Http\Controllers\API\User\DepositController;
 use App\Http\Controllers\API\User\FollowerController;
 use App\Http\Controllers\API\User\ProfileController;
 use App\Http\Controllers\API\User\UserapiController;
+use App\Http\Controllers\API\User\WithdrawController;
+use App\Http\Controllers\API\User\WithdrawsettingController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -88,6 +90,10 @@ Route::middleware('auth:sanctum')->group(function () {
         Route::get('/blocks', [BlockController::class, 'blockList']);
         Route::post('/block/block', [BlockController::class, 'block']);
         Route::post('/block/unblock', [BlockController::class, 'unBlock']);
+        // Withdraw
+        Route::get('/withdrawsetting', [WithdrawsettingController::class, 'index']);
+        Route::get('/withdraws', [WithdrawController::class, 'index']);
+        Route::post('/withdraw', [WithdrawController::class, 'store']);
 
     });
 });

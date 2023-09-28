@@ -156,7 +156,7 @@
                     <ul class="list-group">
                         <li class="list-group-item d-flex justify-content-start align-items-center">
                             {{-- <span class="badge bg-primary rounded-pill">14</span> --}}
-                            <span><i data-feather="user"></i></span>
+                            <span><i data-feather="award"></i></span>
                             <span class="px-2"> ID : {{ $user->id }}</span>
                         </li>
                         <li class="list-group-item d-flex justify-content-start align-items-center">
@@ -166,12 +166,17 @@
                         </li>
                         <li class="list-group-item d-flex justify-content-start align-items-center">
                             {{-- <span class="badge bg-primary rounded-pill">14</span> --}}
-                            <span><i data-feather="user"></i></span>
+                            <span><i data-feather="gift"></i></span>
+                            <span class="px-2"> Diamond : {{ $firebaseuser['diamond'] }}</span>
+                        </li>
+                        <li class="list-group-item d-flex justify-content-start align-items-center">
+                            {{-- <span class="badge bg-primary rounded-pill">14</span> --}}
+                            <span><i data-feather="phone-call"></i></span>
                             <span class="px-2"> Mobile : {{ $user->mobile }}</span>
                         </li>
                         <li class="list-group-item d-flex justify-content-start align-items-center">
                             {{-- <span class="badge bg-primary rounded-pill">14</span> --}}
-                            <span><i data-feather="user"></i></span>
+                            <span><i data-feather="calendar"></i></span>
                             <span class="px-2"> Created : {{ $user->created_at->format('d M Y, h:i:s A') }}</span>
                         </li>
                     </ul>
