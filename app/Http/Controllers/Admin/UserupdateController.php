@@ -46,7 +46,7 @@ class UserupdateController extends Controller
         ]);
 
         // return $request->all();
-        return redirect()->back()->with('message', 'Tender has been uploaded successfully! ');
+        return redirect()->back()->with('message', 'User has been update successfully! ');
     }
 
 

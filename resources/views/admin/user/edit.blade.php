@@ -39,7 +39,7 @@
                             </div>
                             <div class="w-100">
                                 <div class="d-flex justify-content-between">
-                                    <h6 class="fw-normal text-body mb-1">{{$user->name}} </h6>
+                                    <h6 class="fw-normal text-body mb-1">{{ $user->name }} </h6>
                                     <p class="text-muted tx-12">
                                         @if ($user->status)
                                             <span class="badge bg-success">Active</span>
@@ -73,15 +73,69 @@
                         </button>
 
 
-                        @if ($user->status)
-                            <a onclick="return confirm('Sure ! Stop user ?')" href="{{ route('user.deactive', $user->id) }}"
+                        @if ($user->vip)
+                            <a onclick="return confirm('Sure ! Deactive VIP/VVIP ?')" href="{{ route('user.disableVip', $user->id) }}"
                                 type="button" class="btn btn-icon-text btn-outline-danger">
+                                <i class="btn-icon-prepend" data-feather="check-circle"></i>
+                                Deactive VIP
+                            </a>
+                        @else
+                            <button type="button" class="btn btn-icon-text btn-outline-success" data-bs-toggle="modal"
+                                data-bs-target="#vipModal">
+                                <i class="btn-icon-prepend" data-feather="check-circle"></i>
+                                Add VIP
+                            </button>
+                        @endif
+
+
+
+
+
+                        <!-- VIP Modal -->
+                        <div class="modal fade" id="vipModal" tabindex="-1" aria-labelledby="vipModalLabel"
+                            aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <form action="{{ route('user.addvip', $user->id) }}" method="post">
+                                        @csrf
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="vipModalLabel">VIP Option</h5>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                aria-label="btn-close"></button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <div class="mb-3">
+                                                <select name="vip" id="" class="form-control">
+                                                    <option value="">Select</option>
+                                                    <option value="vip">VIP</option>
+                                                    <option value="vvip">VVIP</option>
+                                                </select>
+
+                                            </div>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary"
+                                                data-bs-dismiss="modal">Close</button>
+                                            <button type="submit" class="btn btn-primary">Save changes</button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+
+
+
+                        @if ($user->status)
+                            <a onclick="return confirm('Sure ! Stop user ?')"
+                                href="{{ route('user.deactive', $user->id) }}" type="button"
+                                class="btn btn-icon-text btn-outline-danger">
                                 <i class="btn-icon-prepend" data-feather="user-x"></i>
                                 Deactive User
                             </a>
                         @else
-                            <a onclick="return confirm('Sure ! Active user ?')" href="{{ route('user.active', $user->id) }}"
-                                type="button" class="btn btn-icon-text btn-outline-success">
+                            <a onclick="return confirm('Sure ! Active user ?')"
+                                href="{{ route('user.active', $user->id) }}" type="button"
+                                class="btn btn-icon-text btn-outline-success">
                                 <i class="btn-icon-prepend" data-feather="user-check"></i>
                                 Active User
                             </a>

@@ -15,6 +15,7 @@ use App\Http\Controllers\Admin\PaymentgatewayController;
 use App\Http\Controllers\Admin\SettingController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\UserupdateController;
+use App\Http\Controllers\Admin\VipController;
 use App\Http\Controllers\Admin\WithdrawController;
 use App\Http\Controllers\Admin\WithdrawsettingController;
 use App\Http\Controllers\Firebase\UserController as FirebaseUserController;
@@ -50,6 +51,8 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
     Route::resource('helpline', HelplineController::class);
     Route::resource('notice', NoticeController::class);
     Route::resource('withdraw', WithdrawController::class);
+    Route::post('vip/update/{id}', [VipController::class, 'addVip'])->name('user.addvip');
+    Route::get('vip/update/disable/{id}', [VipController::class, 'disableVip'])->name('user.disableVip');
 
     Route::post('user/delete/{id}', [UserController::class, 'userDelete'])->name('adminuser.delete');
 
