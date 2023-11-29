@@ -26,7 +26,9 @@ return new class extends Migration
             $table->integer('diamond');
             $table->integer('diamond_commission');
             $table->integer('total_diamond');
+            $table->integer('amount');
             $table->enum('status',['pending','complete','cancle'])->default('pending');
+            $table->string('comment')->nullable();
             $table->timestamps();
         });
     }

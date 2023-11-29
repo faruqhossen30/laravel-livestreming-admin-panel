@@ -25,7 +25,7 @@ Route::get('/token', [TokenController::class, 'index']);
 Route::get('test', [TestController::class, 'showCollectionsAndDocuments']);
 Route::get('test2', [TestController::class, 'two']);
 Route::get('firebase', [TestController::class, 'firebase']);
-Route::get('update', [TestController::class, 'updateUser']);
+// Route::get('test/update', [TestController::class, 'updateUser']);
 Route::get('/apk', [ApkdownloadController::class, 'apkDownload'])->name('downloadapk');
 
 

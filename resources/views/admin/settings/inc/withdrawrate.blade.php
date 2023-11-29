@@ -7,7 +7,7 @@
                 </span>
             </div>
             <div class="card-body">
-                <form action="{{ route('withdrawsettins.store') }}" method="post">
+                <form action="" method="post">
                     @csrf
                     <div class="input-group date  mb-2">
                         <span class="input-group-text">On/Off</i></span>

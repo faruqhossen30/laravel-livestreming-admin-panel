@@ -9,6 +9,7 @@ use Google\Cloud\Firestore\FirestoreClient;
 use Illuminate\Http\Request;
 use Kreait\Laravel\Firebase\Facades\Firebase;
 use Google\Cloud\Firestore\FieldValue;
+use Google\Cloud\Core\ExponentialBackoff;
 
 class TestController extends Controller
 {
@@ -108,12 +109,30 @@ class TestController extends Controller
 
     public function updateUser()
     {
-        $db = app('firebase.firestore')->database();
+        $firestore = app('firebase.firestore')->database();
+        $collection = $firestore->collection('users');
+        $documents = $collection->documents();
+        $updateData = [
+            'vip' => null,
+            // Add more fields as needed
+        ];
+        $backoff = new ExponentialBackoff(10);
 
-        $cityRef = $db->collection('students')->document('acbf3788a52848d98c0c');
-        $cityRef->update([
-            ['path' => 'name', 'value' => "welcome"]
-        ]);
+        foreach ($documents as $document) {
+            $backoff->execute(function () use ($document, $updateData) {
+                $document->reference()->update(
+                    [
+                        ['path' => 'vip', 'value' => null],
+                        ['path' => 'vipDate', 'value' => null],
+                    ]
+                );
+            });
+        }
+
+        echo "All documents in the collection have been updated.";
+
+
+
     }
     public function firebase()
     {

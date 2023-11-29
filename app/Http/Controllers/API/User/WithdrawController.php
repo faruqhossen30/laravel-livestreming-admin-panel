@@ -4,7 +4,11 @@ namespace App\Http\Controllers\API\User;
 
 use App\Http\Controllers\Controller;
 use App\Models\Withdraw;
+use App\Models\WithdrawSetting;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Google\Cloud\Firestore\FirestoreClient;
+use Google\Cloud\Firestore\FieldValue;
 
 class WithdrawController extends Controller
 {
@@ -15,7 +19,8 @@ class WithdrawController extends Controller
      */
     public function index(Request $request)
     {
-        $withdraws = Withdraw::where('user_id',$request->user()->id)->paginate(5);
+        $request->all();
+        $withdraws = Withdraw::where('user_id', $request->user()->id)->paginate(5);
         return response()->json($withdraws);
     }
 
@@ -38,34 +43,65 @@ class WithdrawController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            "withdraw_rate"        => "required",
-            "withdraw_commission" => "required",
-            "payment_method"      => "required",
             "withdraw_type"       => "required",
             "account"             => "required",
-            "diamond"             => "required",
-            "diamond_commission"  => "required",
-            "total_diamond"       => "required"
+            "diamond"             => "required"
         ]);
 
-        $data = [
-            "user_id"             => $request->user()->id,
-            "withdraw_rate"       => $request->withdraw_rate,
-            "withdraw_commission" => $request->withdraw_commission,
-            "payment_method"      => $request->payment_method,
-            "withdraw_type"       => $request->withdraw_type,
-            "account"             => $request->account,
-            "diamond"             => $request->diamond,
-            "diamond_commission"  => $request->diamond_commission,
-            "total_diamond"       => $request->total_diamond
-        ];
+        $withdraw_setting = WithdrawSetting::first();
+        $diomond_rate = $withdraw_setting->diamond_rate * 1000;
+        $withdraw_type= strtolower($request->withdraw_type);
 
-        $withdraw = Withdraw::create($data);
-        return response()->json([
-            'success' => true,
-            'code' => 200,
-            'data' => $withdraw
+        $withdraw_commission = $withdraw_type == 'normal' ?  $withdraw_setting->normar_widthraw_commission : $withdraw_setting->urgent_widthraw_commission;
+
+        $diamond_commission = $withdraw_type == 'normal' ?  $request->diamond * $withdraw_setting->normar_widthraw_commission/100 : $request->diamond * $withdraw_setting->urgent_widthraw_commission/100;
+        $total_diamond = $request->diamond + $diamond_commission;
+
+        $db = new FirestoreClient([
+            'projectId' => 'akashliveapp',
         ]);
+
+        $firebaseuser = $db->collection('users')->document($request->user()->id);
+        $blance_diamon = $firebaseuser->snapshot()['diamond'];
+
+
+        if($total_diamond > $blance_diamon){
+            return response()->json([
+                'message' => 'Sorry ! Insufficent diamond.',
+            ]);
+        }else{
+
+            $data = [
+                "user_id"             => $request->user()->id,
+                "withdraw_rate"       => $withdraw_setting->diamond_rate,
+                "withdraw_commission" => $withdraw_commission,
+                "payment_method"      => $request->payment_method,
+                "withdraw_type"       => $request->withdraw_type,
+                "account"             => $request->account,
+                "diamond"             => $request->diamond,
+                "diamond_commission"  => $diamond_commission,
+                "total_diamond"       => $total_diamond,
+                "amount"              => $withdraw_setting->diamond_rate * $request->diamond,
+                "blance_diamond"      => $blance_diamon,
+                "time"                => Carbon::now()
+            ];
+
+
+            $withdraw = Withdraw::create($data);
+            $db->collection('withdraws')->add($data);
+            $firebaseuser->update([
+                ['path' => 'diamond', 'value' => FieldValue::increment(-intval($request->diamond))]
+            ]);
+
+
+            return response()->json([
+                'success' => true,
+                'code' => 200,
+                'message' => 'Successfully received your widthdraw request.',
+                'data' => $withdraw
+            ]);
+        }
+
     }
 
     /**
