@@ -59,6 +59,31 @@
                                 <span class="text-danger">{{ $message }}</span> <br>
                             @enderror
                         </div>
+
+                        <div class="mb-3">
+                            <label for="minimum_widthraw" class="form-label">Minum Withdraw Diamond</label>
+                            <input name="minimum_widthraw" type="number" class="form-control @error('minimum_widthraw') is-invalid @enderror"
+                                id="minimum_widthraw" autocomplete="off" placeholder="1,000" step="0.01" value="{{$withdrawsetting->minimum_widthraw}}">
+                            @error('minimum_widthraw')
+                                <span class="text-danger">{{ $message }}</span> <br>
+                            @enderror
+                        </div>
+                        <div class="mb-3">
+                            <label for="maximum_widthraw" class="form-label">Maximum Withdraw Diamond</label>
+                            <input name="maximum_widthraw" type="number" class="form-control @error('maximum_widthraw') is-invalid @enderror"
+                                id="maximum_widthraw" autocomplete="off" placeholder="50,000" step="0.01" value="{{$withdrawsetting->maximum_widthraw}}">
+                            @error('maximum_widthraw')
+                                <span class="text-danger">{{ $message }}</span> <br>
+                            @enderror
+                        </div>
+                        <div class="mb-3">
+                            <label for="next_widthraw" class="form-label">Next Withdray Day</label>
+                            <input name="next_widthraw" type="number" class="form-control @error('next_widthraw') is-invalid @enderror"
+                                id="next_widthraw" autocomplete="off" placeholder="50,000" step="0.01" value="{{$withdrawsetting->next_widthraw}}">
+                            @error('next_widthraw')
+                                <span class="text-danger">{{ $message }}</span> <br>
+                            @enderror
+                        </div>
                         <div class="col-md-12 grid-margin stretch-card">
                             <div class="card">
                                 <div class="card-body">

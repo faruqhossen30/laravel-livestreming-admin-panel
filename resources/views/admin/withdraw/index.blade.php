@@ -43,7 +43,7 @@
                                         Diamond
                                     </th>
                                     <th>
-                                        %
+                                        Type
                                     </th>
                                     <th>
                                         Type
@@ -79,7 +79,7 @@
                                             {{ $item->diamond }}
                                         </td>
                                         <td>
-                                            {{ $item->diamond_commission}}
+                                            {{ $item->withdraw_type}}
                                         <td>
                                             {{ $item->payment_method }}
                                         </td>

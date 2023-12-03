@@ -42,15 +42,22 @@ class WithdrawsettingController extends Controller
             'diamond_rate' => 'required',
             'normar_widthraw_commission' => 'required',
             'urgent_widthraw_commission' => 'required',
+            'minimum_widthraw' => 'required',
+            'maximum_widthraw' => 'required',
+            'next_widthraw' => 'required',
             'description' => 'required'
         ]);
 
         WithdrawSetting::updateOrCreate(['id' => 1], [
-            'status' => $request->status,
-            'diamond_rate' => $request->diamond_rate,
+            'status'                     => $request->status,
+            'diamond_rate'               => $request->diamond_rate,
             'normar_widthraw_commission' => $request->normar_widthraw_commission,
             'urgent_widthraw_commission' => $request->urgent_widthraw_commission,
-            'description' => $request->description
+            'urgent_widthraw_commission' => $request->urgent_widthraw_commission,
+            'minimum_widthraw'           => $request->minimum_widthraw,
+            'maximum_widthraw'           => $request->maximum_widthraw,
+            'next_widthraw'              => $request->next_widthraw,
+            'description'                => $request->description
         ]);
 
         return redirect()->back();

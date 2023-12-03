@@ -9,6 +9,6 @@ class WithdrawSetting extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['status', 'diamond_rate', 'normar_widthraw_commission','urgent_widthraw_commission','description'];
+    protected $fillable = ['status', 'diamond_rate', 'normar_widthraw_commission','urgent_widthraw_commission','description','minimum_widthraw','next_widthraw','maximum_widthraw'];
 
 }

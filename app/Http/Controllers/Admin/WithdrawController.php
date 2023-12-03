@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Withdraw;
 use Illuminate\Http\Request;
+use Google\Cloud\Firestore\FirestoreClient;
+use Google\Cloud\Firestore\FieldValue;
 
 class WithdrawController extends Controller
 {
@@ -48,7 +50,7 @@ class WithdrawController extends Controller
      */
     public function show($id)
     {
-        $withdraw = Withdraw::firstWhere('id',$id);
+        $withdraw = Withdraw::firstWhere('id', $id);
         return view('admin.withdraw.show', compact('withdraw'));
     }
 
@@ -73,13 +75,30 @@ class WithdrawController extends Controller
     public function update(Request $request, $id)
     {
         $request->validate([
-            "status"=>'required'
+            "status" => 'required'
         ]);
+        // return $request->all();
 
-        $withdraw = Withdraw::firstWhere('id', $id)->update(["status"=>$request->status]);
+        $withdraw = Withdraw::firstWhere('id', $id);
+
+        if ($request->status == 'complete') {
+            $withdraw = Withdraw::firstWhere('id', $id)->update(["status" => $request->status]);
+        } else if ($request->status == 'cancle') {
+
+            $db = new FirestoreClient([
+                'projectId' => 'akashliveapp',
+            ]);
+
+            $firebaseuser = $db->collection('users')->document($withdraw->user_id);
+            $firebaseuser->update([
+                ['path' => 'diamond', 'value' => FieldValue::increment(intval($withdraw->total_diamond))]
+            ]);
+            $withdraw = Withdraw::firstWhere('id', $id)->update(["status" => $request->status]);
+
+        }
+
 
         return redirect()->route('withdraw.index');
-
     }
 
     /**

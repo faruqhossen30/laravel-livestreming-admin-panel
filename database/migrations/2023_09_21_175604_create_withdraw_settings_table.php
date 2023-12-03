@@ -19,6 +19,9 @@ return new class extends Migration
             $table->float('diamond_rate');
             $table->integer('normar_widthraw_commission');
             $table->integer('urgent_widthraw_commission');
+            $table->integer('minimum_widthraw');
+            $table->integer('maximum_widthraw');
+            $table->integer('next_widthraw');
             $table->longText('description')->nullable();
             $table->timestamps();
         });
