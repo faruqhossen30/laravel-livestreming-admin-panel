@@ -1,69 +1,74 @@
 <nav class="sidebar">
-  <div class="sidebar-header">
-    <a href="#" class="sidebar-brand">
-      AKASH<span>LIVE</span>
-    </a>
-    <div class="sidebar-toggler not-active">
-      <span></span>
-      <span></span>
-      <span></span>
+    <div class="sidebar-header">
+        <a href="#" class="sidebar-brand">
+            AKASH<span>LIVE</span>
+        </a>
+        <div class="sidebar-toggler not-active">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
     </div>
-  </div>
-  <div class="sidebar-body">
-    <ul class="nav">
-      {{-- <li class="nav-item nav-category">Main</li> --}}
-      <li class="nav-item {{ active_class(['/']) }}">
-        <a href="{{ url('/admin/dashboard') }}" class="nav-link">
-          <i class="link-icon" data-feather="box"></i>
-          <span class="link-title">Dashboard</span>
-        </a>
-      </li>
-      <li class="nav-item {{ active_class(['/']) }}">
-        <a href="{{route('dashboard')}}" class="nav-link">
-          <i class="link-icon" data-feather="gift"></i>
-          <span class="link-title">Diamond Overview</span>
-        </a>
-      </li>
-      <li class="nav-item {{ active_class(['/']) }}">
+    <div class="sidebar-body">
+        <ul class="nav">
+            {{-- <li class="nav-item nav-category">Main</li> --}}
+            <li class="nav-item {{ active_class(['/']) }}">
+                <a href="{{ url('/admin/dashboard') }}" class="nav-link">
+                    <i class="link-icon" data-feather="box"></i>
+                    <span class="link-title">Dashboard</span>
+                </a>
+            </li>
+            <li class="nav-item {{ active_class(['/']) }}">
+                <a href="{{ route('dashboard') }}" class="nav-link">
+                    <i class="link-icon" data-feather="gift"></i>
+                    <span class="link-title">Diamond Overview</span>
+                </a>
+            </li>
+            {{-- <li class="nav-item {{ active_class(['/']) }}">
         <a href="{{route('admin.settings')}}" class="nav-link">
           <i class="link-icon" data-feather="settings"></i>
           <span class="link-title">Settings</span>
         </a>
-      </li>
+      </li> --}}
 
-      {{-- <li class="nav-item {{ active_class(['/']) }}">
+            {{-- <li class="nav-item {{ active_class(['/']) }}">
         <a href="{{route('user.index')}}" class="nav-link">
           <i class="link-icon" data-feather="users"></i>
           <span class="link-title">Users</span>
         </a>
       </li> --}}
 
-      <li class="nav-item {{ active_class(['email/*']) }}">
-        <a class="nav-link" data-bs-toggle="collapse" href="#email" role="button" aria-expanded="{{ is_active_route(['email/*']) }}" aria-controls="email">
-          <i class="link-icon" data-feather="users"></i>
-          <span class="link-title">Users</span>
-          <i class="link-arrow" data-feather="chevron-down"></i>
-        </a>
-        <div class="collapse {{ show_class(['user/*']) }}" id="email">
-          <ul class="nav sub-menu">
-            <li class="nav-item">
-              <a href="{{route('user.create')}}" class="nav-link {{ active_class(['email/inbox']) }}">Create User</a>
+            <li class="nav-item {{ active_class(['email/*']) }}">
+                <a class="nav-link" data-bs-toggle="collapse" href="#email" role="button"
+                    aria-expanded="{{ is_active_route(['email/*']) }}" aria-controls="email">
+                    <i class="link-icon" data-feather="users"></i>
+                    <span class="link-title">Users</span>
+                    <i class="link-arrow" data-feather="chevron-down"></i>
+                </a>
+                <div class="collapse {{ show_class(['user/*']) }}" id="email">
+                    <ul class="nav sub-menu">
+                        <li class="nav-item">
+                            <a href="{{ route('user.create') }}"
+                                class="nav-link {{ active_class(['email/inbox']) }}">Create User</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{ route('user.index') }}"
+                                class="nav-link {{ active_class(['email/inbox']) }}">All User</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{ route('userlist') }}"
+                                class="nav-link {{ active_class(['email/inbox']) }}">User With Diamond</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{ route('blockuser.index') }}"
+                                class="nav-link {{ active_class(['email/inbox']) }}">Block Users</a>
+                        </li>
+                    </ul>
+                </div>
             </li>
-            <li class="nav-item">
-              <a href="{{route('user.index')}}" class="nav-link {{ active_class(['email/inbox']) }}">All User</a>
-            </li>
-            <li class="nav-item">
-              <a href="{{route('userlist')}}" class="nav-link {{ active_class(['email/inbox']) }}">User With Diamond</a>
-            </li>
-            <li class="nav-item">
-              <a href="{{route('blockuser.index')}}" class="nav-link {{ active_class(['email/inbox']) }}">Block Users</a>
-            </li>
-          </ul>
-        </div>
-      </li>
 
 
-      {{-- <li class="nav-item {{ active_class(['/']) }}">
+            {{-- <li class="nav-item {{ active_class(['/']) }}">
         <a href="{{route('userlist')}}" class="nav-link">
           <i class="link-icon" data-feather="users"></i>
           <span class="link-title">Users New</span>
@@ -71,100 +76,110 @@
         </a>
       </li> --}}
 
-      <li class="nav-item {{ active_class(['/']) }}">
-        <a href="{{route('label.index')}}" class="nav-link">
-          <i class="link-icon" data-feather="users"></i>
-          <span class="link-title">User Label</span>
-        </a>
-      </li>
-      <li class="nav-item {{ active_class(['/']) }}">
-        <a href="{{route('gift.index')}}" class="nav-link">
-          <i class="link-icon" data-feather="gift"></i>
-          <span class="link-title">Gift</span>
-        </a>
-      </li>
-      <li class="nav-item {{ active_class(['settings/*']) }}">
-        <a class="nav-link" data-bs-toggle="collapse" href="#settings" role="button" aria-expanded="{{ is_active_route(['settings/*']) }}" aria-controls="settings">
-          <i class="link-icon" data-feather="users"></i>
-          <span class="link-title">Settings</span>
-          <i class="link-arrow" data-feather="chevron-down"></i>
-        </a>
-        <div class="collapse {{ show_class(['user/*']) }}" id="settings">
-          <ul class="nav sub-menu">
+            <li class="nav-item {{ active_class(['/']) }}">
+                <a href="{{ route('label.index') }}" class="nav-link">
+                    <i class="link-icon" data-feather="users"></i>
+                    <span class="link-title">User Label</span>
+                </a>
+            </li>
+            <li class="nav-item {{ active_class(['/']) }}">
+                <a href="{{ route('gift.index') }}" class="nav-link">
+                    <i class="link-icon" data-feather="gift"></i>
+                    <span class="link-title">Gift</span>
+                </a>
+            </li>
+            <li class="nav-item {{ active_class(['settings/*']) }}">
+                <a class="nav-link" data-bs-toggle="collapse" href="#settings" role="button"
+                    aria-expanded="{{ is_active_route(['settings/*']) }}" aria-controls="settings">
+                    <i class="link-icon" data-feather="users"></i>
+                    <span class="link-title">Settings</span>
+                    <i class="link-arrow" data-feather="chevron-down"></i>
+                </a>
+                <div class="collapse {{ show_class(['user/*']) }}" id="settings">
+                    <ul class="nav sub-menu">
+                        <li class="nav-item">
+                            <a href="{{ route('paymentgateway.index') }}"
+                                class="nav-link {{ active_class(['settings/inbox']) }}">Payment Gateway</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{ route('helpline.index') }}"
+                                class="nav-link {{ active_class(['settings/inbox']) }}">Helpline</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{ route('withdrawsetting.index') }}"
+                                class="nav-link {{ active_class(['settings/inbox']) }}">Widthdraw Setting</a>
+                        </li>
+                    </ul>
+                </div>
+            </li>
+            <li class="nav-item {{ active_class(['/']) }}">
+                <a href="{{ route('membership.index') }}" class="nav-link">
+                    <i class="link-icon" data-feather="settings"></i>
+                    <span class="link-title">User Membership</span>
+                </a>
+            </li>
+
             <li class="nav-item">
-              <a href="{{route('paymentgateway.index')}}" class="nav-link {{ active_class(['settings/inbox']) }}">Payment Gateway</a>
+                <a href="{{ route('transaction.index') }}" class="nav-link">
+                    <i class="link-icon" data-feather="activity"></i>
+                    <span class="link-title">Transactions</span>
+                </a>
             </li>
             <li class="nav-item">
-              <a href="{{route('helpline.index')}}" class="nav-link {{ active_class(['settings/inbox']) }}">Helpline</a>
+                <a href="{{ route('deposit.index') }}" class="nav-link">
+                    <i class="link-icon" data-feather="activity"></i>
+                    <span class="link-title">Deposit</span>
+                </a>
+            </li>
+            @php
+                $value = \App\Models\Withdraw::where('status', 'pending')->count();
+            @endphp
+            <li class="nav-item d-flex align-items-center justify-content-between">
+                <a href="{{ route('withdraw.index') }}" class="nav-link">
+                    <i class="link-icon" data-feather="activity"></i>
+                    <span class="link-title">Withdraw</span>
+                </a>
+                @if ($value > 0)
+                <span class="bg-danger rounded px-1 text-light">{{$value}}</span>
+                @endif
             </li>
             <li class="nav-item">
-              <a href="{{route('withdrawsetting.index')}}" class="nav-link {{ active_class(['settings/inbox']) }}">Widthdraw Setting</a>
+                <a href="{{ route('history.index') }}" class="nav-link">
+                    <i class="link-icon" data-feather="bar-chart-2"></i>
+                    <span class="link-title">History</span>
+                </a>
             </li>
-          </ul>
-        </div>
-      </li>
-      <li class="nav-item {{ active_class(['/']) }}">
-        <a href="{{route('membership.index')}}" class="nav-link">
-          <i class="link-icon" data-feather="settings"></i>
-          <span class="link-title">User Membership</span>
-        </a>
-      </li>
+            <li class="nav-item">
+                <a href="{{ route('agora.index') }}" class="nav-link">
+                    <i class="link-icon" data-feather="bar-chart-2"></i>
+                    <span class="link-title">Agora</span>
+                </a>
+            </li>
 
-      <li class="nav-item">
-        <a href="{{route('transaction.index')}}" class="nav-link">
-          <i class="link-icon" data-feather="activity"></i>
-          <span class="link-title">Transactions</span>
-        </a>
-      </li>
-      <li class="nav-item">
-        <a href="{{route('deposit.index')}}" class="nav-link">
-          <i class="link-icon" data-feather="activity"></i>
-          <span class="link-title">Deposit</span>
-        </a>
-      </li>
-      <li class="nav-item">
-        <a href="{{route('withdraw.index')}}" class="nav-link">
-          <i class="link-icon" data-feather="activity"></i>
-          <span class="link-title">Withdraw</span>
-        </a>
-      </li>
-      <li class="nav-item">
-        <a href="{{route('history.index')}}" class="nav-link">
-          <i class="link-icon" data-feather="bar-chart-2"></i>
-          <span class="link-title">History</span>
-        </a>
-      </li>
-      <li class="nav-item">
-        <a href="{{route('agora.index')}}" class="nav-link">
-          <i class="link-icon" data-feather="bar-chart-2"></i>
-          <span class="link-title">Agora</span>
-        </a>
-      </li>
-
-      <li class="nav-item">
-        <a href="{{route('notice.index')}}" class="nav-link">
-          <i class="link-icon" data-feather="bell"></i>
-          <span class="link-title">Notice</span>
-        </a>
-      </li>
+            <li class="nav-item">
+                <a href="{{ route('notice.index') }}" class="nav-link">
+                    <i class="link-icon" data-feather="bell"></i>
+                    <span class="link-title">Notice</span>
+                </a>
+            </li>
 
 
-      <li class="nav-item">
-        <a class="nav-link" href="{{ route('logout') }}"
-            onclick="event.preventDefault();
+            <li class="nav-item">
+                <a class="nav-link" href="{{ route('logout') }}"
+                    onclick="event.preventDefault();
                                  document.getElementById('logout-form').submit();">
-            <i class="link-icon" data-feather="power"></i>
-            <span class="link-title">Log Out</span>
-        </a>
+                    <i class="link-icon" data-feather="power"></i>
+                    <span class="link-title">Log Out</span>
+                </a>
 
-        <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-            @csrf
-        </form>
-    </li>
+                <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                    @csrf
+                </form>
+            </li>
 
 
 
-      {{-- <li class="nav-item nav-category">web apps</li>
+            {{-- <li class="nav-item nav-category">web apps</li>
       <li class="nav-item {{ active_class(['email/*']) }}">
         <a class="nav-link" data-bs-toggle="collapse" href="#email" role="button" aria-expanded="{{ is_active_route(['email/*']) }}" aria-controls="email">
           <i class="link-icon" data-feather="mail"></i>
@@ -461,38 +476,40 @@
           <span class="link-title">Documentation</span>
         </a>
       </li> --}}
-    </ul>
-  </div>
+        </ul>
+    </div>
 </nav>
 <nav class="settings-sidebar">
-  <div class="sidebar-body">
-    {{-- <a href="#" class="settings-sidebar-toggler">
+    <div class="sidebar-body">
+        {{-- <a href="#" class="settings-sidebar-toggler">
       <i data-feather="settings"></i>
     </a> --}}
-    <h6 class="text-muted mb-2">Sidebar:</h6>
-    <div class="mb-3 pb-3 border-bottom">
-      <div class="form-check form-check-inline">
-        <label class="form-check-label">
-          <input type="radio" class="form-check-input" name="sidebarThemeSettings" id="sidebarLight" value="sidebar-light" checked>
-          Light
-        </label>
-      </div>
-      <div class="form-check form-check-inline">
-        <label class="form-check-label">
-          <input type="radio" class="form-check-input" name="sidebarThemeSettings" id="sidebarDark" value="sidebar-dark">
-          Dark
-        </label>
-      </div>
+        <h6 class="text-muted mb-2">Sidebar:</h6>
+        <div class="mb-3 pb-3 border-bottom">
+            <div class="form-check form-check-inline">
+                <label class="form-check-label">
+                    <input type="radio" class="form-check-input" name="sidebarThemeSettings" id="sidebarLight"
+                        value="sidebar-light" checked>
+                    Light
+                </label>
+            </div>
+            <div class="form-check form-check-inline">
+                <label class="form-check-label">
+                    <input type="radio" class="form-check-input" name="sidebarThemeSettings" id="sidebarDark"
+                        value="sidebar-dark">
+                    Dark
+                </label>
+            </div>
+        </div>
+        <div class="theme-wrapper">
+            <h6 class="text-muted mb-2">Light Version:</h6>
+            <a class="theme-item active" href="https://www.nobleui.com/laravel/template/demo1/">
+                <img src="{{ url('assets/images/screenshots/light.jpg') }}" alt="light version">
+            </a>
+            <h6 class="text-muted mb-2">Dark Version:</h6>
+            <a class="theme-item" href="https://www.nobleui.com/laravel/template/demo2/">
+                <img src="{{ url('assets/images/screenshots/dark.jpg') }}" alt="light version">
+            </a>
+        </div>
     </div>
-    <div class="theme-wrapper">
-      <h6 class="text-muted mb-2">Light Version:</h6>
-      <a class="theme-item active" href="https://www.nobleui.com/laravel/template/demo1/">
-        <img src="{{ url('assets/images/screenshots/light.jpg') }}" alt="light version">
-      </a>
-      <h6 class="text-muted mb-2">Dark Version:</h6>
-      <a class="theme-item" href="https://www.nobleui.com/laravel/template/demo2/">
-        <img src="{{ url('assets/images/screenshots/dark.jpg') }}" alt="light version">
-      </a>
-    </div>
-  </div>
 </nav>

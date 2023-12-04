@@ -30,43 +30,24 @@
                         <table class="table table-hover">
                             <thead>
                                 <tr>
-                                    <th>
-                                        #
-                                    </th>
-                                    <th>
-                                        Name
-                                    </th>
-                                    <th>
-                                        ID
-                                    </th>
-                                    <th>
-                                        Diamond
-                                    </th>
-                                    <th>
-                                        Type
-                                    </th>
-                                    <th>
-                                        Type
-                                    </th>
-                                    <th>
-                                        Account
-                                    </th>
-                                    <th>
-                                        Status
-                                    </th>
-                                    <th>
-                                        Time
-                                    </th>
-                                    <th>
-                                        Actions
-                                    </th>
+                                    <th> # </th>
+                                    <th> Name</th>
+                                    <th> ID</th>
+                                    <th> Taka</th>
+                                    <th> Diamond</th>
+                                    <th> Type</th>
+                                    <th> Bank</th>
+                                    <th> Account</th>
+                                    <th> Status</th>
+                                    <th> Time</th>
+                                    <th> Action</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 @foreach ($withdraws as $item)
                                     <tr>
                                         <td>
-                                            {{$withdraws->firstItem() + $loop->index}}
+                                            {{ $withdraws->firstItem() + $loop->index }}
                                             {{-- {{$serial++}} --}}
                                         </td>
                                         <td>
@@ -76,37 +57,47 @@
                                             {{ $item->user->id }}
                                         </td>
                                         <td>
+                                            ৳ {{ $item->amount }}
+                                        </td>
+                                        <td>
                                             {{ $item->diamond }}
                                         </td>
                                         <td>
-                                            {{ $item->withdraw_type}}
+                                            {{ $item->withdraw_type }}
                                         <td>
                                             {{ $item->payment_method }}
                                         </td>
                                         <td>
                                             {{ $item->account }}
                                         </td>
-                                        <td>
-                                            {{ $item->status }}
-                                        </td>
+                                        @if ($item->status == 'pending')
+                                            <td class="text-warning"> {{ ucwords($item->status) }} </td>
+                                        @endif
+                                        @if ($item->status == 'cancle')
+                                            <td class="text-danger"> {{ ucwords($item->status) }} </td>
+                                        @endif
+                                        @if ($item->status == 'complete')
+                                            <td class="text-success"> {{ ucwords($item->status) }} </td>
+                                        @endif
                                         <td class="text-muted" style="font-size: 10px">
                                             <span>
-                                            {{ $item->created_at->format('d M Y') }}</span>
-                                        <span class="px-1"> <i class="btn-icon-prepend"
-                                                data-feather="clock" style="width:12px"></i>
-                                            {{ $item->created_at->format('g:i A') }}</span>
+                                                {{ $item->created_at->format('d M Y') }}</span>
+                                            <span class="px-1"> <i class="btn-icon-prepend" data-feather="clock"
+                                                    style="width:12px"></i>
+                                                {{ $item->created_at->format('g:i A') }}</span>
                                         </td>
                                         <td>
-                                            <a href="{{route('withdraw.show', $item->id)}}" type="button" class="btn btn-success btn-icon btn-xs">
+                                            <a href="{{ route('withdraw.show', $item->id) }}" type="button"
+                                                class="btn btn-success btn-icon btn-xs">
                                                 <i data-feather="eye"></i>
                                             </a>
-                                            <form action="{{route('withdraw.destroy', $item->id)}}" method="post" style="display: inline">
+                                            {{-- <form action="{{route('withdraw.destroy', $item->id)}}" method="post" style="display: inline">
                                                 @csrf
                                                 @method('DELETE')
                                                 <button type="submit" onclick="return confirm('Sure ! Delete label ?')" class="btn btn-danger btn-xs btn-icon">
                                                     <i data-feather="trash"></i>
                                                 </button>
-                                            </form>
+                                            </form> --}}
                                             {{-- @if ($item->status == false)
 
                                             @else
@@ -121,7 +112,7 @@
                         </table>
                     </div>
                     <div class="py-2">
-                        {{$withdraws->links()}}
+                        {{ $withdraws->links() }}
                     </div>
                 </div>
             </div>

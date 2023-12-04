@@ -4,9 +4,11 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Withdraw;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Google\Cloud\Firestore\FirestoreClient;
 use Google\Cloud\Firestore\FieldValue;
+use Illuminate\Support\Facades\Auth;
 
 class WithdrawController extends Controller
 {
@@ -17,7 +19,7 @@ class WithdrawController extends Controller
      */
     public function index()
     {
-        $withdraws = Withdraw::with('user')->orderBy('id', 'desc')->paginate(5);
+        $withdraws = Withdraw::with('user')->orderBy('id', 'desc')->paginate(10);
         return view('admin.withdraw.index', compact('withdraws'));
     }
 
@@ -82,7 +84,14 @@ class WithdrawController extends Controller
         $withdraw = Withdraw::firstWhere('id', $id);
 
         if ($request->status == 'complete') {
-            $withdraw = Withdraw::firstWhere('id', $id)->update(["status" => $request->status]);
+            $withdraw = Withdraw::firstWhere('id', $id)->update(
+                [
+                    "status" => $request->status,
+                    "note" => $request->note,
+                    "time" => Carbon::now(),
+                    "author_id" => Auth::user()->id,
+                ]
+            );
         } else if ($request->status == 'cancle') {
 
             $db = new FirestoreClient([
@@ -93,8 +102,12 @@ class WithdrawController extends Controller
             $firebaseuser->update([
                 ['path' => 'diamond', 'value' => FieldValue::increment(intval($withdraw->total_diamond))]
             ]);
-            $withdraw = Withdraw::firstWhere('id', $id)->update(["status" => $request->status]);
-
+            $withdraw = Withdraw::firstWhere('id', $id)->update([
+                "status" => $request->status,
+                "note" => $request->note,
+                "time" => Carbon::now(),
+                "author_id" => Auth::user()->id,
+            ]);
         }
 
 

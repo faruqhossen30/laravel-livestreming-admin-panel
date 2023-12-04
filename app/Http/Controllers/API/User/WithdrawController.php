@@ -48,12 +48,12 @@ class WithdrawController extends Controller
             "diamond"             => "required"
         ]);
 
-        $withdrawcheck = Withdraw::firstWhere('user_id', $request->user()->id);
+        $withdrawcheck = Withdraw::orderBy('updated_at', 'desc')->firstWhere('user_id', $request->user()->id);
         $setting = WithdrawSetting::first();
         // return $setting;
 
         if ($withdrawcheck) {
-            $dt = Carbon::parse($withdrawcheck->created_at);
+            $dt = Carbon::parse($withdrawcheck->updated_at);
             $now = Carbon::now();
             $diff = $dt->diffInDays($now);
             if ($diff < $setting->next_widthraw) {
@@ -61,7 +61,7 @@ class WithdrawController extends Controller
                 return response()->json([
                     'success' => false,
                     'code' => 422,
-                    'message' => "You can withdraw after {$after} days",
+                    'message' => "You can't withdraw. Please try after {$after} days",
                 ], 422);
             }
         }
@@ -111,7 +111,6 @@ class WithdrawController extends Controller
             $firebaseuser->update([
                 ['path' => 'diamond', 'value' => FieldValue::increment(-intval($total_diamond))]
             ]);
-
 
             return response()->json([
                 'success' => true,
